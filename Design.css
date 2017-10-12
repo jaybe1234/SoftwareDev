@@ -1,0 +1,42 @@
+.btn{
+	display: inline-block;
+	border: 2px solid #193D5F;
+	padding: 5px 10px;
+	background-color: #193D5F;
+	text-decoration: none;
+	color: #ffffff ;
+	border: 2px solid #FFFFFF; 
+	transition: 0.1s;
+}
+.btn {border-radius: 10px;}
+.btn:hover{
+	background-color: #003366;
+	color: blue;
+}
+.btn:active{
+	background-color: none;
+}
+.choise{
+	display: inline-block;
+	border: 2px solid #003366;
+	padding: 5px 50px;
+	background-color: #E0FFFF;
+	text-decoration: none;
+	color: #003366;
+	border-radius: 10px;
+	transition: 0.1s;
+}
+.choise:hover{
+	background-color: #003366;
+	color: blue;
+}
+.choise:active{
+	background-color: blue;
+}
+.in{
+	border:0px 
+	solid #456879;
+	border-radius:10px;
+	height: 30px;
+	width: 350px;>
+}

@@ -7,6 +7,8 @@
 	color: #ffffff ;
 	border: 2px solid #FFFFFF; 
 	transition: 0.1s;
+	width: 70px;
+	height: 40px;
 }
 .btn {border-radius: 10px;}
 .btn:hover{
@@ -38,5 +40,5 @@
 	solid #456879;
 	border-radius:10px;
 	height: 30px;
-	width: 350px;>
+	width: 250px;>
 }

@@ -25,6 +25,7 @@ class Lecturer(Base):
     password = Column(String(250), nullable= False)
 
 #Subject
+class Subject(Base):
     __tablename__ = 'subject'
     code = Column(String(250), nullable= False, primary_key= True)
     name = Column(String(250, nullable = False))

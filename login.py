@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup_user import Base,User,Password
-
+from flask_login import login_manager
 app = Flask(__name__)
 
 engine = create_engine('sqlite:///account.db')

@@ -8,11 +8,11 @@ Base = declarative_base()
 
 #Lecturer Table
 class Lecturer(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'Lecturer'
     id = Column(Integer, primary_key = True)
-    user_lecturer = Column(String(40),nullable = False)
-    password_lecturer = Column(String(40),nullable = False)
-    name_lecturer = Column(String(40),nullable = False)
+    username = Column(String(40),nullable = False)
+    password = Column(String(40),nullable = False)
+    name = Column(String(40),nullable = False)
 
 #Student Table
 class Student(Base):
@@ -32,7 +32,7 @@ class Subject(Base):
     id = Column(Integer,primary_key = True)
     name = Column(String(40),nullable = False)
     code = Column(String(40),nullable = False)
-    enrollment = relationship('Enrollment')
+    #enrollment = relationship('Enrollment')
 
 
 

@@ -26,6 +26,16 @@ class Student(Base):
     section_student = Column(String(1),nullable = False)
     gpax_student = Column(Float,nullable = False)
 
+
+
+#Subject Table
+class Subject(Base):
+    __tablename__ = 'subject'
+    id = Column(Integer,primary_key = True)
+    name = Column(String(40),nullable = False)
+    code = Column(String(40),nullable = False)
+    enrollment = relationship('Enrollment')
+
 #Enrollment Table
 class Enrollment(Base):
     __tablename__ = 'enrollment'
@@ -38,7 +48,6 @@ class Enrollment(Base):
 class Score(Base):
     __tablename__ = 'score'
     id = Column(Integer,primary_key = True)
-    task = Column(Integer,ForeignKey(Task.id))
     score = Column(Integer,nullable = False)
 
 #Task Table
@@ -49,13 +58,7 @@ class Task(Base):
     description = Column(String(40),nullable = False)
     fullscore_task = Column(Integer,nullable = False)
 
-#Subject Table
-class Subject(Base):
-    __tablename__ = 'subject'
-    id = Column(Integer,primary_key = True)
-    name = Column(String(40),nullable = False)
-    code = Column(String(40),nullable = False)
-    enrollment = relationship(Enrollment)
+
 
 
 #Grouping Table

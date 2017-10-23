@@ -17,8 +17,7 @@ class Lecturer(Base):
 #Student Table
 class Student(Base):
     __tablename__ = 'student'
-    id = Column(Integer,primary_key = True)
-    id_student = Column(String(40),nullable = False)
+    id = Column(Integer,primary_key = True,nullable=False)
     user_student = Column(String(40),nullable = False)
     password_student = Column(String(40),nullable = False)
     name_student = Column(String(40),nullable = False)

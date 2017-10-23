@@ -1,7 +1,7 @@
-from sqlalchemy import create_engine , Float
+from sqlalchemy import create_engine, Float
 from sqlalchemy.orm import sessionmaker
-from nutty_database_setup import Base , Student
-engine = create_engine('sqlite:///student.db')
+from database.database_setup import Base, Student
+engine = create_engine('sqlite:///main.db')
 Base.metadata.create_all(engine)
 DBsession = sessionmaker(bind = engine)
 session = DBsession()

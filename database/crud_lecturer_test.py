@@ -11,7 +11,3 @@ def create_lecturer(numid,user,password,name):
     session.add(new_user)
     session.commit()
 
-
-new_user = Lecturer(id=1, username='Bawornsak', password='1234', name='Blink')
-session.add(new_user)
-session.commit()

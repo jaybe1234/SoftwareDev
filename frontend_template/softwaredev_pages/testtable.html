@@ -1,0 +1,35 @@
+<script type = "text/javascript">
+function start()
+{
+ //อ่าน body
+ var body = document.getElementsByTagName( "body" )[0];
+ // สร้าง <table> และ <tbody>
+ var tbl = document.createElement( "table" );
+ var tblBody = document.createElement( "tbody" );
+ // 2 แถว 2 คอลัมน์
+ for( var j = 0 ; j < 5 ; j++ )
+ {
+  // สร้าง row
+  var row = document.createElement( "tr" );
+  // สร้าง col
+  for( var i = 0 ; i < 2 ; i++ )
+  {
+   // สร้าง td
+   var cell = document.createElement( "td" );
+   var cellText = document.createTextNode( "แถว " + j + ", คอลัมน์ " + i );
+   cell.appendChild( cellText );
+   row.appendChild( cell );
+  };
+  // แทรกแถว ลงใน tbody
+  tblBody.appendChild( row );
+ };
+ // ใส่ <tbody> ลงใน <table>
+ tbl.appendChild( tblBody );
+ // ใส่ <table> ลงใน <body>
+ body.appendChild( tbl );
+ // กำหนด border
+ tbl.setAttribute( "border" , "1" );
+}
+</script>
+<body onload="start()">
+</body>

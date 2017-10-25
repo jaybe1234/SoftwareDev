@@ -29,15 +29,14 @@ def login():
     else:
         return render_template('01_login.html')
 
+
 @app.route('/<string:username>/home')
 def home(username):
     if login == False:
         return redirect('login')
     else:
+
         return render_template('02_home.html')
-
-
-
 
 if __name__ == '__main__':
     app.debug = True

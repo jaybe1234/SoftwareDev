@@ -1,350 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>SB Admin 2 - Bootstrap Admin Theme</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- MetisMenu CSS -->
+        <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+        <!-- Morris Charts CSS -->
+        <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-
-
-
-
-
-
-
-
-<body>
-
-
-<script type = "text/javascript">
-function start()
-{
- //อ่าน body
- var body = document.getElementsByTagName( "body" )[0];
- // สร้าง <table> และ <tbody>
- var tbl = document.createElement( "table" );
- var tblBody = document.createElement( "tbody" );
- // 2 แถว 2 คอลัมน์
- for( var j = 0 ; j < 10 ; j++ )
- {
-  // สร้าง row
-  var row = document.createElement( "tr" );
-  // สร้าง col
-  for( var i = 0 ; i < 10 ; i++ )
-  {
-   // สร้าง td
-   var cell = document.createElement( "td" );
-   var cellText = document.createTextNode( "แถว " + j + ", คอลัมน์ " + i );
-   cell.appendChild( cellText );
-   row.appendChild( cell );
-  };
-  // แทรกแถว ลงใน tbody
-  tblBody.appendChild( row );
- };
- // ใส่ <tbody> ลงใน <table>
- tbl.appendChild( tblBody );
- // ใส่ <table> ลงใน <body>
- body.appendChild( tbl );
- // กำหนด border
- tbl.setAttribute( "border" , "1" );
-}
-</script>
-<body onload="start()">
-
-
-
-
-
-<!--start menu-->
-
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
-
-    <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-
-
-
-
-
-                <div class="navbar-brand">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="glyphicon glyphicon-list"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
-                            
-
-                            <li class="divider"></li>
-
-                            <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
-
-
-                            <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
-
-                            <br><br><br><br><br><br>
-
-
-                            <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-
-
-                <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
-
-
-
-
-</div>
-    <!-- /.navbar-header -->
-
-
-
-
-
-
-
-
-
-
-
-<ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="glyphicon glyphicon-plus"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a class="text-center" href="Eiei.html">
-                                <div>
-                                    <strong>Student ID</strong>
-                                </div>
-                            </a>
-                        </li>
-
-
-                        <li class="divider"></li>
-
-
-                        <li>
-                            <a class="text-center" href="Eiei.html">
-                                <div>
-                                    <strong>GPAX</strong>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-
-                        <li>
-                            <a class="text-center" href="Eiei.html">
-                                <div>
-                                    <strong>Mini-project</strong>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-                        
-
-                        <li>
-                            <a class="text-center" href="Eiei.html">
-                                <div>
-                                    <strong>Project</strong>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-
-
-    
-                <li class="dropdown">
+        <![endif]-->
+    </head>
+    <body>
+        <!--start menu-->
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand">
+                <div class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="glyphicon glyphicon-list"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i>My Account</a>
-                        </li>
-
+                        <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>Sign out</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-
-
-
-<!--end menu-->
-
-
-
-
-
-
-
-
-
-<!--start side bar-->
-
-
-
-
-<div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav in" id="side-menu">
-                        
-                        <li>
-                            <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
-                        </li>
-
-
-                        <li class="">
-                            <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                <li>
-                                    <a href="flot.html">Bawornsak Sakulkuaekulsuk</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Suriya Natsupakpong</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Warasinee Chaisangmongkon</a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add cooperators</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="">
-                            <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                <li>
-                                    <a href="flot.html">Mini-project</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Project</a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add groups</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-                        <li class="">
-                            <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                <li>
-                                    <a href="flot.html">Task A (Individual)</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Task B (Project - Equal score)</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Task C (Project - Credit bank)</a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add Tasks</a>
-                                </li>
-                            </ul>
-                        </li> 
+                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
+                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
+                        <br><br><br><br><br><br>
+                        <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                     </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
+            <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                <i class="glyphicon glyphicon-plus"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="text-center" href="Eiei.html">
+                            <div>
+                                <strong>Student ID</strong>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="Eiei.html">
+                            <div>
+                                <strong>GPAX</strong>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="Eiei.html">
+                            <div>
+                                <strong>Mini-project</strong>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="Eiei.html">
+                            <div>
+                                <strong>Project</strong>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i>My Account</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>Sign out</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!--end menu-->
+        <!--start side bar-->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav in" id="side-menu">
+                    <li>
+                        <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
+                    </li>
+                    <li class="">
+                        <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="flot.html">Bawornsak Sakulkuaekulsuk</a>
+                            </li>
+                            <li>
+                                <a href="morris.html">Suriya Natsupakpong</a>
+                            </li>
+                            <li>
+                                <a href="morris.html">Warasinee Chaisangmongkon</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="glyphicon glyphicon-plus" href="morris.html"> Add cooperators</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="flot.html">Mini-project</a>
+                            </li>
+                            <li>
+                                <a href="morris.html">Project</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="glyphicon glyphicon-plus" href="morris.html"> Add groups</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="flot.html">Task A (Individual)</a>
+                            </li>
+                            <li>
+                                <a href="morris.html">Task B (Project - Equal score)</a>
+                            </li>
+                            <li>
+                                <a href="morris.html">Task C (Project - Credit bank)</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="glyphicon glyphicon-plus" href="morris.html"> Add Tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        </nav>
+        <br /> <br /> <br /> 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11 col-md-push-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Tables</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h2>Basic Table</h2>
+                            <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Firstname</th>
+                                        <th>Lastname</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>john@example.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mary</td>
+                                        <td>Moe</td>
+                                        <td>mary@example.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>July</td>
+                                        <td>Dooley</td>
+                                        <td>july@example.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-
-
-
-
-
-<!--end side bar-->
-
-
-
-
-
-
-
-
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../vendor/metisMenu/metisMenu.min.js"></script>
-<script src="../vendor/raphael/raphael.min.js"></script>
-<script src="../vendor/morrisjs/morris.min.js"></script>
-<script src="../data/morris-data.js"></script>
-<script src="../dist/js/sb-admin-2.js"></script>
-
-
-
-
-
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-
-  </body>
+        <!--end side bar-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+        <script src="../vendor/raphael/raphael.min.js"></script>
+        <script src="../vendor/morrisjs/morris.min.js"></script>
+        <script src="../data/morris-data.js"></script>
+        <script src="../dist/js/sb-admin-2.js"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>

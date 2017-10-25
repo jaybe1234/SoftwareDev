@@ -11,6 +11,7 @@ session = DBSession()
 
 app = Flask(__name__)
 
+login = False
 @app.route("/")
 @app.route("/login", methods = ['GET','POST'])
 def login():
@@ -18,6 +19,7 @@ def login():
         user = session.query(Lecturer).filter_by(username = request.form['email'])
         if len(list(user)) == 1:
             if request.form['password'] == user[0].password:
+                login = True
                 return redirect(url_for('home',username = user[0].username))
             else:
                 return redirect('login')
@@ -29,7 +31,10 @@ def login():
 
 @app.route('/<string:username>/home')
 def home(username):
-    return render_template('02_home.html')
+    if login == False:
+        return redirect('login')
+    else:
+        return render_template('02_home.html')
 
 
 

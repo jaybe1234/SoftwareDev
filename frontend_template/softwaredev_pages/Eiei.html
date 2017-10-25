@@ -188,7 +188,7 @@
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add groups</a>
+                                    <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"> Add groups</i></a>
                                 </li>
                             </ul>
                         </li>
@@ -300,20 +300,16 @@
 
 
 
-<!-- start Pop-up add Task -->
+<!-- start Pop-up add Group -->
 
-<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+        <h4 class="modal-title" id="myModalLabel">Add group</h4>
       </div>
       <div class="modal-body">
-
-
-
-
 
         <div class="sidebar-nav navbar-collapse">
 
@@ -360,8 +356,99 @@
                             </div>
                         </div>
 
+                </div>
+            </div>
+        </div>
 
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+
+</form>
+
+    </div>
+  </div>
+</div>
+<!-- end Pop-up add Group-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start Pop-up add Task -->
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div class="sidebar-nav navbar-collapse">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <ul class="nav in" id="side-menu">
+
+                        <li>
+                            <a href="#" class="active"> Individual</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active"> Group</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active"> Mini-project</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active"> Project</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-8">
+                        <form name="test" method="post" action="">
+                            Task's name : <input type="text" name="Class's name"><br><br>
+                            Score : <input type="text" name="Class's name"><br><br>
+
+                        <div class="form-group">
+                            <h5>Scoring type</h5>
+                            <div class="col-lg-4">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Equal
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Credit bank
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                 </div>
             </div>
@@ -389,13 +476,6 @@
 
 
 
-
-
-
-
-
-
-
     <div id="page-wrapper" style="min-height: 611px;">
         <div class="row">
             <div class="col-lg-10 col-md-10">
@@ -404,12 +484,7 @@
             <!-- องประกอบด้านใน-->
 
 
-
                 <h4 class="page-header"><i class="glyphicon glyphicon-cog"></i> <ins>Manage Student List</ins></h4>
-
-
-                
-
 
 
             </div>

@@ -112,26 +112,9 @@
 
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <i class="glyphicon glyphicon-plus"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
 
-                        <li>
-                            <a class="text-center" href="Eiei.html">
-                                <div>
-                                    <strong>5555555</strong>
-                                </div>
-                            </a>
-                        </li>
+                <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a> <!-- Add Class -->
 
-
-
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
 
 
     
@@ -283,8 +266,8 @@
 
                 <!-- Split button -->
                 <div class="btn-group">
-                  <a class="btn btn-info btn-sm"> Sort by</a>
-                  <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="btn btn-primary btn-sm"> Sort by</a>
+                  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
@@ -305,6 +288,90 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
+      </div>
+      <div class="modal-body">
+
+        <form name="test" method="post" action="">
+            
+            Class's name : <input type="text" name="Class's name"><br><br>
+
+            <div class="row">
+                <div class="col-lg-2">
+                    <h5>Cooperators:</h5>
+                </div>
+
+                <div class="col-lg-10">
+
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-plus"></i>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bawornsak Sakulkuaekulsuk</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suriya Natsupakpong</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Warasinee Chaisangmongkon</a></li>
+                      </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+
+</form>
+
+
+
+    </div>
+  </div>
+</div>
+<!-- end modal-->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

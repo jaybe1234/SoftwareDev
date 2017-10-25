@@ -63,10 +63,6 @@
                 </button>
 
 
-
-
-
-
                 <div class="navbar-brand">
                     <div class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -92,11 +88,7 @@
                     </div>
                 </div>
 
-
                 <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
-
-
-
 
         </div>
     <!-- /.navbar-header -->
@@ -219,7 +211,7 @@
                                 <li class="divider"></li>
 
                                 <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add Tasks</a>
+                                    <a data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-plus">Add Tasks</i></a>
                                 </li>
                             </ul>
                         </li> 
@@ -235,6 +227,169 @@
 </nav>
 
 <!--end side bar-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start Pop-up add class -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
+      </div>
+      <div class="modal-body">
+        <form name="test" method="post" action="">
+            Class's name : <input type="text" name="Class's name"><br><br>
+            <div class="row">
+                <div class="col-lg-2">
+                    <h5>Cooperators:</h5>
+                </div>
+
+                <div class="col-lg-10">
+
+                    <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-plus"></i>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bawornsak Sakulkuaekulsuk</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suriya Natsupakpong</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Warasinee Chaisangmongkon</a></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+
+</form>
+
+
+    </div>
+  </div>
+</div>
+<!-- end Pop-up add class-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start Pop-up add Task -->
+
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+
+
+        <div class="sidebar-nav navbar-collapse">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <ul class="nav in" id="side-menu">
+
+                        <li>
+                            <a href="#" class="active"> by Student ID.</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active"> by GPAX</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active"> by Random</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active"> by Custom</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-8">
+                        <form name="test" method="post" action="">
+                            Group's name : <input type="text" name="Class's name"><br><br>
+                            Number of group : <input type="text" name="Class's name"><br><br>
+
+                        <div class="form-group">
+                            <h5>Grouping from</h5>
+                            <div class="col-lg-4">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">All
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Section
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+
+</form>
+
+    </div>
+  </div>
+</div>
+<!-- end Pop-up add Task-->
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -300,65 +455,7 @@
 
 
 
-<!-- start Modal -->
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
-      </div>
-      <div class="modal-body">
-
-        <form name="test" method="post" action="">
-            
-            Class's name : <input type="text" name="Class's name"><br><br>
-
-            <div class="row">
-                <div class="col-lg-2">
-                    <h5>Cooperators:</h5>
-                </div>
-
-                <div class="col-lg-10">
-
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                        <i class="glyphicon glyphicon-plus"></i>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bawornsak Sakulkuaekulsuk</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suriya Natsupakpong</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Warasinee Chaisangmongkon</a></li>
-                      </ul>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-
-            
-
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Add</button>
-      </div>
-
-</form>
-
-
-
-    </div>
-  </div>
-</div>
-<!-- end modal-->
 
 
 

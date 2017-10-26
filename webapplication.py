@@ -16,11 +16,11 @@ login = False
 @app.route("/login", methods = ['GET','POST'])
 def login():
     if request.method == 'POST':
-        user = session.query(Lecturer).filter_by(username_lecturer = request.form['email'])
+        user = session.query(Lecturer).filter_by(user_lecturer = request.form['email'])
         if len(list(user)) == 1:
             if request.form['password'] == user[0].password_lecturer:
                 login = True
-                return redirect(url_for('home',username = user[0].username_lecturer))
+                return redirect(url_for('home',username = user[0].user_lecturer))
             else:
                 return redirect('login')
         else:
@@ -37,6 +37,7 @@ def home(username):
     else:
 
         return render_template('02_home.html')
+
 
 if __name__ == '__main__':
     app.debug = True

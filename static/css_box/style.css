@@ -1,4 +1,30 @@
-.mm {
+
+.card{
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+	-ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+	-o-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+	background: #1F4E79;
+	margin-top: 40px;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
 	margin-left: 350px;
-	margin-top: 38px;
+	width: 100px;
+	padding: 30px;
+	
 }
+
+.card:hover{
+	-webkit-box-shadow: 0 2px 7px #EEEEEE;
+	-moz-box-shadow: 0 2px 7px #EEEEEE;
+	-o-box-shadow: 0 2px 7px #EEEEEE;
+	box-shadow: 2px 2px 50px #EEEEEE;
+}
+

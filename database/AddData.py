@@ -42,7 +42,7 @@ def create_enrollment(subject_code, student_id ,lecturer_id ):
     session.add(new_enrollment)
     session.commit()
     return
-#create_enrollment("FRA241", 59340500060 , 1)
+#create_enrollment("FRA241", 59340500060 , None)
 #create_enrollment("FRA241", 59340500047 , None)
 #create_enrollment("FRA142", 59340500005 , None)
 #create_enrollment("FRA241", None , 4)

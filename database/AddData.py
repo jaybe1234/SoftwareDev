@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
+from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 #from and NameOfPythonFile
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
@@ -12,7 +12,7 @@ def create_student(id,user,password,name,year,section,gpax):
     session.add(new_student)
     session.commit()
     return
-#create_student(59340500060,'odiosaser','12345','Supitcha',2,'B',4)
+
 #create_student(59340500005,'justinunited','12345','Kanut',2,'A',4)
 #create_student(59340500047,'Herokids','12345','Phusana',2,'B',1)
 
@@ -82,17 +82,7 @@ def create_score(task_id,student_id,score):
     return
 #create_score('Lab1',59340500060,99.9)
 
-def getStudentList(subjectCode):
-    enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
-    studentIdList = []
-    studentList =[]
-    for i in enrollList:
-        if i.student_id_enrollment is not None:
-            studentIdList.append(i.student_id_enrollment)
-    for i in studentIdList:
-        student = session.query(Student).filter_by(id_student = i).one()
-        studentList.append(student)
-    return studentList
 
-for i in getStudentList('FRA241'):
-    print (i.name_student)
+
+
+

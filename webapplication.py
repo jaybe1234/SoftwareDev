@@ -3,14 +3,15 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database.AddData import getStudentList
+from database.getFunction import getStudentList
 
-engine = create_engine('sqlite:///Database/database.db')
+engine = create_engine('sqlite:///database/database.db')
 Base.metadata.bind=engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 app = Flask(__name__)
+
 
 login = False
 @app.route("/")
@@ -36,12 +37,14 @@ def home(username):
 
 @app.route('/<string:username>/<string:subject_code>')
 def subject(username,subject_code):
+    studentList = getStudentList(subject_code)
     if login == False:
         return redirect('login')
     else:
-        return render_template('03_class.html', username = username, subject_code = subject_code, studentList = getStudentList(subject_code))
+        return render_template('03_class.html', username = username, subject_code = subject_code, studentList = studentList)
 
 
 if __name__ == '__main__':
     app.debug = True
     app.run(host = 'localhost', port = 5000)
+

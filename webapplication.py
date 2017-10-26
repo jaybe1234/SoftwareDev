@@ -1,10 +1,10 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash
-from database.database_setup import Lecturer, Base
+from database.DatabaseSetup import Lecturer, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine('sqlite:///database/main.db')
+engine = create_engine('sqlite:///database/database.db')
 Base.metadata.bind=engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
@@ -16,11 +16,11 @@ login = False
 @app.route("/login", methods = ['GET','POST'])
 def login():
     if request.method == 'POST':
-        user = session.query(Lecturer).filter_by(username = request.form['email'])
+        user = session.query(Lecturer).filter_by(username_lecturer = request.form['email'])
         if len(list(user)) == 1:
-            if request.form['password'] == user[0].password:
+            if request.form['password'] == user[0].password_lecturer:
                 login = True
-                return redirect(url_for('home',username = user[0].username))
+                return redirect(url_for('home',username = user[0].username_lecturer))
             else:
                 return redirect('login')
         else:

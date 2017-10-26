@@ -2136,7 +2136,8 @@ pre code {
         left: 25%
     }
     .col-md-push-2 {
-        left: 16.66666667%
+        /*left: 16.66666667%*/
+        left: 14.75%
     }
     .col-md-push-1 {
         left: 8.33333333%

@@ -13,22 +13,22 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../static/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../static/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css_slidebar/sidebar.css" rel="stylesheet">
-    <link href="../static/css_box/style.css" rel="stylesheet">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css_sidebar/sidebar.css" rel="stylesheet">
+    <link href="css_box/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,6 +38,13 @@
     <![endif]-->
 
 </head>
+
+
+
+
+
+
+
 
 
 <body>
@@ -69,7 +76,7 @@
                             <i class="glyphicon glyphicon-list"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="testkarn.html"><i class="glyphicon glyphicon-home"></i> FIBO Classes</a></li>
+                            <li><a href="testkarnuse.html"><i class="glyphicon glyphicon-home"></i> FIBO Classes</a></li>
                             
 
                             <li class="divider"></li>
@@ -189,12 +196,7 @@
                         </div>
                         
                         <!-- Menu toglle script -->
-                        <script>
-                            $("#menu-toggle").click(function(e) {
-                            e.preventDefault();
-                            $("#wrapper").toggleClass("toggled");
-                            });
-                        </script>
+                        
 
 
 
@@ -209,6 +211,7 @@
 <div class="container">
     <div class = "row" >
         <div class="col-xs-12 col-sm-6 col-md-4"> 
+            
             <div class="card" style="width: 30rem; background-color: None;">
               <img class="card-img-top" src="img/logo_FIBO2.png" class="image-responsive" alt="Card image cap" width="250" >
               <hr width="100%">
@@ -230,21 +233,21 @@
 
 
 
-<script src="../static/vendor/jquery/jquery.min.js"></script>
-<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../static/vendor/metisMenu/metisMenu.min.js"></script>
-<script src="../static/vendor/raphael/raphael.min.js"></script>
-<script src="../static/vendor/morrisjs/morris.min.js"></script>
-<script src="../static/data/morris-data.js"></script>
-<script src="../static/dist/js/sb-admin-2.js"></script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+<script src="../vendor/raphael/raphael.min.js"></script>
+<script src="../vendor/morrisjs/morris.min.js"></script>
+<script src="../data/morris-data.js"></script>
+<script src="../dist/js/sb-admin-2.js"></script>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/vendor_for_slidebar/jquery/jquery.min.js"></script>
-    <script src="../static/vendor_for_slidebar/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="vendor_for_slidebar/jquery/jquery.min.js"></script>
+    <script src="vendor_for_slidebar/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();

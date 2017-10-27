@@ -26,6 +26,9 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css_sidebar/sidebar.css" rel="stylesheet">
+    <link href="css_box/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,9 +36,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="css_box/style.css" rel="stylesheet">
 
 </head>
 
@@ -76,7 +76,7 @@
                             <i class="glyphicon glyphicon-list"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                            <li><a href="testkarn.html"><i class="glyphicon glyphicon-home"></i> FIBO Classes</a></li>
                             
 
                             <li class="divider"></li>
@@ -96,13 +96,16 @@
                 </div>
 
 
-                <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
-
+                <a class="navbar-brand" href="Eiei.html">FIBO Classes</a>
 
 
 
         </div>
     <!-- /.navbar-header -->
+
+
+
+
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -118,6 +121,8 @@
                                 </div>
                             </a>
                         </li>
+
+
 
                     </ul>
                     <!-- /.dropdown-messages -->
@@ -147,109 +152,90 @@
 
 <!--end menu-->
 
+
+
+
+
+
+
+
+
 <!--start side bar-->
+
+
+
+
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav in" id="side-menu">
+                        <div id="wrapper"> 
+
+                            <!-- Sidebar -->
+                            <div id="sidebar-wrapper">
+                                <ul class="sidebar-nav">
+                                    <li><a href="#">Classes</a></li>
+                                    <li><a href="#">Archieved classes</a></li>
+                                    <li><a href="#">Setting</a></li>
+                                </ul>   
+                            </div>
+
+                            <!-- Page content -->
+                            <div id="page-content-wrapper">
+                                <div class="container-fluid">
+                                    <div class="col-lg-12">
+                                        <a href="#" class="btn btn-success" id="menu-toggle">Toggle Menu</a>
+                                        <h1>Sidebar Layout so fck</h1>
+                                        <p>i love u</p>
+                                        
+                                    </div>
+
+                                
+                                </div>
+                                
+                            </div>
+                        </div>
                         
-                        <li>
-                            <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
-                        </li>
+                        <!-- Menu toglle script -->
+                        <script>
+                            $("#menu-toggle").click(function(e) {
+                            e.preventDefault();
+                            $("#wrapper").toggleClass("toggled");
+                            });
+                        </script>
 
 
-                        <li class="">
-                            <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                <li>
-                                    <a href="flot.html">Bawornsak Sakulkuaekulsuk</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Suriya Natsupakpong</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Warasinee Chaisangmongkon</a>
-                                </li>
 
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add cooperators</a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="">
-                            <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                <li>
-                                    <a href="flot.html">Mini-project</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Project</a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add groups</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="">
-                            <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                <li>
-                                    <a href="flot.html">Task A (Individual)</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Task B (Project - Equal score)</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Task C (Project - Credit bank)</a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a class="glyphicon glyphicon-plus" href="morris.html"> Add Tasks</a>
-                                </li>
-                            </ul>
-                        </li> 
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
+
 </nav>
+
+
+<div class="container">
+    <div class = "row" >
+        <div class="col-xs-12 col-sm-6 col-md-4"> 
+            <div class="card" style="width: 30rem; background-color: None;">
+              <img class="card-img-top" src="img/logo_FIBO2.png" class="image-responsive" alt="Card image cap" width="250" >
+              <hr width="100%">
+              <div class="card-block">
+                <br><h4 class="card-title" style="color: white">FRA 141(2560) </h4>
+                <h4 class="card-title" style="color: white" >Cooperators </h4>
+                <br><a2 href="#"><i class="glyphicon glyphicon-user" style="color: white" ></i> Bawornsak Sakulkueakulsak</a2>
+                <br><a2 href="#"><i class="glyphicon glyphicon-user" style="color: white" ></i> Warasinee Chaisangmongkon</a2>  
+                <br><br><a href="#" class="btn btn-primary">FRA 141</a>
+              </div>
+            </div>
+
+        </div>
+        
+    </div>
+</div>
 
 <!--end side bar-->
 
- <!-- องประกอบด้านใน-->
-                <div class="container">
-                    <div class = "row" >
-                        <div class="col-xs-12 col-sm-6 col-md-4"> 
-                            
-                            <div class="card" style="width: 30rem; background-color: None;">
-                              <img class="card-img-top" src="img/logo_FIBO2.png" class="image-responsive" alt="Card image cap" width="250" >
-                              <hr width="100%">
-                              <div class="card-block">
-                                <br><h4 class="card-title" style="color: white">FRA 141(2560) </h4>
-                                <h4 class="card-title" style="color: white" >Cooperators </h4>
-                                <br><a2 href="#"><i class="glyphicon glyphicon-user" style="color: white" ></i> Bawornsak Sakulkueakulsak</a2>
-                                <br><a2 href="#"><i class="glyphicon glyphicon-user" style="color: white" ></i> Warasinee Chaisangmongkon</a2>  
-                                <br><br><a href="#" class="btn btn-primary">FRA 141</a>
-                              </div>
-                            </div>
 
-
-                        </div>
-                        
-            
-                    </div>
-                </div>
-            
-</div>
 
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -259,9 +245,18 @@
 <script src="../data/morris-data.js"></script>
 <script src="../dist/js/sb-admin-2.js"></script>
 
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-3.2.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="vendor_for_slidebar/jquery/jquery.min.js"></script>
+    <script src="vendor_for_slidebar/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("menuDisplayed");
+    });
+    </script>
   </body>
 </html>

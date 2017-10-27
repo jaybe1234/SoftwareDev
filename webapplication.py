@@ -4,7 +4,7 @@ from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grou
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database.getFunction import getStudentList, getLecturerList , getGrouping , getTask, grouping_random
-from database.AddData import create_enrollment
+from database.AddData import *
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -48,14 +48,15 @@ def subject(username,subject_code):
         if request.form['optionsRadios'] == "option1":
             grouping_random("option1", int(request.form['group_num']), subject_code, )
             #grouping_random(group_from, group_num, subjectCode, grouping_id, group_id):
+            return redirect(url_for('subject',username, subject_code))
+            #grouping_random()
             return "yeah"
         elif request.form['optionsRadios'] == "option2":
             return  "nutty"
     else:
-        return render_template('03_class.html', username = username, subject_code = subject_code, studentList = studentList,
+        return render_template('03_class_copy.html', username = username, subject_code = subject_code, studentList = studentList,
                                lecturerList = lecturerList , groupingList = groupingList , taskList = taskList)
 
 if __name__ == '__main__':
     app.debug = True
     app.run(host = 'localhost', port = 5000)
-

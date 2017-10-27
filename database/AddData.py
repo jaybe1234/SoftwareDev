@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 #from and NameOfPythonFile
+
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
@@ -44,7 +45,7 @@ def create_enrollment(subject_code, student_id ,lecturer_id ):
     return
 #create_enrollment("FRA241", 59340500060 , None)
 #create_enrollment("FRA241", 59340500047 , None)
-#create_enrollment("FRA142", 59340500005 , None)
+#create_enrollment("FRA241", 59340500005 , None)
 #create_enrollment("FRA241", None , 4)
 # def read_lecturer():
 #     lecturers = session.query(Lecturer).all()
@@ -82,7 +83,7 @@ def create_score(task_id,student_id,score):
     return
 #create_score('Lab1',59340500060,99.9)
 
-
-
+a = [[None] * 1 for i in range]
+print (a)
 
 

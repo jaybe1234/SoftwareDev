@@ -81,15 +81,11 @@
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                           {% for i in lecturerList%}
                            <li>
-                              <a href="flot.html">Bawornsak Sakulkuaekulsuk</a>
+                              <a href="flot.html">{{i.name_lecturer}}</a>
                            </li>
-                           <li>
-                              <a href="morris.html">Suriya Natsupakpong</a>
-                           </li>
-                           <li>
-                              <a href="morris.html">Warasinee Chaisangmongkon</a>
-                           </li>
+                           {% endfor %}
                            <li class="divider"></li>
                            <li>
                               <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"> Add cooperators</i></a>
@@ -99,12 +95,11 @@
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                           {% for i in groupingList%}
                            <li>
-                              <a href="flot.html">Mini-project</a>
+                              <a href="flot.html">{{i.name_grouping}}</a>
                            </li>
-                           <li>
-                              <a href="morris.html">Project</a>
-                           </li>
+                           {% endfor %}
                            <li class="divider"></li>
                            <li>
                               <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"> Add groups</i></a>
@@ -114,15 +109,12 @@
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                           {% for i in taskList%}
+
                            <li>
-                              <a href="flot.html">Task A (Individual)</a>
+                              <a href="flot.html">{{i.id_task}}</a>
                            </li>
-                           <li>
-                              <a href="morris.html">Task B (Project - Equal score)</a>
-                           </li>
-                           <li>
-                              <a href="morris.html">Task C (Project - Credit bank)</a>
-                           </li>
+                           {% endfor %}
                            <li class="divider"></li>
                            <li>
                               <a data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-plus">Add Tasks</i></a>
@@ -201,9 +193,9 @@
                               </ul>
                            </div>
                            <div class="col-lg-8">
-                              <form name="test" method="post" action="">
-                                 Group's name : <input type="text" name="Class's name"><br><br>
-                                 Number of group : <input type="text" name="Class's name"><br><br>
+                              <form name="test" action="{{url_for('subject', username = username, subject_code = subject_code)}}" method="post">
+                                 Group's name : <input type="text" name="group_name"><br><br>
+                                 Number of group : <input type="text" name="group_number"><br><br>
                                  <div class="form-group">
                                     <h5>Grouping from</h5>
                                     <div class="col-lg-4">
@@ -342,8 +334,9 @@
 
                                     <th>Student ID.</th>
                                     <th>Name</th>
-                                    <th>Task A</th>
-                                    <th>Task B</th>
+                                    {% for i in taskList%}
+                                    <th>{{i.id_task}}</th>
+                                    {% endfor %}
                                     <th>Total</th>
                                  </tr>
                               </thead>

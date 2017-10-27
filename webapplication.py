@@ -3,7 +3,8 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database.getFunction import getStudentList
+from database.getFunction import getStudentList, getLecturerList , getGrouping , getTask, grouping_random
+from database.AddData import *
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -35,14 +36,23 @@ def login():
 def home(username):
     return redirect(url_for('subject',username = username, subject_code = 'FRA241'))
 
-@app.route('/<string:username>/<string:subject_code>')
+@app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
 def subject(username,subject_code):
     studentList = getStudentList(subject_code)
+    lecturerList = getLecturerList(subject_code)
+    groupingList = getGrouping(subject_code)
+    taskList = getTask(subject_code)
     if login == False:
         return redirect('login')
+    elif request.method == 'POST':
+        if request.form['optionsRadios'] == "option1":
+            #grouping_random()
+            return "yeah"
+        elif request.form['optionsRadios'] == "option2":
+            return  "nutty"
     else:
-        return render_template('03_class.html', username = username, subject_code = subject_code, studentList = studentList)
-
+        return render_template('03_class.html', username = username, subject_code = subject_code, studentList = studentList,
+                               lecturerList = lecturerList , groupingList = groupingList , taskList = taskList)
 
 if __name__ == '__main__':
     app.debug = True

@@ -71,7 +71,9 @@ def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
                 one = student[ran]
                 student.remove(one)
                 create_group(grouping_id,one.id_student,group_id + '#' + str(i+1))
-        return group
+        for i in range(student):
+            one = student[i]
+            create_group(grouping_id, one.id_student, group_id + '#' + str(i + 1))
     elif group_from == "option2":
         pass
 

@@ -76,9 +76,9 @@
                <div class="sidebar-nav navbar-collapse">
                   <ul class="nav in" id="side-menu">
                      <li>
-                       <a href='{{url_for('home',username = username)}}' class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
+                        <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
                      </li>
-					                <li class="">
+					 <li class="">
                         <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                            <li>
@@ -92,13 +92,6 @@
                            </li>
                            <li class="divider"></li>
                            <li>
-                          {% for i in lecturerList%}
-                          <li>
-                             <a href="flot.html">{{i.name_lecturer}}</a>
-                          </li>
-                          {% endfor %}
-                          <li class="divider"></li>
-                          <li>
                               <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"> Add cooperators</i></a>
                            </li>
                         </ul>
@@ -106,11 +99,12 @@
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                          {% for i in groupingList%}
-                          <li>
-                             <a href="flot.html">{{i.name_grouping}}</a>
-                          </li>
-                          {% endfor %}
+                           <li>
+                              <a href="flot.html">Mini-project</a>
+                           </li>
+                           <li>
+                              <a href="morris.html">Project</a>
+                           </li>
                            <li class="divider"></li>
                            <li>
                               <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"> Add groups</i></a>
@@ -120,12 +114,15 @@
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                          {% for i in taskList%}
-
-                          <li>
-                             <a href="flot.html">{{i.id_task + " (" + i.grouping_task.type_grouping + ")"}}</a>
-                          </li>
-                          {% endfor %}
+                           <li>
+                              <a href="flot.html">Task A (Individual)</a>
+                           </li>
+                           <li>
+                              <a href="morris.html">Task B (Project - Equal score)</a>
+                           </li>
+                           <li>
+                              <a href="morris.html">Task C (Project - Credit bank)</a>
+                           </li>
                            <li class="divider"></li>
                            <li>
                               <a data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-plus">Add Tasks</i></a>
@@ -271,9 +268,8 @@
                            </div>
                            <div class="col-lg-8">
                               <form name="test" method="post" action="">
-                                 Grouping ID : <input type="text" name="grouping_id"><br><br>
-                                 Number of group : <input type="text" name="group_num"><br><br>
-                                 Group's Prefix : <input type="text" name="group_prefix"><br><br>
+                                 Group's name : <input type="text" name="Class's name"><br><br>
+                                 Number of group : <input type="text" name="Class's name"><br><br>
                                  <div class="form-group">
                                     <h5>Grouping from</h5>
                                     <div class="col-lg-4">
@@ -424,31 +420,42 @@
                                 <!-- <h2>Basic Table</h2>
                                 <p> ... Description of the table ... </p> -->
                                 <table class="table">
-                                   <thead>
-                                      <tr>
-                                         <th>Student ID.</th>
-                                         <th>Name</th>
-                                         {% for i in taskList%}
-                                         <th>{{i.id_task}}</th>
-                                         {% endfor %}
-                                         <th>Total</th>
-                                      </tr>
-                                   </thead>
-                                   <tbody>
-                                      {% for i in studentList %}
-                                      <tr>
-                                         <td>{{i.id_student}}</td>
-                                         <td>{{i.name_student}}</td>
-                                      </tr>
-                                      {% endfor %}
-                                   </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID.</th>
+                                            <th>Name</th>
+                                            <th>Task A</th>
+                                            <th>Task B</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>59340500001</td>
+                                            <td>AAA aaa</td>
+                                            <td>10</td>
+                                            <td>15</td>
+                                        </tr>
+                                        <tr>
+                                            <td>59340500002</td>
+                                            <td>BBB bbb</td>
+                                            <td>10</td>
+                                            <td>15</td>
+                                        </tr>
+                                        <tr>
+                                            <td>59340500003</td>
+                                            <td>CCC ccc</td>
+                                            <td>10</td>
+                                            <td>15</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
-                             </div>
-                          </div>
-                       </div>
+                            </div>
+                        </div>
                     </div>
-                 </div>
-              </div>
+                </div>
+            </div>
+         </div>
       </div>
       <script src="../static/vendor/jquery/jquery.min.js"></script>
       <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>

@@ -49,8 +49,6 @@ def subject(username,subject_code):
             grouping_random("option1", int(request.form['group_num']), subject_code, )
             #grouping_random(group_from, group_num, subjectCode, grouping_id, group_id):
             return redirect(url_for('subject',username, subject_code))
-            #grouping_random()
-            return "yeah"
         elif request.form['optionsRadios'] == "option2":
             return  "nutty"
     else:

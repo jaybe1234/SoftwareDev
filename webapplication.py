@@ -46,21 +46,17 @@ def subject(username,subject_code):
         return redirect('login')
     elif request.method == 'POST':
         if request.form['optionsRadios'] == "option1":
-<<<<<<< HEAD
             grouping_random("option1", int(request.form['group_num']), subject_code, )
             #grouping_random(group_from, group_num, subjectCode, grouping_id, group_id):
             return redirect(url_for('subject',username, subject_code))
-=======
             #grouping_random()
             return "yeah"
->>>>>>> parent of 698ce99... add group prefix in 03 class.html
         elif request.form['optionsRadios'] == "option2":
             return  "nutty"
     else:
-        return render_template('03_class.html', username = username, subject_code = subject_code, studentList = studentList,
+        return render_template('03_class_copy.html', username = username, subject_code = subject_code, studentList = studentList,
                                lecturerList = lecturerList , groupingList = groupingList , taskList = taskList)
 
 if __name__ == '__main__':
     app.debug = True
     app.run(host = 'localhost', port = 5000)
-

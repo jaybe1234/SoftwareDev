@@ -83,4 +83,7 @@ def create_score(task_id,student_id,score):
     return
 #create_score('Lab1',59340500060,99.9)
 
+a = [[None] * 1 for i in range]
+print (a)
+
 

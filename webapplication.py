@@ -4,7 +4,7 @@ from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grou
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database.getFunction import getStudentList, getLecturerList , getGrouping , getTask, grouping_random
-from database.AddData import create_enrollment
+from database.AddData import *
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -46,9 +46,14 @@ def subject(username,subject_code):
         return redirect('login')
     elif request.method == 'POST':
         if request.form['optionsRadios'] == "option1":
+<<<<<<< HEAD
             grouping_random("option1", int(request.form['group_num']), subject_code, )
             #grouping_random(group_from, group_num, subjectCode, grouping_id, group_id):
             return redirect(url_for('subject',username, subject_code))
+=======
+            #grouping_random()
+            return "yeah"
+>>>>>>> parent of 698ce99... add group prefix in 03 class.html
         elif request.form['optionsRadios'] == "option2":
             return  "nutty"
     else:

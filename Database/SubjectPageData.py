@@ -1,14 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from DatabaseSetup import Base,Lecturer,Enrollment
+from Database.DatabaseSetup import Base,Lecturer,Enrollment
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
-def subjectpage_data(lecturer_name):
+def subjectpage_data(username):
     result = []
-    lecturer_id = session.query(Lecturer).filter_by(name_lecturer = lecturer_name)[0].id_lecturer
+    lecturer_id = session.query(Lecturer).filter_by(user_lecturer = username)[0].id_lecturer
     subjects = session.query(Enrollment).filter_by(lecturer_id_enrollment = lecturer_id)
     for subject in subjects:
         subject_list = []

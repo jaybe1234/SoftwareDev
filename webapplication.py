@@ -46,14 +46,16 @@ def subject(username,subject_code):
         return redirect('login')
     elif request.method == 'POST':
         if request.form['optionsRadios'] == "option1":
-            grouping_random("option1", int(request.form['group_num']), subject_code, )
+            grouping_random("option1", int(request.form['group_num']), subject_code,
+                            request.form['groping_id'], request.form['group_prefix'])
             #grouping_random(group_from, group_num, subjectCode, grouping_id, group_id):
             return redirect(url_for('subject',username, subject_code))
         elif request.form['optionsRadios'] == "option2":
-            return  "nutty"
+            return  redirect(url_for('subject',username, subject_code))
     else:
-        return render_template('03_class_copy.html', username = username, subject_code = subject_code, studentList = studentList,
-                               lecturerList = lecturerList , groupingList = groupingList , taskList = taskList)
+        return render_template('03_class_copy.html', username = username, subject_code = subject_code,
+                               studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
+                               taskList = taskList)
 
 if __name__ == '__main__':
     app.debug = True

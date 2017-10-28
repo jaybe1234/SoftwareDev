@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
+from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
@@ -151,6 +151,7 @@ def delete_score(task_id,student_id):
     session.commit()
     return
 ######################################################################################
+"""
 create_student(59340500060,'odiosaser','12345','Supitcha',2,'B',4)
 create_student(59340500005,'justinunited','12345','Kanut',2,'A',4)
 create_student(59340500047,'Herokids','12345','Phusana',2,'B',1)
@@ -179,8 +180,8 @@ create_group(1,59340500060,'B01')
 create_task(1,'T001','Lab1',5)
 create_task(2,'T002','Lab1',5)
 
-create_score('T001',59340500060,99.9)
-
+create_score('T001',59340500060,99.9)"""
+"""
 # delete_student(59340500005)
 
 # delete_subject('FRA241')

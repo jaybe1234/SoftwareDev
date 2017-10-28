@@ -15,26 +15,26 @@ It may have change some code
 class Lecturer(Base):
     __tablename__ = 'lecturer'
     #try change lecturer id to string
-    id_lecturer = Column(String(20), primary_key = True)
-    user_lecturer = Column(String(40),nullable = False)
-    password_lecturer = Column(String(40),nullable = False)
-    name_lecturer = Column(String(40),nullable = False)
+    id_lecturer = Column(Integer, primary_key = True)
+    user_lecturer = Column(String(20),nullable = False)
+    password_lecturer = Column(String(20),nullable = False)
+    name_lecturer = Column(String(20),nullable = False)
 
 #Student Table
 class Student(Base):
     __tablename__ = 'student'
     id_student = Column(Integer,primary_key = True,nullable=False)
-    user_student = Column(String(40),nullable = False)
-    password_student = Column(String(40),nullable = False)
-    name_student = Column(String(40),nullable = False)
+    user_student = Column(String(20),nullable = False)
+    password_student = Column(String(20),nullable = False)
+    name_student = Column(String(20),nullable = False)
     year_student = Column(Integer,nullable = False)
     section_student = Column(String(1),nullable = False)
     gpax_student = Column(Float,nullable = False)
 
 class Subject(Base):
     __tablename__ = 'subject'
-    name_subject = Column(String(40),nullable = False)
-    code_subject = Column(String(40),nullable = False,primary_key=True)
+    name_subject = Column(String(20),nullable = False)
+    code_subject = Column(String(20),nullable = False,primary_key=True)
 
 class Enrollment(Base):
     __tablename__ = 'enrollment'
@@ -48,11 +48,12 @@ class Enrollment(Base):
 
 class Grouping(Base):
     __tablename__ = 'grouping'
-    primary_key = Column(Integer,nullable=True,primary_key=True)
-    id_grouping = Column(Integer,nullable=False)
-    name_grouping = Column(String(40),nullable=False)
-    type_grouping = Column(String(40),nullable=False)
-    subject_code_grouping = Column(String(40),nullable=False)
+    id_grouping = Column(Integer,nullable=False,primary_key=True)
+    name_grouping = Column(String(20),nullable=False)
+    type_grouping = Column(String(20),nullable=False)
+    # subject_code_grouping = Column(String(40),nullable=False)
+    subject_code_grouping = Column(String(20),ForeignKey('subject.code_subject'))
+    subject_grouping = relationship(Subject)
 
 class Group(Base):
     __tablename__ = 'group'
@@ -64,8 +65,8 @@ class Group(Base):
 
 class Task(Base):
     __tablename__ = 'task'
-    primary_key = Column(Integer,nullable=True,primary_key=True)
-    id_task = Column(String(20),nullable=False)
+    id_task = Column(String(20),nullable=False,primary_key=True)
+    name_task = Column(String(20),nullable =False)
     weight_task = Column(Float,nullable=False)
     grouping_id_task = Column(Integer,ForeignKey('grouping.id_grouping'))
     grouping_task = relationship(Grouping)

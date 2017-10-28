@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
+from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from random import randint
 from database.AddData import create_group
 #from and NameOfPythonFile
@@ -63,7 +63,6 @@ def getStudentSection(subjectCode,sec):
 def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
     student = getStudentList(subjectCode)
     people_group = len(student) / int(group_num)
-    group = [[None] * 1 for i in range(group_num)]
     if group_from == "option1":
         for i in group_num:
             for a in range(people_group):
@@ -71,9 +70,14 @@ def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
                 one = student[ran]
                 student.remove(one)
                 create_group(grouping_id,one.id_student,group_id + '#' + str(i+1))
-        return group
+        for i in range(student):
+            one = student[i]
+            create_group(grouping_id, one.id_student, group_id + '#' + str(i + 1))
     elif group_from == "option2":
-        pass
+        A = getStudentSection(subjectCode, 'a')
+        B = getStudentSection(subjectCode, 'a')
+
+
 
 
 

@@ -39,7 +39,7 @@ def homepage_data(lecturer_name,subject_code):
     result.append(result1)
     result.append(list_student)
     return result
-print (homepage_data('Mr.Pitiwut','FRA241'))
+#print (homepage_data('Mr.Pitiwut','FRA241'))
 
 def task_score(subject_code,task_name,student_id):
     subject_code = session.query(Subject).filter_by(code_subject = subject_code)[0]
@@ -50,4 +50,4 @@ def task_score(subject_code,task_name,student_id):
             correct_task = session.query(Task).filter_by(name_task = task_name,grouping_task = grouping_object)[0]
             score = session.query(Score).filter_by(task_score = correct_task)[0].score_score
     return (score)
-print (task_score('FRA241','Lab1',59340500060))
+#print (task_score('FRA241','Lab1',59340500060))

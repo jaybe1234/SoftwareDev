@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from random import randint
-from database.AddData import create_group
+from Database.AddData import create_group
 #from and NameOfPythonFile
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
@@ -76,7 +76,20 @@ def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
     elif group_from == "option2":
         A = getStudentSection(subjectCode, 'a')
         B = getStudentSection(subjectCode, 'a')
-
+        num_group_in_A = len(A)/people_group
+        num_group_in_B = len(B)/people_group
+        for i in num_group_in_A:
+            for a in range(people_group):
+                ran = randint(len(A)-1)
+                one = A[ran]
+                A.remove(one)
+                create_group(create_group(grouping_id,one.id_student,group_id + 'A' + '#' + str(i+1)))
+        for i in num_group_in_B:
+            for a in range(people_group):
+                ran = randint(len(A)-1)
+                one = B[ran]
+                B.remove(one)
+                create_group(create_group(grouping_id, one.id_student, group_id + 'B' + '#' + str(i + 1)))
 
 
 

@@ -1,10 +1,10 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, flash
-from database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
+from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database.getFunction import getStudentList, getLecturerList , getGrouping , getTask, grouping_random
-from database.AddData import *
+from Database.getFunction import getStudentList, getLecturerList , getGrouping , getTask, grouping_random
+from Database.AddData import create_grouping
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine

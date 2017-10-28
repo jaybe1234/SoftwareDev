@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from DatabaseSetup import Base,Lecturer,Enrollment
+from Database.DatabaseSetup import Base,Lecturer,Enrollment
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)

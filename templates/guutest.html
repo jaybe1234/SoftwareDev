@@ -55,14 +55,6 @@
                <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
             </div>
             
-            
-
-
-
-
-
-
-
 
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -72,9 +64,6 @@
                   <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-user">
-
-
-
                         <div class="row">
                            <div class="col-lg-5">
                                 <br>
@@ -88,25 +77,16 @@
                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
                            </div>
                         </div>
-
-
-
-
                      <li class="divider"></li>
 
                         <li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
-
-
                   </ul>
                </li>
-
             </ul>
             <!--end menu-->
-            <!--start side bar-->
-               <!-- /.sidebar-collapse -->
             </div>
          </nav>
-         <!--end side bar-->
+       
     
          <!-- start Pop-up add class -->
          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -146,14 +126,35 @@
             </div>
          </div>
 
+
+
+
+      <div id="wrapper">
+        <div id="sidebar">
+
+                        <ul>
+                          <li><a href="#">Link 1</a></li>
+                          <li><a href="#">Link 2</a></li>
+                          <li><a href="#">Link 3</a></li>
+                          <li><a href="#">Link 4</a></li>
+                          <li><a href="#">Link 5</a></li>
+                        </ul>
+
+                        <div id="sidebar-btn">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+
+        </div>
+                    
+
          <!-- context -->
          <div class="container">
                     <div class = "row" >
                       {% for i in range(0,lensub[0]) %}
-              <!-- -->      <div class="col-lg-4 ">
+                        <div class="col-lg-4 ">
                             <div class="card" style="width: 30rem; background-color: None;">
-
-
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                         <i style="position: absolute; margin-left: -137px;" class="glyphicon glyphicon-option-vertical"></i>
@@ -175,149 +176,24 @@
                                 {% for j in range(1,lensub[i+1]) %}
                                 <br><a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
                                 {% endfor %}
-
                                 <br><br><a href='{{url_for('subject',username = username,subject_code = subject[i][0]) }}' class="btn btn-primary">{{ subject[i][0] }}</a>
                               </div>
                             </div>
                 <!-- -->   </div>
                         {% endfor %}
-
-
-
                     </div>
-                </div>
+          </div>
+        </div>
             <!-- end context -->
+         <script>
 
-         <!-- end Pop-up add class-->
-         <!-- start Pop-up add Cooperators -->
-         
-         <!-- end Pop-up add Cooperators-->
-         <!-- start Pop-up add Group -->
-         
-         <!-- end Pop-up add Group-->
-         <!-- start Pop-up add Task -->
-         
-         <!-- end Pop-up add Task-->
-
-
-
-
-
-
-
-
-
-<!-- start Pop-up add 55555555 -->
-
-
-
-
-
-         <!-- end Pop-up add 55555555555-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-         <!-- start Pop-up Cooperators 1 -->
-         
-         <!-- end Pop-up Cooperators 1-->
-
-
-
-<div id="sidebar">
-
-                <ul>
-                  <li><a href="#">Link 1</a></li>
-                  <li><a href="#">Link 2</a></li>
-                  <li><a href="#">Link 3</a></li>
-                  <li><a href="#">Link 4</a></li>
-                  <li><a href="#">Link 5</a></li>
-                </ul>
-
-                <div id="sidebar-btn">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-
-            </div>
-            <script>
-
-            $(document).ready(function(){
-              $('#sidebar-btn').click(function(){
-                $('#sidebar').toggleClass('glyphicon glyphicon-list');
+              $(document).ready(function(){
+                $('#sidebar-btn').click(function(){
+                  $('#sidebar').toggleClass('glyphicon glyphicon-list');
+                });
               });
-            });
 
-            </script>
-
-
-
-
-
-
-
-         <!-- start Pop-up Cooperators 2 -->
-      
-         <!-- end Pop-up Cooperators 2-->
-
-
-
-
-
-
-
-
-
-
-         <!-- start Pop-up Cooperators 3 -->
-        
-         <!-- end Pop-up Cooperators 3-->
-
-
-
-
-
-
-
-
-
-
-
-
-         <!-- start Pop-up Group -->
-        
-         <!-- end Pop-up Group-->
-
-
-
-
-
-
-         <!-- start Pop-up Tasks -->
-         
-         <!-- end Pop-up Tasks-->
-
-
-
-
-
-
-
-
-
-
-
-
+         </script>
 
 
 
@@ -332,9 +208,9 @@
       <script src="../static/data/morris-data.js"></script>
       <script src="../static/dist/js/sb-admin-2.js"></script>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="static/js/jquery-3.2.1.min.js"></script>
+      <script src="../static/js/jquery-3.2.1.min.js"></script>
       <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="static/js/bootstrap.min.js"></script>
+      <script src="../static/js/bootstrap.min.js"></script>
 
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -129,7 +129,9 @@
                                  </button>
                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                    {% for i in all_lec%}
+                                        {% if i.username != username %}
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" value="{{ i.name_lecturer }}" >{{ i.name_lecturer }}</a></li>
+                                     {% endif %}
                                 {% endfor %}
                                  </ul>
                               </div>

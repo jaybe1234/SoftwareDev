@@ -3,10 +3,12 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
 from Database.getFunction import *
 from Database.AddData import create_grouping
 from Database.HomepageData import *
 from Database.SubjectPageData import subjectpage_data
+
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine

@@ -17,7 +17,8 @@ def login(subject_code,task_name):
         for i in grouping_id_task:
             if i.grouping_task.subject_code_grouping == subject_code:
                 grouping_object = i.grouping_task
-                group_id = session.query(Group).filter_by(grouping_group = grouping_object)[0].group_id_group
+                group_id = session.query(Group).filter_by(grouping_group = grouping_object,student_id_group = student_id)[0].group_id_group
+                print group_id
                 credit = session.query(Credit).filter_by(group_id_credit = group_id)[0].credit
             return redirect(url_for('member',student_id = student_id,subject_code = subject_code,task_name=task_name,credit_bank=credit))
     else:

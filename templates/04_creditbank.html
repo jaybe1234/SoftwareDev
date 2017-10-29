@@ -64,16 +64,14 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
-
-                                        {% for member in groups %}
+                                    <form role="form" action='{{url_for('member', subject_code =subject_code,task_name = task_name ,student_id=student_id,credit_bank=credit_bank)}}' method="POST">
+                                        {% for i in range(0,length) %}
                                         <div class="form-group">
-                                            <label>{{member.student_id_group}}</label>
-                                            <input class="form-control" placeholder="Score" type='text' name='score'>
+                                            <label>{{groups[i].student_id_group}}</label>
+                                            <input class="form-control" placeholder="Score"+str(i) type='text' name='score' id='ta' onkeyup="clean('ta')">
                                         </div>
                                         {% endfor %}
-                                        <button type="submit" class="btn btn-default">Submit</button><br>
-     
+                                        <input type='submit' class="btn btn-lg btn-success btn-block" value='submit'></a>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -106,8 +104,13 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-
-
+    <script>
+        function clean(e){
+            var textfield = document.getElementById(e);
+            var regex = /[^0-9.]/gi;
+            textfield.value = textfield.value.replace(regex,"");
+        }
+    </script>
 
 
     </body>

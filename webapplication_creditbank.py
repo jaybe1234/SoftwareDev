@@ -40,7 +40,7 @@ def submitcode(subject_code,task_name,student_id,credit_bank,number):
 
 
 
-@app.route('/students/<string:subject_code>/<string:task_name>/<int:student_id>/<int:credit_bank>/')
+@app.route('/students/<string:subject_code>/<string:task_name>/<int:student_id>/<int:credit_bank>/',methods=['GET','POST'])
 def member(subject_code,task_name,student_id,credit_bank):
     grouping_id_task = session.query(Task).filter_by(name_task=task_name)
     for i in grouping_id_task:
@@ -48,7 +48,15 @@ def member(subject_code,task_name,student_id,credit_bank):
             result_object = i
     group_id_task = session.query(Group).filter_by(grouping_id_group=result_object.grouping_id_task, student_id_group=student_id)[0].group_id_group
     groups = session.query(Group).filter_by(group_id_group=group_id_task)
-    return render_template('04_creditbank.html',groups=groups,credit_bank=credit_bank)
+    length = 0
+    for i in groups:
+        length+=1
+    if request.method == 'POST':
+        score = request.form['score']
+        print "POST"
+    else:
+        return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id,length=length)
+
 
 
 if __name__ == "__main__":

@@ -48,7 +48,7 @@
                         <form role='form' action='{{url_for('login',subject_code=subject_code,task_name=task_name)}}' method = 'POST'>
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" type='text' name='student_id' placeholder="Studen ID" autofocus=""><br>
+                                    <input class="form-control" type='text' name='student_id' placeholder="Studen ID" autofocus="" id="input" onkeyup="clean('input')" ><br>
                                     <input class="form-control" placeholder="E-mail address " name="E-mail address" type="text" autofocus="">
                                 </div>
                                 
@@ -73,6 +73,14 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+    function clean(e){
+        var textfield = document.getElementById(e);
+        var regex = /[^0-9]/gi;
+        textfield.value = textfield.value.replace(regex,"");
+    }
+</script>
 
 </body>
 

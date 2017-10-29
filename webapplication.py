@@ -36,13 +36,12 @@ def login():
 
 @app.route('/<string:username>/home')
 def home(username):
-    name = session.query(Lecturer).filter_by(user_lecturer = username)
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
     subject = subjectpage_data(username)
     sub = []
     lensub = []
     lensub.append(len(subject))
-    name_lecturer = []
-    #all_lec = session.query(Lecturer).all(name_lecturer)
+    all_lec = session.query(Lecturer).filter_by(name_lecturer = Lecturer.name_lecturer)
     for i in subject:
         lensub.append(len(i))
         namesub = session.query(Subject).filter_by(code_subject = i[0])
@@ -51,9 +50,9 @@ def home(username):
         return redirect('login')
     #elif request.methods == 'POST':
     #    nameclass = request.form['Class_name']
-    #    create_subject()
+    #    create_subject(None,nameclass)
     else:
-        return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,name = name,sub = sub)
+        return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
 @app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
 def subject(username,subject_code):

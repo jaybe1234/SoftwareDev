@@ -17,13 +17,13 @@
       <link href="../static/vendor/morrisjs/morris.css" rel="stylesheet">
       <!-- Custom Fonts -->
       <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      
+
 
       <link href="static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
       <link href="../static/css_box/style.css" rel="stylesheet">
 
-      
+
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -51,14 +51,15 @@
                      <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
+                        {% for i in subject %}
+                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
                   </div>
                </div>
-               <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
+               <a class="navbar-brand" href="Eiei.html">FIBO Classes</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -83,7 +84,7 @@
                            </div>
                            <div class="col-lg-5">
                                 <br>
-                                <h6>Bawornsak Sakulkuaekulsuk</h6>
+                                <h6>{{ name[0].name_lecturer }}</h6>
                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
                            </div>
                         </div>
@@ -116,7 +117,7 @@
                   </div>
                   <div class="modal-body">
                      <form name="test" method="post" action="">
-                        Class's name : <input type="text" name="Class's name"><br><br>
+                        Class's name : <input type="text" name="Class_name"><br><br>
                         <div class="row">
                            <div class="col-lg-2">
                               <h5>Cooperators:</h5>
@@ -167,7 +168,7 @@
                                 </li>
                                 <!-- /.dropdown-user -->
                                 <div class="card-block">
-                                <br><h4 class="card-title"  > {{ subject[i][0] }} </h4>
+                                <br><h4 class="card-title"  > {{ subject[i][0] + " (" + sub[i] + ")"}} </h4>
                               <hr noshade="noshade" width="100%" color=000000 size="6" >
                                 <h4 class="card-title"  >Cooperators </h4>
                                 {% for j in range(1,lensub[i+1]) %}
@@ -188,13 +189,13 @@
 
          <!-- end Pop-up add class-->
          <!-- start Pop-up add Cooperators -->
-         
+
          <!-- end Pop-up add Cooperators-->
          <!-- start Pop-up add Group -->
-         
+
          <!-- end Pop-up add Group-->
          <!-- start Pop-up add Task -->
-         
+
          <!-- end Pop-up add Task-->
 
 
@@ -226,7 +227,7 @@
 
 
          <!-- start Pop-up Cooperators 1 -->
-         
+
          <!-- end Pop-up Cooperators 1-->
 
 
@@ -240,7 +241,7 @@
 
 
          <!-- start Pop-up Cooperators 2 -->
-      
+
          <!-- end Pop-up Cooperators 2-->
 
 
@@ -253,7 +254,7 @@
 
 
          <!-- start Pop-up Cooperators 3 -->
-        
+
          <!-- end Pop-up Cooperators 3-->
 
 
@@ -268,7 +269,7 @@
 
 
          <!-- start Pop-up Group -->
-        
+
          <!-- end Pop-up Group-->
 
 
@@ -277,7 +278,7 @@
 
 
          <!-- start Pop-up Tasks -->
-         
+
          <!-- end Pop-up Tasks-->
 
 
@@ -295,7 +296,7 @@
 
 
 
-         
+
       </div>
       <script src="../static/vendor/jquery/jquery.min.js"></script>
       <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>

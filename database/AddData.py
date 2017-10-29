@@ -99,8 +99,8 @@ def delete_lecturer_enrollment(lecturer_id,subject_code):
     session.commit()
     return
 ######################################################################################
-def create_grouping(grouping_id ,grouping_name,grouping_type,subject_code):
-    new_grouping = Grouping(id_grouping=grouping_id,name_grouping=grouping_name,type_grouping=grouping_type,subject_code_grouping=subject_code)
+def create_grouping(grouping_name,grouping_type,subject_code):
+    new_grouping = Grouping(name_grouping=grouping_name,type_grouping=grouping_type,subject_code_grouping=subject_code)
     session.add(new_grouping)
     session.commit()
     return
@@ -236,9 +236,9 @@ create_enrollment("FRA142", 593405000008 , None)
 create_enrollment("FRA142", 593405000009 , None)
 create_enrollment("FRA142", 593405000010 , None)
 
-create_grouping(1,'Grouping by GPAX','GPAX','FRA241')
-create_grouping(2,'Grouping by GPAX','GPAX','FRA142')
-create_grouping(3,'Grouping by RANDOM','RANDOM','FRA241')
+create_grouping('Grouping by GPAX','GPAX','FRA241')
+create_grouping('Grouping by GPAX','GPAX','FRA142')
+create_grouping('Grouping by RANDOM','RANDOM','FRA241')
 
 create_group(1,59340500001,'AB01')
 create_group(1,59340500002,'AB02')
@@ -295,8 +295,10 @@ create_score('T001',59340500016,5)
 create_score('T001',59340500017,4)
 create_score('T001',59340500018,3)
 create_score('T001',59340500019,2)
-create_score('T001',59340500020,1)"""
-
+create_score('T001',59340500020,1)
+for i in range(1,4):
+    create_enrollment('FRA241', None, i)
+"""
 # delete_student(59340500005)
 
 # delete_subject('FRA241')

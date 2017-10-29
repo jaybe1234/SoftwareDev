@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>SB Admin 2 - Bootstrap Admin Theme</title>
+      <title>FRA 241 (2560)</title>
       <!-- Bootstrap Core CSS -->
       <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <!-- MetisMenu CSS -->
@@ -46,10 +46,7 @@
                         <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
                         <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
                         <br><br><br><br><br><br>
-                        <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="glyphicon glyphicon-folder-open"></i> Archived classes</a></li>
-                        <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i> Setting</a></li>
+                        <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
                   </div>
                </div>
@@ -69,17 +66,17 @@
 
 
 
-						<div class="row">
+                  <div class="row">
                            <div class="col-lg-5">
-                           		<br>
-                           		<p style="text-indent: 1em;">
-                              		<img src="../static/img/profile.png" class="img-circle">
-                              	</p>
+                                 <br>
+                                 <p style="text-indent: 1em;">
+                                    <img src="../static/img/profile.png" class="img-circle">
+                                 </p>
                            </div>
                            <div class="col-lg-5">
-								<br>
-                              	<h6>Bawornsak Sakulkuaekulsuk</h6>
-                              	<button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
+                        <br>
+                                 <h6>Bawornsak Sakulkuaekulsuk</h6>
+                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
                            </div>
                         </div>
 
@@ -88,7 +85,7 @@
 
                      <li class="divider"></li>
 
-                     	<li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
+                        <li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
 
 
                   </ul>
@@ -103,7 +100,7 @@
                      <li>
                         <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
                      </li>
-					 <li class="">
+                <li class="">
                         <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                            <li>
@@ -117,7 +114,7 @@
                            </li>
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"> Add cooperators</i></a>
+                              <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"></i> Add cooperators</a>
                            </li>
                         </ul>
                      </li>
@@ -132,7 +129,7 @@
                            </li>
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"> Add groups</i></a>
+                              <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"></i> Add groups</a>
                            </li>
                         </ul>
                      </li>
@@ -150,7 +147,7 @@
                            </li>
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus">Add Tasks</i></a>
+                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus"></i> Add Tasks</a>
                               <!--add_Task1 , add_Task2-->
                            </li>
                         </ul>
@@ -369,7 +366,7 @@
          </div>
          <!-- end Pop-up add Task-->
 
-		 <!-- start Pop-up add Task2 --><!--Group-->
+       <!-- start Pop-up add Task2 --><!--Group-->
          <div class="modal fade" id="add_Task2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                <div class="modal-content">
@@ -434,6 +431,28 @@
 
 
 
+         <!-- start Pop-up edit score -->
+         <div class="modal fade" id="edit_score1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm"" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <h4 class="modal-title" id="myModalLabel">Edit score : Task A</h4>
+                  </div>
+                  <div class="modal-body">
+                     <br>
+                     <form name="test" method="post" action="">
+                        59340500001: <input type="text" name="59340500001">
+                     <br><br>
+                  </div>
+                  <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <!-- end Pop-up edit score -->
 
 
 
@@ -465,7 +484,8 @@
 
 
 
-		 <!-- start Pop-up Cooperators 1 -->
+
+       <!-- start Pop-up Cooperators 1 -->
          <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
@@ -474,15 +494,15 @@
                      <form name="test" method="post" action="">
                         <div class="row">
                            <div class="col-lg-4">
-                           		<br>
-                           		<p style="text-indent: 1em;">
-                              		<img src="../static/img/profile.png" class="img-circle">
-                              	</p>
+                                 <br>
+                                 <p style="text-indent: 1em;">
+                                    <img src="../static/img/profile.png" class="img-circle">
+                                 </p>
                            </div>
                            <div class="col-lg-8">
-								<br>
-                              	<h6>Bawornsak Sakulkuaekulsuk</h6>
-                              	<button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
+                        <br>
+                                 <h6>Bawornsak Sakulkuaekulsuk</h6>
+                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
                            </div>
                         </div>
                   </div>
@@ -502,6 +522,17 @@
             </div>
          </div>
          <!-- end Pop-up Cooperators 1-->
+
+
+
+
+
+
+
+
+
+
+
          <!-- start Pop-up Cooperators 2 -->
          <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
@@ -511,15 +542,15 @@
                      <form name="test" method="post" action="">
                         <div class="row">
                            <div class="col-lg-4">
-                           		<br>
-                           		<p style="text-indent: 1em;">
-                              		<img src="../static/img/profile.png" class="img-circle">
-                              	</p>
+                                 <br>
+                                 <p style="text-indent: 1em;">
+                                    <img src="../static/img/profile.png" class="img-circle">
+                                 </p>
                            </div>
                            <div class="col-lg-8">
-                           		<br>
-                              	<h6>Suriya Natsupakpong</h6>
-                              	<button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
+                                 <br>
+                                 <h6>Suriya Natsupakpong</h6>
+                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
                            </div>
                         </div>
                   </div>
@@ -539,6 +570,16 @@
             </div>
          </div>
          <!-- end Pop-up Cooperators 2-->
+
+
+
+
+
+
+
+
+
+
          <!-- start Pop-up Cooperators 3 -->
          <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
@@ -548,10 +589,10 @@
                      <form name="test" method="post" action="">
                         <div class="row">
                            <div class="col-lg-4">
-                           		<br>
-                           		<p style="text-indent: 1em;">
-                              		<img src="../static/img/profile.png" class="img-circle">
-                              	</p>
+                                 <br>
+                                 <p style="text-indent: 1em;">
+                                    <img src="../static/img/profile.png" class="img-circle">
+                                 </p>
                            </div>
                            <div class="col-lg-8">
                            <br>
@@ -588,13 +629,13 @@
 
 
 
-		 <!-- start Pop-up Group -->
+       <!-- start Pop-up Group -->
          <div class="modal fade" id="Group1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                <div class="modal-content">
 
 
-				  <div class="modal-header">
+              <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                      <h4 class="modal-title" id="myModalLabel">Project</h4>
                   </div>
@@ -606,16 +647,16 @@
                         <div class="row">
                            <div class="col-lg-6">
 
-                           		<h5><strong>Grouping type</strong></h5>
-								<h5><strong>Number of group</strong></h5>
-								<h5><strong>Grouping from</strong></h5>
+                                 <h5><strong>Grouping type</strong></h5>
+                        <h5><strong>Number of group</strong></h5>
+                        <h5><strong>Grouping from</strong></h5>
 
                            </div>
                            <div class="col-lg-6">
 
-                              	<h5>Student ID.</h5>
-								<h5>16</h5>
-								<h5>Section</h5>
+                                 <h5>Student ID.</h5>
+                        <h5>16</h5>
+                        <h5>Section</h5>
                            </div>
                         </div>
                         <br>
@@ -646,12 +687,12 @@
 
 
 
-		 <!-- start Pop-up Tasks -->
+       <!-- start Pop-up Tasks -->
          <div class="modal fade" id="Task1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
 
-				  <div class="modal-header">
+              <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                      <h4 class="modal-title" id="myModalLabel">Task C</h4>
                   </div>
@@ -660,40 +701,40 @@
                      <form name="test" method="post" action="">
                         <div class="row">
                            <div class="col-lg-2">
-                           		<h5>Note</h5>
+                                 <h5>Note</h5>
                            </div>
                            <div class="col-lg-10">
-								<td data-name="desc">
-									<textarea name="desc0" placeholder="Description" class="form-control"></textarea>
-								</td>
+                        <td data-name="desc">
+                           <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
+                        </td>
                            </div>
 
-							<div class="col-lg-6">
-                           		<h5><strong>Group's name</strong></h5>
-								<h5><strong>Score</strong></h5>
-								<h5><strong>Scoring type</strong></h5>
+                     <div class="col-lg-6">
+                                 <h5><strong>Group's name</strong></h5>
+                        <h5><strong>Score</strong></h5>
+                        <h5><strong>Scoring type</strong></h5>
                            </div>
                            <div class="col-lg-6">
-								<h5>Project</h5>
-		                        <h5> 10</h5>
-		                        <h5> Credit bank</h5>
+                        <h5>Project</h5>
+                              <h5> 10</h5>
+                              <h5> Credit bank</h5>
                            </div>
 
 
 
-							<div class="col-lg-4">
-	                           	<br>
-	                           	<h5>Teacher</h5>
-								<br>
-	  							<h5>Student</h5>                         	
+                     <div class="col-lg-4">
+                                 <br>
+                                 <h5>Teacher</h5>
+                        <br>
+                        <h5>Student</h5>                          
                            </div>
 
                            <div class="col-lg-8">
-								<br>
-								<button type="button" class="btn btn-primary" data-dismiss="modal">Grade</button>
-								<br><br>
-								<button type="button" class="btn btn-primary" data-dismiss="modal">OPEN Credit bank</button>
-							</div>
+                        <br>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Grade</button>
+                        <br><br>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">OPEN Credit bank</button>
+                     </div>
                         </div>
                   </div>
                   <div class="modal-footer">
@@ -726,13 +767,15 @@
 
 
 
+
+
          <div id="page-wrapper" style="min-height: 611px;">
             <div class="row">
-               <div class="col-lg-10 col-md-10">
-                  <!-- องประกอบด้านใน-->
-                  <h4 class="page-header"><i class="glyphicon glyphicon-cog"></i> <ins>Manage Student List</ins></h4>
-               </div>
-               <div class="col-lg-2 col-md-2">
+               <div class="col-lg-2 col-md-5">
+                        <!-- องประกอบด้านใน-->
+                        <h5 class="page-header"><i class="glyphicon glyphicon-cog"></i> <ins>Manage Student List</ins></h5>
+                    </div>
+               <div class="col-lg-2 col-md-push-7">
                   <br><br>
                   <!-- Split button -->
                   <div class="btn-group">
@@ -781,20 +824,74 @@
                                         <tr>
                                             <td>59340500001</td>
                                             <td>AAA aaa</td>
-                                            <td>10</td>
-                                            <td>15</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        10
+                                                    </div>
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        10
+                                                    </div>
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>59340500002</td>
                                             <td>BBB bbb</td>
-                                            <td>10</td>
-                                            <td>15</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        10
+                                                    </div>
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        10
+                                                    </div>
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>59340500003</td>
                                             <td>CCC ccc</td>
-                                            <td>10</td>
-                                            <td>15</td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        10
+                                                    </div>
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        10
+                                                    </div>
+                                                    <div class="col-md-1 col-md-push-0">
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

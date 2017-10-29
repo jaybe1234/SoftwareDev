@@ -26,6 +26,7 @@ def getScoreFromTask(tasklist, student_list):
     scorelist = []
     for i in student_list:
         for a in tasklist:
+            x = 0
             student_score = []
             score = session.query(Score).filter_by(task_id_score = a.id_task)
             for b in score:
@@ -34,4 +35,18 @@ def getScoreFromTask(tasklist, student_list):
                     break
         scorelist.append(student_score)
     return scorelist
+
+def totalScore(tasklist, student_list):
+    scorelist = []
+    for i in student_list:
+        for a in tasklist:
+            x = 0
+            score = session.query(Score).filter_by(task_id_score = a.id_task)
+            for b in score:
+                if b.student_id_score == i.id_student:
+                    x += b.score_score
+                    break
+        scorelist.append(x)
+    return scorelist
+
 # print (subjectpage_data('Mr.Pitiwut'))

@@ -76,7 +76,6 @@ def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
     elif group_from == "option2":
         A = getStudentSection(subjectCode, 'a')
         B = getStudentSection(subjectCode, 'a')
-<<<<<<< HEAD
         num_group_in_A = len(A)/people_group
         num_group_in_B = len(B)/people_group
         for i in num_group_in_A:
@@ -96,5 +95,3 @@ def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
 
 
 
-=======
->>>>>>> 534b543cbe75c05df529dbc8ee2727325b669eee

@@ -65,12 +65,14 @@ def home(username):
 
 @app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
 def subject(username,subject_code):
+    subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
     scorelist = getScoreFromTask(taskList, studentList)
     totalscore = totalScore(taskList, studentList)
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
     range_student = range(len(studentList))
     if login == False:
         return redirect('login')
@@ -87,7 +89,7 @@ def subject(username,subject_code):
         return render_template('03_class.html', username = username, subject_code = subject_code,
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
                                taskList = taskList, scorelist = scorelist, totalscore = totalscore,
-                               range_student = range_student)
+                               range_student = range_student,nameuser = nameuser,subject = subject)
 
 if __name__ == '__main__':
     app.debug = True

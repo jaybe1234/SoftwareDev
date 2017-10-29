@@ -90,3 +90,4 @@ def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
                 one = B[ran]
                 B.remove(one)
                 create_group(create_group(grouping_id, one.id_student, group_id + 'B' + '#' + str(i + 1)))
+

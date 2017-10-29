@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,17 +39,19 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Credit Bank<br>{{task_name}}</h3>
+                        <h3 class="panel-title">Submit code </h3>
                     </div>
-                    <div>
-                        <form role='form' action='{{url_for('login',subject_code=subject_code,task_name=task_name)}}' method = 'POST'>
+                    <div class="panel-body">
+                        <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input type='text' size='30' name='student_id' placeholder="Studen ID" >
+                                     
+
+<input class="form-control" placeholder="Type code in your e-mail" name="E-mail address" type="E-mail address" autofocus="">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="creditbank.html" class="btn btn-lg btn-success btn-block"><input type='submit' value='login'></a>
+                                <a href="creditbank.html" class="btn btn-lg btn-success btn-block">Submit</a>
                             </fieldset>
                         </form>
                     </div>
@@ -73,6 +72,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
-</body>
 
-</html>
+
+</body></html>

@@ -15,7 +15,7 @@ body{
 	transition:left 0.3s linear;
 }
 
-#sidebar.glyphicon.visible{
+#sidebar.visible{
 	left:0px;
 	transition:left 0.3s linear;
 }

@@ -34,16 +34,20 @@ def login():
     else:
         return render_template('01_login.html')
 
+@app.route('/<string:username>/<string:subject_code>/home/delete')
+def delete(username,subject_code):
+    delete_subject(subject_code)
+    return redirect(url_for('home',username= username))
+
 @app.route('/<string:username>/home',methods = ['GET','POST'])
 def home(username):
     sub = []
     lensub = []
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
+    id_user = nameuser[0].id_lecturer
     subject = subjectpage_data(username)
     lensub.append(len(subject))
     all_lec = session.query(Lecturer).filter_by(name_lecturer = Lecturer.name_lecturer)
-    List_all = []
-    cooperator_list = []
     for i in subject:
         lensub.append(len(i))
         namesub = session.query(Subject).filter_by(code_subject = i[0])
@@ -52,12 +56,10 @@ def home(username):
         return redirect('login')
     elif request.method == 'POST' :
         nameclass = request.form['Class_name']
-        for i in all_lec:
-            List_all.append(i.name_lecturer)
         if nameclass is not None :
             create_subject(" ",nameclass)
-            #create_enrollment(nameclass, None , request.form["co"])
-        return (nameclass)
+            create_enrollment(nameclass, None , id_user )
+        return redirect(url_for('home',username= username))
     else:
         return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 

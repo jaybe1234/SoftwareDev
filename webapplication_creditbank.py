@@ -1,9 +1,9 @@
 import os
 from flask import Flask , render_template , request , redirect , url_for
-app = Flask(__name__,template_folder='templates')
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score,Credit
+from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score,Credit
+app = Flask(__name__)
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)

@@ -34,6 +34,11 @@ def login():
     else:
         return render_template('01_login.html')
 
+@app.route('/<string:username>/<string:subject_code>/home/delete')
+def delete(username,subject_code):
+    delete_subject(subject_code)
+    return redirect(url_for('home',username= username))
+
 @app.route('/<string:username>/home',methods = ['GET','POST'])
 def home(username):
     sub = []

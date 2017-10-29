@@ -129,9 +129,7 @@
                                  </button>
                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                    {% for i in all_lec%}
-                                        {% if i.username != username %}
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#" value="{{ i.name_lecturer }}" >{{ i.name_lecturer }}</a></li>
-                                     {% endif %}
                                 {% endfor %}
                                  </ul>
                               </div>
@@ -164,7 +162,7 @@
                                         </li>
 
                                         <li class="divider"></li>
-                                        <li><a href="01_login.html"><i ></i>Delete</a>
+                                        <li><a href='{{url_for('delete',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>
                                         </li>
                                      </ul>
                                 </li>

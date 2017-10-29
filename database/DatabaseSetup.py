@@ -79,5 +79,11 @@ class Score(Base):
     task_id_score = Column(String(20),ForeignKey('task.id_task'))
     task_score = relationship(Task)
 
+class Credit(Base):
+    __tablename__ = 'credit'
+    group_id_credit = Column(String(20),nullable=False,primary_key=True)
+    grouping_id_credit = Column(Integer,nullable=False)
+    credit = Column(Float,nullable=False)
+
 engine = create_engine('sqlite:///database.db')
 Base.metadata.create_all(engine)

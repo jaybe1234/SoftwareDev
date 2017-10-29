@@ -3,12 +3,10 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from Database.getFunction import *
 from Database.AddData import create_grouping
 from Database.HomepageData import *
 from Database.SubjectPageData import subjectpage_data
-
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -38,15 +36,24 @@ def login():
 
 @app.route('/<string:username>/home')
 def home(username):
+    name = session.query(Lecturer).filter_by(user_lecturer = username)
     subject = subjectpage_data(username)
+    sub = []
     lensub = []
     lensub.append(len(subject))
+    name_lecturer = []
+    #all_lec = session.query(Lecturer).all(name_lecturer)
     for i in subject:
         lensub.append(len(i))
+        namesub = session.query(Subject).filter_by(code_subject = i[0])
+        sub.append(namesub[0].name_subject)
     if login == False:
         return redirect('login')
+    #elif request.methods == 'POST':
+    #    nameclass = request.form['Class_name']
+    #    create_subject()
     else:
-        return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub)
+        return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,name = name,sub = sub)
 
 @app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
 def subject(username,subject_code):

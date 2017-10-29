@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from Database.getFunction import *
 from Database.AddData import *
 from Database.HomepageData import *
-from Database.SubjectPageData import subjectpage_data, getScoreFromTask
+from Database.SubjectPageData import subjectpage_data, getScoreFromTask, totalScore
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -68,6 +68,8 @@ def subject(username,subject_code):
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
     scorelist = getScoreFromTask(taskList, studentList)
+    totalscore = totalScore(taskList, studentList)
+    range_student = range(len(studentList))
     if login == False:
         return redirect('login')
     elif request.method == 'POST':
@@ -81,7 +83,8 @@ def subject(username,subject_code):
     else:
         return render_template('03_class.html', username = username, subject_code = subject_code,
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
-                               taskList = taskList, scorelist = scorelist)
+                               taskList = taskList, scorelist = scorelist, totalscore = totalscore,
+                               range_student = range_student)
 
 if __name__ == '__main__':
     app.debug = True

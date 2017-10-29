@@ -1,6 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+<<<<<<< HEAD
 from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
+=======
+from DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score,Credit
+>>>>>>> b337c16d45de49fc4fd19ce048429144cac5dd2f
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
@@ -151,6 +155,17 @@ def delete_score(task_id,student_id):
     session.commit()
     return
 ######################################################################################
+<<<<<<< HEAD
+=======
+def create_credit(group_id,subject_code,credit):
+    groups = session.query(Group).filter_by(group_id_group = group_id)
+    for somegroup in groups:
+        if somegroup.grouping_group.subject_code_grouping == subject_code:
+            new_credit = Credit(group_id_credit = group_id , grouping_id_credit = somegroup.grouping_id_group,credit = credit)
+            session.add(new_credit)
+            session.commit()
+    return
+>>>>>>> b337c16d45de49fc4fd19ce048429144cac5dd2f
 """
 create_student(59340500001,'A','12345','AA',2,'A',4.00)
 create_student(59340500002,'B','12345','BB',2,'A',4.00)
@@ -296,4 +311,12 @@ create_score('T001',59340500020,1)"""
 
 # delete_task('T001',1)
 
+<<<<<<< HEAD
 # delete_grouping(1)
+=======
+# delete_grouping(1)
+
+# delete_grouping(1)"""
+
+# create_credit('AB01',"FRA241",80)
+>>>>>>> b337c16d45de49fc4fd19ce048429144cac5dd2f

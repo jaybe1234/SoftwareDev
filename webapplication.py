@@ -77,11 +77,12 @@ def subject(username,subject_code):
     elif request.method == 'POST':
         if request.form['optionsRadios'] == "option1":
             grouping_random("option1", int(request.form['group_num']), subject_code,
-                            request.form['groping_id'], request.form['group_prefix'])
-            #grouping_random(group_from, group_num, subjectCode, grouping_id, group_id):
-            return redirect(url_for('subject',username, subject_code))
+                            request.form['grouping_name'], request.form['group_prefix'])
+            return redirect(url_for('subject',username = username, subject_code = subject_code))
         elif request.form['optionsRadios'] == "option2":
-            return  redirect(url_for('subject',username, subject_code))
+            grouping_random("option2", int(request.form['group_num']), subject_code,
+                            request.form['grouping_name'], request.form['group_prefix'])
+            return  redirect(url_for('subject',username = username, subject_code = subject_code))
     else:
         return render_template('03_class.html', username = username, subject_code = subject_code,
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,

@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from Database.getFunction import *
 from Database.AddData import create_grouping
 from Database.HomepageData import *
-from Database.SubjectPageData import subjectpage_data
+from Database.SubjectPageData import subjectpage_data, getScoreFromTask
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -61,6 +61,7 @@ def subject(username,subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
+    scorelist = getScoreFromTask(taskList, studentList)
     if login == False:
         return redirect('login')
     elif request.method == 'POST':
@@ -72,10 +73,18 @@ def subject(username,subject_code):
         elif request.form['optionsRadios'] == "option2":
             return  redirect(url_for('subject',username, subject_code))
     else:
-        return render_template('03_class_copy.html', username = username, subject_code = subject_code,
+        return render_template('03_class.html', username = username, subject_code = subject_code,
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
-                               taskList = taskList)
+                               taskList = taskList, scorelist = scorelist)
 
 if __name__ == '__main__':
     app.debug = True
     app.run(host = 'localhost', port = 5000)
+"""
+studentList = getStudentList('FRA241')
+lecturerList = getLecturerList('FRA241')
+groupingList = getGrouping('FRA241')
+taskList = getTask('FRA241')
+scorelist = getScoreFromTask(taskList, studentList)
+print(scorelist)
+"""

@@ -351,7 +351,7 @@
                               <form name="test" method="post" action="">
                                  Task's name : <input type="text" name="Class's name"><br><br>
                                  Score : <input type="text" name="Class's name"><br><br>
-                                 
+
                            </div>
                         </div>
                      </div>
@@ -726,7 +726,7 @@
                                  <br>
                                  <h5>Teacher</h5>
                         <br>
-                        <h5>Student</h5>                          
+                        <h5>Student</h5>
                            </div>
 
                            <div class="col-lg-8">
@@ -815,25 +815,29 @@
                                         <tr>
                                             <th>Student ID.</th>
                                             <th>Name</th>
-                                            <th>Task A</th>
-                                            <th>Task B</th>
+                                            {% for i in taskList %}
+                                            <th>{{i.id_task}}</th>
+                                            {% endfor %}
                                             <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for i in studentList %}
                                         <tr>
-                                            <td>59340500001</td>
-                                            <td>AAA aaa</td>
+                                            <td>{{i.id_student}}</td>
+                                            <td>{{i.name_student}}</td>
+                                            {% for a in scoreList %}
                                             <td>
                                                 <div class="row">
                                                     <div class="col-md-1 col-md-push-0">
-                                                        10
+                                                        {{a[1].score_score}}
                                                     </div>
                                                     <div class="col-md-1 col-md-push-0">
                                                         <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
                                                     </div>
                                                 </div>
                                             </td>
+                                            {% endfor %}
                                             <td>
                                                 <div class="row">
                                                     <div class="col-md-1 col-md-push-0">
@@ -845,54 +849,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>59340500002</td>
-                                            <td>BBB bbb</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>59340500003</td>
-                                            <td>CCC ccc</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

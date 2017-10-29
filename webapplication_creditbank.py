@@ -45,15 +45,18 @@ def member(subject_code,task_name,student_id,credit_bank):
     grouping_id_task = session.query(Task).filter_by(name_task=task_name)
     for i in grouping_id_task:
         if i.grouping_task.subject_code_grouping == subject_code:
-            result_object = i
-    group_id_task = session.query(Group).filter_by(grouping_id_group=result_object.grouping_id_task, student_id_group=student_id)[0].group_id_group
+            task_object = i
+    group_id_task = session.query(Group).filter_by(grouping_id_group=task_object.grouping_id_task, student_id_group=student_id)[0].group_id_group
     groups = session.query(Group).filter_by(group_id_group=group_id_task)
     length = 0
     for i in groups:
         length+=1
     if request.method == 'POST':
-        score = request.form['score']
-        print "POST"
+        score = request.form['E-mail address']
+        new_score = session.query(Score).filter_by(score_score = score,task_score=task_object,student_id_score = student_id)
+        session.add(new_score)
+        session.commit()
+        return redirect(url_for('login', subject_code =subject_code,task_name = task_name))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id,length=length)
 

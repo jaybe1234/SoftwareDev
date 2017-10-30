@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from Database.getFunction import *
 from Database.AddData import *
 from Database.HomepageData import *
-from Database.SubjectPageData import subjectpage_data, getScoreFromTask, totalScore
+from Database.SubjectPageData import subjectpage_data, getScoreFromTask, totalScore, updateScore
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -81,6 +81,9 @@ def subject(username,subject_code):
     totalscore = totalScore(taskList, studentList)
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
     range_student = range(len(studentList))
+    len_scorelist = len(scorelist)
+    len_tasklist = len(taskList)
+    #return str(len(scorelist[1]))
     if login == False:
         return redirect('login')
     elif request.method == 'POST':
@@ -98,7 +101,8 @@ def subject(username,subject_code):
         return render_template('03_class.html', username = username, subject_code = subject_code,
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
                                taskList = taskList, scorelist = scorelist, totalscore = totalscore,
-                               range_student = range_student,nameuser = nameuser,subject = subject)
+                               range_student = range_student,nameuser = nameuser,subject = subject,
+                               len_scorelist = len_scorelist, len_tasklist = len_tasklist)
 
 @app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
 def addTask(username, subject_code):
@@ -117,6 +121,14 @@ def addTask(username, subject_code):
                 break
         for i in studentList:
             create_score(task.id_task, i.id_student, 0)
+    return redirect(url_for('subject', username = username, subject_code = subject_code))
+
+@app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/edit' , methods = ['GET' , 'POST'])
+def editScore(username,subject_code,student_id,task_name):
+    student = session.query(Student).filter_by(id_student = student_id).one()
+    student_name = student.name_student
+    if request.method == 'POST':
+        updateScore(student_id, task_name, float(request.form[student_name + task_name]), subject_code)
     return redirect(url_for('subject', username = username, subject_code = subject_code))
 
 

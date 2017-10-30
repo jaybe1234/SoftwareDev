@@ -133,7 +133,7 @@
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                           {% for i in taskList %}
                            <li>
-                              <a data-toggle="modal" data-target="#{{i.id_task *10000000000}}">{{i.name_task}}</a>
+                              <a data-toggle="modal" data-target="#{{i.id_task *10000000}}">{{i.name_task}}</a>
                            </li>
                            {% endfor %}
                            <li class="divider"></li>
@@ -566,13 +566,13 @@
 
 {% for i in taskList %}
        <!-- start Pop-up Tasks -->
-         <div class="modal fade" id="{{i.id_task*10000000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="{{i.id_task*10000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
 
               <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Task C</h4>
+                     <h4 class="modal-title" id="myModalLabel">{{i.name_task}}</h4>
                   </div>
 
                   <div class="modal-body">

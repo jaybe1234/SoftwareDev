@@ -77,6 +77,7 @@ def subject(username,subject_code):
     if login == False:
         return redirect('login')
     elif request.method == 'POST':
+    #create grouping
         if request.form['optionsRadios'] == "option1":
             grouping_random("option1", int(request.form['group_num']), subject_code,
                             request.form['grouping_name'], request.form['group_prefix'])
@@ -85,20 +86,34 @@ def subject(username,subject_code):
             grouping_random("option2", int(request.form['group_num']), subject_code,
                             request.form['grouping_name'], request.form['group_prefix'])
             return  redirect(url_for('subject',username = username, subject_code = subject_code))
+    #add task
     else:
         return render_template('03_class.html', username = username, subject_code = subject_code,
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
                                taskList = taskList, scorelist = scorelist, totalscore = totalscore,
                                range_student = range_student,nameuser = nameuser,subject = subject)
 
+@app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
+def addTask(username, subject_code):
+    studentList = getStudentList(subject_code)
+    if request.method == 'POST':
+        grouping = getGrouping(subject_code)
+        for i in grouping:
+            if i.name_grouping == request.form['grouping_name']:
+                grouping_id = i.id_grouping
+                break
+        create_task(grouping_id, request.form['task_name'], request.form['score'])
+        tasklist = getTask(subject_code)
+        for i in tasklist:
+            if i.name_task == request.form['task_name']:
+                task = i
+                break
+        for i in studentList:
+            create_score(task.id_task, i.id_student, 0)
+    return redirect(url_for('subject', username = username, subject_code = subject_code))
+
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host = 'localhost', port = 5000)
-"""
-studentList = getStudentList('FRA241')
-lecturerList = getLecturerList('FRA241')
-groupingList = getGrouping('FRA241')
-taskList = getTask('FRA241')
-scorelist = getScoreFromTask(taskList, studentList)
-print(scorelist)
-"""

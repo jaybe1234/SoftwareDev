@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>{{subject_code}}</title>
+      <title>FRA 241 (2560)</title>
       <!-- Bootstrap Core CSS -->
       <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <!-- MetisMenu CSS -->
@@ -43,15 +43,14 @@
                      <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
-                        {% for i in subject %}
-                        <li><a href='{{url_for('subject',username = username,subject_code = i[0]) }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
-                        {% endfor %}
+                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
+                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
                   </div>
                </div>
-               <a class="navbar-brand" href="Eiei.html">{{subject_code}}</a>
+               <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -76,7 +75,7 @@
                            </div>
                            <div class="col-lg-5">
                         <br>
-                                 <h6>{{ nameuser[0].name_lecturer }}</h6>
+                                 <h6>Bawornsak Sakulkuaekulsuk</h6>
                                  <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
                            </div>
                         </div>
@@ -134,12 +133,12 @@
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                           {% for i in taskList %}
                            <li>
-                              <a href="flot.html">{{i.id_task}}</a>
+                              <a href="flot.html">{{i.name_task}}</a>
                            </li>
                            {% endfor %}
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus">Add Tasks</i></a>
+                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus">Add Task</i></a>
                               <!--add_Task1 , add_Task2-->
                            </li>
                         </ul>
@@ -334,15 +333,16 @@
                                  </li>
                                  {% for i in groupingList %}
                                  <li>
-                                    <a href="#" class="active"> {{i.id_grouping}}</a>
+                                    <a href="#" class="active"> {{i.name_grouping}}</a>
                                  </li>
                                  {% endfor %}
                               </ul>
                            </div>
                            <div class="col-lg-8">
-                              <form name="test" method="post" action="">
-                                 Task's name : <input type="text" name="Class's name"><br><br>
-                                 Score : <input type="text" name="Class's name"><br><br>
+                              <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
+                                 Task's name : <input type="text" name="task_name"><br><br>
+                                 Score : <input type="text" name="score"><br><br>
+                                 Grouping's name: <input type="text" name="grouping_name"><br><br>
 
                            </div>
                         </div>
@@ -384,8 +384,9 @@
                            </div>
                            <div class="col-lg-8">
                               <form name="test" method="post" action="">
-                                 Task's name : <input type="text" name="Class's name"><br><br>
-                                 Score : <input type="text" name="Class's name"><br><br>
+                                 Task's name : <input type="text" name="task_name"><br><br>
+                                 Score : <input type="text" name="task_score"><br><br>
+                                 Grouping's name: <input type="text" name="grouping_name"><br><br>
                                  <div class="form-group">
                                     <h5>Scoring type</h5>
                                     <div class="col-lg-4">
@@ -808,7 +809,7 @@
                                             <th>Student ID.</th>
                                             <th>Name</th>
                                             {% for i in taskList %}
-                                            <th>{{i.id_task}}</th>
+                                            <th>{{i.name_task}}</th>
                                             {% endfor %}
                                             <th>Total</th>
                                         </tr>

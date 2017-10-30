@@ -65,7 +65,7 @@ class Group(Base):
 
 class Task(Base):
     __tablename__ = 'task'
-    id_task = Column(String(20),nullable=False,primary_key=True)
+    id_task = Column(Integer,nullable=True,primary_key=True)
     name_task = Column(String(20),nullable =False)
     weight_task = Column(Float,nullable=False)
     grouping_id_task = Column(Integer,ForeignKey('grouping.id_grouping'))

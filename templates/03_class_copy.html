@@ -23,12 +23,13 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
-      <link href="../static/css_for_slidebar/style1.css">
-
+  
+<link rel="stylesheet" type="text/css" href="../static/css_for_slidebar/style1.css">
 
 
    </head>
    <body>
+   
       <div id="wrapper">
          <!--start menu-->
          <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -44,7 +45,7 @@
                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                      <i class="glyphicon glyphicon-list"></i>
                      </a>
-                     <!--<ul class="dropdown-menu dropdown-user">
+                     <ul class="dropdown-menu dropdown-user">
 
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
@@ -55,17 +56,7 @@
 
 
 
-                     </ul>-->
-
-
-
-
-
-
-
-
-
-
+                     </ul>
 
 
 
@@ -924,7 +915,18 @@
          </div>
       </div>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script>
+
+  $(document).ready(function(){
+    $('#sidebar-btn').click(function(){
+      $('#sidebar').toggleClass('visible');
+    });
+  });
+
+  </script>
+
+
 
 
 

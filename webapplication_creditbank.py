@@ -42,6 +42,7 @@ def submitcode(subject_code,task_name,student_id,credit_bank,number):
 
 @app.route('/students/<string:subject_code>/<string:task_name>/<int:student_id>/<int:credit_bank>/',methods=['GET','POST'])
 def member(subject_code,task_name,student_id,credit_bank):
+    # return subject_code
     grouping_id_task = session.query(Task).filter_by(name_task=task_name)
     for i in grouping_id_task:
         if i.grouping_task.subject_code_grouping == subject_code:
@@ -52,15 +53,18 @@ def member(subject_code,task_name,student_id,credit_bank):
     for i in groups:
         length+=1
     if request.method == 'POST':
-        score = request.form['E-mail address']
-        new_score = session.query(Score).filter_by(score_score = score,task_score=task_object,student_id_score = student_id)
-        session.add(new_score)
-        session.commit()
-        return redirect(url_for('login', subject_code =subject_code,task_name = task_name))
+        for j in range(length):
+            score = request.form[str(j)]
+            new_score = Score(score_score = score,task_score=task_object,student_id_score = student_id)
+            session.add(new_score)
+            session.commit()
+        return redirect(url_for('thankyou'))
     else:
-        return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id,length=length)
+        return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id, length=length,task_name=task_name,subject_code=subject_code)
 
-
+@app.route('/students/thankyou/')
+def thankyou():
+    return "THANK YOU :)"
 
 if __name__ == "__main__":
     app.secret_key = 'super_secret_key'

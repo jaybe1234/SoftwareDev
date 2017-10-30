@@ -70,6 +70,13 @@ def home(username):
     else:
         return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
+
+@app.route('/<string:username>/<string:subject_code>/<string:lecturer_id>/delete')
+def deleteLec(lecturer_id,subject_code,username):
+    deleteLec(lecturer_id,subject_code)
+    return ("Hey")
+#redirect(url_for('subject',username= username,subject_code = subject_code))
+
 @app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
 def subject(username,subject_code):
     subject = subjectpage_data(username)
@@ -96,6 +103,7 @@ def subject(username,subject_code):
             grouping_random("option2", int(request.form['group_num']), subject_code,
                             request.form['grouping_name'], request.form['group_prefix'])
             return  redirect(url_for('subject',username = username, subject_code = subject_code))
+
     #add task
     else:
         return render_template('03_class.html', username = username, subject_code = subject_code,

@@ -35,7 +35,7 @@ def login():
         return render_template('01_login.html')
 
 @app.route('/<string:username>/<string:subject_code>/home/delete')
-def delete(username,subject_code):
+def deleteSub(username,subject_code):
     delete_subject(subject_code)
     return redirect(url_for('home',username= username))
 
@@ -63,7 +63,7 @@ def home(username):
         if nameclass is not None :
             for i in subListAll:
                 if nameclass == i:
-                    return ("already have this class's name")
+                    return ("This class's name already exists")
             create_subject(" ",nameclass)
             create_enrollment(nameclass, None , id_user )
         return redirect(url_for('home',username= username))

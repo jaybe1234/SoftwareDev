@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from Database.DatabaseSetup import Base,Lecturer,Enrollment,Score,Student
+from Database.DatabaseSetup import Base,Lecturer,Enrollment,Score,Student,Task
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
@@ -47,4 +47,15 @@ def totalScore(tasklist, student_list):
         scorelist.append(x)
     return scorelist
 
+def updateScore(student_id, task_name, new_score, subject_code):
+    scorelist = session.query(Score).filter_by(student_id_score = student_id)
+    tasklist = session.query(Task).filter_by(name_task = task_name)
+    for a in scorelist:
+        for b in tasklist:
+            if int(a.task_id_score) == b.id_task:
+                score = a
+                break
+    score.score_score = new_score
+    session.add(score)
+    session.commit()
 # print (subjectpage_data('Mr.Pitiwut'))

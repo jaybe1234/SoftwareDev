@@ -45,7 +45,7 @@
                         <h3 class="panel-title">Credit Bank<br>{{task_name}}</h3>
                     </div>
                     <div class="panel-body">
-                        <form role='form' action='{{url_for('login',subject_code=subject_code,task_name=task_name)}}' method = 'POST'>
+                        <form role='form' action='{{url_for('logincreditbank',subject_code=subject_code,task_name=task_name)}}' method = 'POST'>
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" type='text' name='student_id' placeholder="Studen ID" autofocus="" id="input" onkeyup="clean('input')" ><br>

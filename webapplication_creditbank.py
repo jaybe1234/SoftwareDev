@@ -14,7 +14,7 @@ DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 @app.route("/<string:subject_code>/<string:task_name>",methods=['GET','POST'])
-def login(subject_code,task_name):
+def logincreditbank(subject_code,task_name):
     if request.method == 'POST':
         student_id = request.form['student_id']
         email = request.form['E-mail address']
@@ -55,7 +55,7 @@ def submitcode(subject_code,task_name,student_id,credit_bank,number,email,code):
             return redirect(url_for('member', student_id=student_id, subject_code=subject_code, task_name=task_name,credit_bank=credit_bank))
         else:
             if number>=4:
-                return redirect(url_for('login' , subject_code=subject_code , task_name=task_name))
+                return redirect(url_for('logincreditbank' , subject_code=subject_code , task_name=task_name))
     number = number + 1
     return render_template('04_creditbank-login-submitcode.html', subject_code=subject_code, task_name=task_name,student_id=student_id,credit_bank=credit_bank,number=number,email = email,code=code)
 

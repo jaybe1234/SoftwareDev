@@ -56,11 +56,13 @@ def member(subject_code,task_name,student_id,credit_bank):
         new_score = session.query(Score).filter_by(score_score = score,task_score=task_object,student_id_score = student_id)
         session.add(new_score)
         session.commit()
-        return redirect(url_for('login', subject_code =subject_code,task_name = task_name))
+        return redirect(url_for('thankyou'))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id,length=length)
 
-
+@app.route('/students/thankyou/')
+def thankyou():
+    return "THANK YOU :)"
 
 if __name__ == "__main__":
     app.secret_key = 'super_secret_key'

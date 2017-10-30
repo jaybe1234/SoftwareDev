@@ -66,14 +66,15 @@
                                 <div class="col-lg-6">
                                     <form role="form" action='{{url_for('member', subject_code =subject_code,task_name = task_name ,student_id=student_id,credit_bank=credit_bank)}}' method="POST">
 
-                                        {% for i in range(0,length) %}
                                         <div class="form-group">
+                                            {% for i in range(0,length) %}
                                             <label>{{groups[i].student_id_group}}</label>
-                                            <input class="form-control" placeholder="Score"+str(i) type='text' name='score' id='ta' onkeyup="clean('ta')">
+                                            <input class="form-control" placeholder="Score"+str(i) type='text' name='score' id='ta' onkeyup="clean('ta')"><br>
+                                            {% endfor %}
                                         </div>
-                                        {% endfor %}
                                         
-                                        <input type='submit' class="btn btn-lg btn-success btn-block" value='login'></a><br>
+                                        
+                                        <input type='submit' class="btn btn-lg btn-success btn-block" value='submit'></a><br>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->

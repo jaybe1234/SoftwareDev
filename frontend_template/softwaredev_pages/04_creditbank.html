@@ -64,7 +64,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form">
+                                    <form role="form" action='{{url_for('member', subject_code=subject_code) ,task_name=task_name,studewnt_id=student_id,credit_bank=credit_bank}}'>
 
                                         {% for member in groups %}
                                         <div class="form-group">

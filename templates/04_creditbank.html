@@ -69,7 +69,7 @@
                                         <div class="form-group">
                                             {% for i in range(0,length) %}
                                             <label>{{groups[i].student_id_group}}</label>
-                                            <input class="form-control" placeholder="Score"+str(i) type='text' name='score' id='ta' onkeyup="clean('ta')"><br>
+                                            <input class="form-control" placeholder="Score" type='text' name={{i}} id='ta' onkeyup="clean('ta')"><br>
                                             {% endfor %}
                                         </div>
                                         

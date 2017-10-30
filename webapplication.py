@@ -74,6 +74,7 @@ def subject(username,subject_code):
     totalscore = totalScore(taskList, studentList)
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
     range_student = range(len(studentList))
+    #return str(len(scorelist[1]))
     if login == False:
         return redirect('login')
     elif request.method == 'POST':

@@ -48,7 +48,7 @@ class Enrollment(Base):
 
 class Grouping(Base):
     __tablename__ = 'grouping'
-    id_grouping = Column(Integer,nullable=False,primary_key=True)
+    id_grouping = Column(Integer,nullable=True,primary_key=True)
     name_grouping = Column(String(20),nullable=False)
     type_grouping = Column(String(20),nullable=False)
     # subject_code_grouping = Column(String(40),nullable=False)
@@ -65,7 +65,7 @@ class Group(Base):
 
 class Task(Base):
     __tablename__ = 'task'
-    id_task = Column(String(20),nullable=False,primary_key=True)
+    id_task = Column(Integer,nullable=True,primary_key=True)
     name_task = Column(String(20),nullable =False)
     weight_task = Column(Float,nullable=False)
     grouping_id_task = Column(Integer,ForeignKey('grouping.id_grouping'))

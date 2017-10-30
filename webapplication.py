@@ -4,9 +4,9 @@ from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grou
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Database.getFunction import *
-from Database.AddData import create_grouping
+from Database.AddData import *
 from Database.HomepageData import *
-from Database.SubjectPageData import subjectpage_data
+from Database.SubjectPageData import subjectpage_data, getScoreFromTask, totalScore
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind=engine
@@ -34,12 +34,18 @@ def login():
     else:
         return render_template('01_login.html')
 
-@app.route('/<string:username>/home')
+@app.route('/<string:username>/<string:subject_code>/home/delete')
+def delete(username,subject_code):
+    delete_subject(subject_code)
+    return redirect(url_for('home',username= username))
+
+@app.route('/<string:username>/home',methods = ['GET','POST'])
 def home(username):
-    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
-    subject = subjectpage_data(username)
     sub = []
     lensub = []
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
+    id_user = nameuser[0].id_lecturer
+    subject = subjectpage_data(username)
     lensub.append(len(subject))
     all_lec = session.query(Lecturer).filter_by(name_lecturer = Lecturer.name_lecturer)
     for i in subject:
@@ -48,32 +54,65 @@ def home(username):
         sub.append(namesub[0].name_subject)
     if login == False:
         return redirect('login')
-    #elif request.methods == 'POST':
-    #    nameclass = request.form['Class_name']
-    #    create_subject(None,nameclass)
+    elif request.method == 'POST' :
+        nameclass = request.form['Class_name']
+        if nameclass is not None :
+            create_subject(" ",nameclass)
+            create_enrollment(nameclass, None , id_user )
+        return redirect(url_for('home',username= username))
     else:
         return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
 @app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
 def subject(username,subject_code):
+    subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
+    scorelist = getScoreFromTask(taskList, studentList)
+    totalscore = totalScore(taskList, studentList)
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
+    range_student = range(len(studentList))
     if login == False:
         return redirect('login')
     elif request.method == 'POST':
+    #create grouping
         if request.form['optionsRadios'] == "option1":
             grouping_random("option1", int(request.form['group_num']), subject_code,
-                            request.form['groping_id'], request.form['group_prefix'])
-            #grouping_random(group_from, group_num, subjectCode, grouping_id, group_id):
-            return redirect(url_for('subject',username, subject_code))
+                            request.form['grouping_name'], request.form['group_prefix'])
+            return redirect(url_for('subject',username = username, subject_code = subject_code))
         elif request.form['optionsRadios'] == "option2":
-            return  redirect(url_for('subject',username, subject_code))
+            grouping_random("option2", int(request.form['group_num']), subject_code,
+                            request.form['grouping_name'], request.form['group_prefix'])
+            return  redirect(url_for('subject',username = username, subject_code = subject_code))
+    #add task
     else:
-        return render_template('03_class_copy.html', username = username, subject_code = subject_code,
+        return render_template('03_class.html', username = username, subject_code = subject_code,
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
-                               taskList = taskList)
+                               taskList = taskList, scorelist = scorelist, totalscore = totalscore,
+                               range_student = range_student,nameuser = nameuser,subject = subject)
+
+@app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
+def addTask(username, subject_code):
+    studentList = getStudentList(subject_code)
+    if request.method == 'POST':
+        grouping = getGrouping(subject_code)
+        for i in grouping:
+            if i.name_grouping == request.form['grouping_name']:
+                grouping_id = i.id_grouping
+                break
+        create_task(grouping_id, request.form['task_name'], request.form['score'])
+        tasklist = getTask(subject_code)
+        for i in tasklist:
+            if i.name_task == request.form['task_name']:
+                task = i
+                break
+        for i in studentList:
+            create_score(task.id_task, i.id_student, 0)
+    return redirect(url_for('subject', username = username, subject_code = subject_code))
+
+
 
 if __name__ == '__main__':
     app.debug = True

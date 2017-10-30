@@ -60,34 +60,45 @@ def getStudentSection(subjectCode,sec):
     elif sec == 'b':
         return B
 
-def grouping_random(group_from,group_num,subjectCode,grouping_id, group_id):
+def grouping_random(group_from,group_num,subjectCode,grouping_name, group_prefix):
     student = getStudentList(subjectCode)
-    people_group = len(student) / int(group_num)
+    people_group = int(len(student) / int(group_num))
+    create_grouping(grouping_name,'RANDOM',subjectCode)
+    grouping = session.query(Grouping).filter_by(subject_code_grouping = subjectCode)
+    for i in grouping:
+        if i.name_grouping == grouping_name:
+            grouping_id = i.id_grouping
+            break
     if group_from == "option1":
-        for i in group_num:
+        for i in range(group_num):
             for a in range(people_group):
-                ran = randint(len(student)-1)
+                ran = randint(0,len(student)-1)
                 one = student[ran]
                 student.remove(one)
-                create_group(grouping_id,one.id_student,group_id + '#' + str(i+1))
-        for i in range(student):
+                create_group(grouping_id,one.id_student,group_prefix + '#' + str(i+1))
+        for i in range(len(student)):
             one = student[i]
-            create_group(grouping_id, one.id_student, group_id + '#' + str(i + 1))
+            create_group(grouping_id, one.id_student, group_prefix + '#' + str(i + 1))
     elif group_from == "option2":
         A = getStudentSection(subjectCode, 'a')
         B = getStudentSection(subjectCode, 'a')
-        num_group_in_A = len(A)/people_group
-        num_group_in_B = len(B)/people_group
-        for i in num_group_in_A:
+        num_group_in_A = int(len(A)/people_group)
+        num_group_in_B = int(len(B)/people_group)
+        for i in range(num_group_in_A):
             for a in range(people_group):
-                ran = randint(len(A)-1)
+                ran = randint(0,len(A)-1)
                 one = A[ran]
                 A.remove(one)
-                create_group(create_group(grouping_id,one.id_student,group_id + 'A' + '#' + str(i+1)))
-        for i in num_group_in_B:
+                create_group(grouping_id,one.id_student,group_prefix + '_A' + '#' + str(i+1))
+        for i in range(len(A)):
+            one = A[i]
+            create_group(grouping_id, one.id_student, group_prefix + '_A' + '#' + str(i + 1))
+        for i in range(num_group_in_B):
             for a in range(people_group):
-                ran = randint(len(A)-1)
+                ran = randint(0,len(A)-1)
                 one = B[ran]
                 B.remove(one)
-                create_group(create_group(grouping_id, one.id_student, group_id + 'B' + '#' + str(i + 1)))
-
+                create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(i + 1))
+        for i in range(len(B)):
+            one = B[i]
+            create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(i + 1))

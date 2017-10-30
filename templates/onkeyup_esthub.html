@@ -1,0 +1,8 @@
+<script>
+    function clean(e){
+        var textfield = document.getElementById(e);
+        var regex = /[^0-9]/gi;
+        textfield.value = textfield.value.replace(regex,"");
+    }
+</script>
+<textarea id="ta" name="ta" onkeyup="clean('ta')" onkeydown="clean('ta')"></textarea>

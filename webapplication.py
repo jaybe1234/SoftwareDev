@@ -48,6 +48,10 @@ def home(username):
     subject = subjectpage_data(username)
     lensub.append(len(subject))
     all_lec = session.query(Lecturer).filter_by(name_lecturer = Lecturer.name_lecturer)
+    all_sub = session.query(Subject).filter_by(code_subject = Subject.code_subject)
+    subListAll =[]
+    for i in all_sub:
+        subListAll.append(i.code_subject)
     for i in subject:
         lensub.append(len(i))
         namesub = session.query(Subject).filter_by(code_subject = i[0])
@@ -57,6 +61,9 @@ def home(username):
     elif request.method == 'POST' :
         nameclass = request.form['Class_name']
         if nameclass is not None :
+            for i in subListAll:
+                if nameclass == i:
+                    return ("already have this class's name")
             create_subject(" ",nameclass)
             create_enrollment(nameclass, None , id_user )
         return redirect(url_for('home',username= username))

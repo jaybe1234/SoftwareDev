@@ -1,4 +1,7 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,19 +42,18 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Credit Bank<br>Group:project</h3>
+                        <h3 class="panel-title">Credit Bank<br>{{task_name}}</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role='form' action='{{url_for('logincreditbank',subject_code=subject_code,task_name=task_name)}}' method = 'POST'>
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="StudenID" name="StudenID" type="StudenID" autofocus=""> <br>
-
-<input class="form-control" placeholder="E-mail address " name="E-mail address" type="E-mail address" autofocus="">
+                                    <input class="form-control" type='text' name='student_id' placeholder="Studen ID" autofocus="" id="input" onkeyup="clean('input')" ><br>
+                                    <input class="form-control" placeholder="E-mail address " name="E-mail address" type="text" autofocus="">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="creditbank.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <input type='submit' class="btn btn-lg btn-success btn-block" value='login'></a>
                             </fieldset>
                         </form>
                     </div>
@@ -72,6 +74,14 @@
     <!-- Custom Theme JavaScript -->
     <script src="../static/dist/js/sb-admin-2.js"></script>
 
+    <script>
+    function clean(e){
+        var textfield = document.getElementById(e);
+        var regex = /[^0-9]/gi;
+        textfield.value = textfield.value.replace(regex,"");
+    }
+    </script>
 
+</body>
 
-</body></html>
+</html>

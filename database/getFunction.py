@@ -60,6 +60,17 @@ def getStudentSection(subjectCode,sec):
     elif sec == 'b':
         return B
 
+def getScorePrimaryKey(subjectCode, student_id, task_name):
+    tasklist = getTask(subjectCode)
+    score = session.query(Score).filter_by(student_id_score = student_id)
+    for a in tasklist:
+        for b in score:
+            if a.id_task == b.task_id_score:
+                primary_key = b.primary_key
+                break
+    return primary_key
+
+
 def grouping_random(group_from,group_num,subjectCode,grouping_name, group_prefix):
     student = getStudentList(subjectCode)
     people_group = int(len(student) / int(group_num))

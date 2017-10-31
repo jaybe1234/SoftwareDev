@@ -43,8 +43,9 @@
                      <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
+                        {% for i in subject %}
+                        <li><a href='{{url_for('subject',username = username,subject_code = i[0]) }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
@@ -75,7 +76,7 @@
                            </div>
                            <div class="col-lg-5">
                         <br>
-                                 <h6>Bawornsak Sakulkuaekulsuk</h6>
+                                 <h6>{{ nameuser.name_lecturer }}</h6>
                                  <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
                            </div>
                         </div>
@@ -85,7 +86,7 @@
 
                      <li class="divider"></li>
 
-                        <li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
+                        <li><a href="{{url_for('login')}}" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
 
 
                   </ul>
@@ -458,7 +459,7 @@
                <div class="modal-content">
                   <div class="modal-body">
 
-                     <form name="test" method="post" action="{{url_for('deleteLec',username = username,lecturer_id = i.id_lecturer,subject_code = subject_code)}}">
+                     <form name="test" method="post" action="">
                         <div class="row">
                            <div class="col-lg-4">
                                  <br>
@@ -476,7 +477,7 @@
                   <div class="modal-footer">
                      <div class="row">
                         <div class="col-lg-2">
-                           <button type="submit" class="btn btn-danger" data-dismiss="modal">Remove</button>
+                           <a href="{{url_for('deleteLec',username = username,lecturer_id = i.id_lecturer,subject_code = subject_code)}}" type="submit" class="btn btn-danger" data-dismiss="modal">Remove</a>
                         </div>
                         <div class="col-lg-10">
                            <button type="submit" class="btn btn-default">Close</button>

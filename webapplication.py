@@ -75,8 +75,8 @@ def home(username):
 
 
 @app.route('/<string:username>/<string:subject_code>/<string:lecturer_id>/delete')
-def deleteLec(lecturer_id,subject_code,username):
-    deleteLec(lecturer_id,subject_code)
+def deleteLec(username, subject_code, lecturer_id):
+    #deleteLec(lecturer_id,subject_code)
     return ("Hey")
 #redirect(url_for('subject',username= username,subject_code = subject_code))
 
@@ -89,7 +89,7 @@ def subject(username,subject_code):
     taskList = getTask(subject_code)
     scorelist = getScoreFromTask(taskList, studentList)
     totalscore = totalScore(taskList, studentList)
-    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)

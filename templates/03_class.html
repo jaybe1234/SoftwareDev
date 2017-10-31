@@ -43,8 +43,9 @@
                      <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
+                        {% for i in subject%}
+                        <li><a href="{{url_for('subject',username = username,subject_code = i[0]) }}"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
@@ -85,7 +86,7 @@
 
                      <li class="divider"></li>
 
-                        <li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
+                        <li><a href="{{url_for('login')}}" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
 
 
                   </ul>
@@ -612,6 +613,7 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Grade</button>
                         <br><br>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">OPEN Credit bank</button>
+                        <a>localhost:5000/{{subject_code}}/{{i.task_name}}</a>
                      </div>
                         </div>
                   </div>

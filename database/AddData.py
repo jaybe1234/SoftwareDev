@@ -162,9 +162,9 @@ def create_credit(group_id,subject_code,credit):
             new_credit = Credit(group_id_credit = group_id , grouping_id_credit = somegroup.grouping_id_group,credit = credit)
             session.add(new_credit)
             session.commit()
-    return
+            return
 
-#
+
 # create_student(59340500001,'A','12345','AA',2,'A',4.00)
 # create_student(59340500002,'B','12345','BB',2,'A',4.00)
 # create_student(59340500003,'C','12345','CC',2,'A',1.52)
@@ -187,21 +187,13 @@ def create_credit(group_id,subject_code,credit):
 # create_student(59340500020,'T','12345','TT',2,'B',2.01)
 #
 #
-# create_lecturer(1,"Pitiwut","12345","Mr.Pitiwut")
-# create_lecturer(2,"Warasinee","12345","Mrs.Warasinee")
-# create_lecturer(3,"Bawornsak","12345","Mr.Bawornsak")
-# create_lecturer(4,"Suriya","12345","Mr.Suriya")
-# create_lecturer(5,"Pitiwut2","12345","Mr.Pitiwut2")
-# create_lecturer(6,"Warasinee2","12345","Mrs.Warasinee2")
-# create_lecturer(7,"Bawornsak2","12345","Mr.Bawornsak2")
-# create_lecturer(8,"Suriya2","12345","Mr.Suriya2")
+# create_lecturer(1,"Pitiwut","password","Mr.Pitiwut")
+# create_lecturer(3,"Warasinee","password","Mrs.Warasinee")
+# create_lecturer(2,"Bawornsak","password","Mr.Bawornsak")
+# create_lecturer(4,"Suriya","password","Mr.Suriya")
 #
 # create_subject('Software Development','FRA241')
 # create_subject('Computer Programming','FRA142')
-# create_subject('Digital','FRA221')
-# create_subject('Sensor&Actuator','FRA222')
-# create_subject('Digital2','FRA221.2')
-# create_subject('Sensor&Actuator2','FRA222.2')
 #
 #
 # create_enrollment("FRA241", 59340500001 , None)
@@ -236,45 +228,32 @@ def create_credit(group_id,subject_code,credit):
 # create_enrollment("FRA142", 593405000009 , None)
 # create_enrollment("FRA142", 593405000010 , None)
 #
-# create_grouping('Grouping by GPAX','GPAX','FRA241')
-# create_grouping('Grouping by GPAX','GPAX','FRA142')
-# create_grouping('Grouping by RANDOM','RANDOM','FRA241')
-#
-# create_group(1,59340500001,'AB01')
-# create_group(1,59340500002,'AB02')
-# create_group(1,59340500003,'AB03')
-# create_group(1,59340500004,'AB04')
-# create_group(1,59340500005,'AB05')
-# create_group(1,59340500006,'AB06')
-# create_group(1,59340500007,'AB07')
-# create_group(1,59340500008,'AB08')
-# create_group(1,59340500009,'AB09')
-# create_group(1,59340500010,'AB10')
-# create_group(1,59340500011,'AB01')
-# create_group(1,59340500012,'AB02')
-# create_group(1,59340500013,'AB03')
-# create_group(1,59340500014,'AB04')
-# create_group(1,59340500015,'AB05')
-# create_group(1,59340500016,'AB06')
-# create_group(1,59340500017,'AB07')
-# create_group(1,59340500018,'AB08')
-# create_group(1,59340500019,'AB09')
-# create_group(1,59340500020,'AB10')
-# create_group(2,59340500001,'A01')
-# create_group(2,59340500002,'A01')
-# create_group(2,59340500003,'A01')
-# create_group(2,59340500004,'A01')
-# create_group(2,59340500005,'A01')
-# create_group(2,59340500006,'B01')
-# create_group(2,59340500007,'B01')
-# create_group(2,59340500008,'B01')
-# create_group(2,59340500009,'B01')
-# create_group(2,59340500010,'B01')
-#
-#
-# create_task(1,'Lab1',5)
-# create_task(2,'Lab1',5)
-# create_task(2,'Lab2',15)
+# #
+# # create_grouping('Grouping by RANDOM','RANDOM','FRA241')
+# #
+# # create_group(1,59340500001,'AB01')
+# # create_group(1,59340500002,'AB02')
+# # create_group(1,59340500003,'AB03')
+# # create_group(1,59340500004,'AB04')
+# # create_group(1,59340500005,'AB05')
+# # create_group(1,59340500006,'AB06')
+# # create_group(1,59340500007,'AB07')
+# # create_group(1,59340500008,'AB08')
+# # create_group(1,59340500009,'AB09')
+# # create_group(1,59340500010,'AB10')
+# # create_group(1,59340500011,'AB01')
+# # create_group(1,59340500012,'AB02')
+# # create_group(1,59340500013,'AB03')
+# # create_group(1,59340500014,'AB04')
+# # create_group(1,59340500015,'AB05')
+# # create_group(1,59340500016,'AB06')
+# # create_group(1,59340500017,'AB07')
+# # create_group(1,59340500018,'AB08')
+# # create_group(1,59340500019,'AB09')
+# # create_group(1,59340500020,'AB10')
+# #
+# #
+# create_task(1,'Software Development',5)
 #
 # create_score(1,59340500001,5)
 # create_score(1,59340500002,4)
@@ -296,26 +275,20 @@ def create_credit(group_id,subject_code,credit):
 # create_score(1,59340500018,3)
 # create_score(1,59340500019,2)
 # create_score(1,59340500020,1)
-# for i in range(1,4):
+# #
+# for i in range(1,3):
 #     create_enrollment('FRA241', None, i)
-
-
-# delete_student(59340500005)
-
-# delete_subject('FRA241')
-
-# delete_student_enrollment(59340500060,"FRA241")
-
-# delete_lecturer_enrollment(1,'FRA241')
-
-# delete_score("T001",59340500060)
-
-# delete_task('T001',1)
-
-# delete_grouping(1)
-
-# delete_grouping(1)
-
-# delete_grouping(1)"""
-
-# create_credit('AB01',"FRA241",80)
+# create_enrollment('FRA142', None, 3)
+# create_enrollment('FRA142', None, 4)
+#
+#
+# create_credit('AB01',"FRA241",10)
+# create_credit('AB02',"FRA241",20)
+# create_credit('AB03',"FRA241",30)
+# create_credit('AB04',"FRA241",40)
+# create_credit('AB05',"FRA241",50)
+# create_credit('AB06',"FRA241",60)
+# create_credit('AB07',"FRA241",70)
+# create_credit('AB08',"FRA241",80)
+# create_credit('AB09',"FRA241",90)
+# create_credit('AB10',"FRA241",100)

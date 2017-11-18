@@ -9,6 +9,14 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
+def sortbygpax(subject_code):
+    student = getStudentList(subject_code)
+    idstudent = []
+    sortgpax = sorted(student ,key=lambda student: student.gpax_student ,reverse=True)
+    for i in sortgpax:
+        idstudent.append(i)
+    return idstudent
+
 def getStudentList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
     studentIdList = []

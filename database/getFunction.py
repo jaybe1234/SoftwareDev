@@ -113,3 +113,19 @@ def grouping_random(group_from,group_num,subjectCode,grouping_name, group_prefix
         for i in range(len(B)):
             one = B[i]
             create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(i + 1))
+
+def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
+    student = getStudentList(subjectCode)
+    people_group = int(len(student) / int(group_num))
+    create_grouping(grouping_name,'GPAX',subjectCode)
+    grouping = session.query(Grouping).filter_by(subject_code_grouping = subjectCode)
+    for i in grouping:
+        if i.name_grouping == grouping_name:
+            grouping_id = i.id_grouping
+            break
+    if group_fromm == "option1":
+        sorted_student = sorted(student, key=lambda student: student.gpax_student)
+        remain = len(student) / int(group_num)
+
+    elif group_from == "option2":
+        pass

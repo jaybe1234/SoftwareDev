@@ -80,8 +80,11 @@ def deleteLec(username, subject_code, lecturer_id):
     return ("Hey")
 #redirect(url_for('subject',username= username,subject_code = subject_code))
 
-@app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
+@app.route('/<string:username>/<string:subject_code>')
 def subject(username,subject_code):
+    return redirect(url_for('sorting', username = username, subject_code = subject_code, type_sort = "StudentID"))
+@app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
+def sorting(username,subject_code,type_sort):
     subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)
     lecturerList = getLecturerList(subject_code)
@@ -93,6 +96,7 @@ def subject(username,subject_code):
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
+    sortgpax = sortbygpax(subject_code)
     #return str(len(scorelist[1]))
     if login == False:
         return redirect('login')
@@ -113,7 +117,7 @@ def subject(username,subject_code):
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
                                taskList = taskList, scorelist = scorelist, totalscore = totalscore,
                                range_student = range_student,nameuser = nameuser,subject = subject,
-                               len_scorelist = len_scorelist, len_tasklist = len_tasklist)
+                               len_scorelist = len_scorelist, len_tasklist = len_tasklist,type_sort = type_sort,sortgpax = sortgpax)
 
 @app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
 def addTask(username, subject_code):
@@ -216,7 +220,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
-
 
 
 if __name__ == '__main__':

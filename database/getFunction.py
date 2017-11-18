@@ -125,7 +125,16 @@ def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
             break
     if group_fromm == "option1":
         sorted_student = sorted(student, key=lambda student: student.gpax_student)
-        remain = len(student) / int(group_num)
-
+        remain = len(student) % int(group_num)
+        for a in range(group_num - remain):
+            for b in range(people_group):
+                one = student[0]
+                create_group(grouping_id, one.id_student, group_prefix + '#' + str(a + 1))
+                student.remove(one)
+        for a in range(remain):
+            for b in range(people_group + 1):
+                one = student[0]
+                create_group(grouping_id, one.id_student, group_prefix + '#' + str(a + group_num - remain))
+                student.remove(one)
     elif group_from == "option2":
         pass

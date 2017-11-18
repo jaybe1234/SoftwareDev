@@ -43,8 +43,9 @@
                      <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
-                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
+                        {% for i in subject%}
+                        <li><a href="{{url_for('subject',username = username,subject_code = i[0]) }}"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
@@ -85,7 +86,7 @@
 
                      <li class="divider"></li>
 
-                        <li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
+                        <li><a href="{{url_for('login')}}" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
 
 
                   </ul>
@@ -98,20 +99,16 @@
                <div class="sidebar-nav navbar-collapse">
                   <ul class="nav in" id="side-menu">
                      <li>
-                        <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
+                        <a href="{{url_for("home", username = username)}}" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
                      </li>
                 <li class="">
                         <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                          {% for i in lecturerList %}
                            <li>
-                              <a data-toggle="modal" data-target="#myModal5">Bawornsak Sakulkuaekulsuk</a>
+                              <a data-toggle="modal" data-target="#{{i.id_lecturer+1000000}}">{{i.name_lecturer}}</a>
                            </li>
-                           <li>
-                              <a data-toggle="modal" data-target="#myModal6">Suriya Natsupakpong</a>
-                           </li>
-                           <li>
-                              <a data-toggle="modal" data-target="#myModal7">Warasinee Chaisangmongkon</a>
-                           </li>
+                           {% endfor %}
                            <li class="divider"></li>
                            <li>
                               <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"> Add cooperators</i></a>
@@ -119,35 +116,30 @@
                         </ul>
                      </li>
                      <li class="">
-                        <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
+                        <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groupings<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                          {% for i in groupingList %}
                            <li>
-                              <a href="flot.html">Mini-project</a>
+                              <a data-toggle="modal" data-target="#{{i.id_grouping*10000}}">{{i.name_grouping}}</a>
                            </li>
-                           <li>
-                              <a data-toggle="modal" data-target="#Group1">Project</a>
-                           </li>
+                           {% endfor %}
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"> Add groups</i></a>
+                              <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"> Create Grouping</i></a>
                            </li>
                         </ul>
                      </li>
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                          {% for i in taskList %}
                            <li>
-                              <a href="flot.html">Task A (Individual)</a>
+                              <a data-toggle="modal" data-target="#{{i.id_task *10000000}}">{{i.name_task}}</a>
                            </li>
-                           <li>
-                              <a href="morris.html">Task B (Project - Equal score)</a>
-                           </li>
-                           <li>
-                              <a data-toggle="modal" data-target="#Task1">Task C (Project - Credit bank)</a>
-                           </li>
+                           {% endfor %}
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus">Add Tasks</i></a>
+                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus">Add Task</i></a>
                               <!--add_Task1 , add_Task2-->
                            </li>
                         </ul>
@@ -268,7 +260,7 @@
                <div class="modal-content">
                   <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Add group</h4>
+                     <h4 class="modal-title" id="myModalLabel">Create Grouping</h4>
                   </div>
                   <div class="modal-body">
                      <div class="sidebar-nav navbar-collapse">
@@ -290,9 +282,10 @@
                               </ul>
                            </div>
                            <div class="col-lg-8">
-                              <form name="test" method="post" action="">
-                                 Group's name : <input type="text" name="Class's name"><br><br>
-                                 Number of group : <input type="text" name="Class's name"><br><br>
+                              <form name="test" action="{{url_for("subject", username = username, subject_code = subject_code)}}" method="post">
+                                 Grouping's Name : <input type="text" name="grouping_name"><br><br>
+                                 Number of Group : <input type="text" name="group_num"><br><br>
+                                 Group's Prefix : <input type="text" name="group_prefix"><br><br>
                                  <div class="form-group">
                                     <h5>Grouping from</h5>
                                     <div class="col-lg-4">
@@ -339,19 +332,19 @@
                                  <li>
                                     <a href="#" class="active"> Individual</a>
                                  </li>
+                                 {% for i in groupingList %}
                                  <li>
-                                    <a href="#" class="active"> Group (Mini-project)</a>
+                                    <a href="#" class="active"> {{i.name_grouping}}</a>
                                  </li>
-                                 <li>
-                                    <a href="#" class="active"> Group (Project)</a>
-                                 </li>
+                                 {% endfor %}
                               </ul>
                            </div>
                            <div class="col-lg-8">
-                              <form name="test" method="post" action="">
-                                 Task's name : <input type="text" name="Class's name"><br><br>
-                                 Score : <input type="text" name="Class's name"><br><br>
-                                 
+                              <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
+                                 Task's name : <input type="text" name="task_name"><br><br>
+                                 Score : <input type="text" name="score"><br><br>
+                                 Grouping's name: <input type="text" name="grouping_name"><br><br>
+
                            </div>
                         </div>
                      </div>
@@ -392,8 +385,9 @@
                            </div>
                            <div class="col-lg-8">
                               <form name="test" method="post" action="">
-                                 Task's name : <input type="text" name="Class's name"><br><br>
-                                 Score : <input type="text" name="Class's name"><br><br>
+                                 Task's name : <input type="text" name="task_name"><br><br>
+                                 Score : <input type="text" name="task_score"><br><br>
+                                 Grouping's name: <input type="text" name="grouping_name"><br><br>
                                  <div class="form-group">
                                     <h5>Scoring type</h5>
                                     <div class="col-lg-4">
@@ -430,19 +424,20 @@
 
 
 
-
+{% for a in range(len_scorelist) %}
+{% for b in range(len_tasklist) %}
          <!-- start Pop-up edit score -->
-         <div class="modal fade" id="edit_score1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="{{scorelist[a][b].primary_key+1000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm"" role="document">
                <div class="modal-content">
                   <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Edit score : Task A</h4>
+                     <h4 class="modal-title" id="myModalLabel">Edit score : {{taskList[b].name_task}}</h4>
                   </div>
                   <div class="modal-body">
                      <br>
-                     <form name="test" method="post" action="">
-                        59340500001: <input type="text" name="59340500001">
+                     <form name="test" method="post" action="{{url_for('editScore',username = username, subject_code = subject_code, student_id = studentList[a].id_student, task_name = taskList[b].name_task)}}">
+                        {{studentList[a].id_student}}: <input type="text" name="{{studentList[a].name_student + taskList[b].name_task}}">
                      <br><br>
                   </div>
                   <div class="modal-footer">
@@ -453,40 +448,13 @@
             </div>
          </div>
          <!-- end Pop-up edit score -->
+{% endfor %}
+{% endfor %}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      {% for i in lecturerList %}
        <!-- start Pop-up Cooperators 1 -->
-         <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="{{i.id_lecturer+1000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
                   <div class="modal-body">
@@ -501,7 +469,7 @@
                            </div>
                            <div class="col-lg-8">
                         <br>
-                                 <h6>Bawornsak Sakulkuaekulsuk</h6>
+                                 <h6>{{i.name_lecturer}}</h6>
                                  <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
                            </div>
                         </div>
@@ -522,101 +490,7 @@
             </div>
          </div>
          <!-- end Pop-up Cooperators 1-->
-
-
-
-
-
-
-
-
-
-
-
-         <!-- start Pop-up Cooperators 2 -->
-         <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-               <div class="modal-content">
-                  <div class="modal-body">
-
-                     <form name="test" method="post" action="">
-                        <div class="row">
-                           <div class="col-lg-4">
-                                 <br>
-                                 <p style="text-indent: 1em;">
-                                    <img src="../static/img/profile.png" class="img-circle">
-                                 </p>
-                           </div>
-                           <div class="col-lg-8">
-                                 <br>
-                                 <h6>Suriya Natsupakpong</h6>
-                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
-                           </div>
-                        </div>
-                  </div>
-                  <div class="modal-footer">
-                     <div class="row">
-                        <div class="col-lg-2">
-                           <button type="submit" class="btn btn-danger" data-dismiss="modal">Remove</button>
-                        </div>
-                        <div class="col-lg-10">
-                           <button type="submit" class="btn btn-default">Close</button>
-                        </div>
-                     </div>
-
-                  </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-         <!-- end Pop-up Cooperators 2-->
-
-
-
-
-
-
-
-
-
-
-         <!-- start Pop-up Cooperators 3 -->
-         <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-               <div class="modal-content">
-                  <div class="modal-body">
-
-                     <form name="test" method="post" action="">
-                        <div class="row">
-                           <div class="col-lg-4">
-                                 <br>
-                                 <p style="text-indent: 1em;">
-                                    <img src="../static/img/profile.png" class="img-circle">
-                                 </p>
-                           </div>
-                           <div class="col-lg-8">
-                           <br>
-                              <h6>Warasinee Chaisangmongkon</h6>
-                              <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
-                           </div>
-                        </div>
-                  </div>
-                  <div class="modal-footer">
-                     <div class="row">
-                        <div class="col-lg-2">
-                           <button type="submit" class="btn btn-danger" data-dismiss="modal">Remove</button>
-                        </div>
-                        <div class="col-lg-10">
-                           <button type="submit" class="btn btn-default">Close</button>
-                        </div>
-                     </div>
-
-                  </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-         <!-- end Pop-up Cooperators 3-->
+         {% endfor %}
 
 
 
@@ -629,15 +503,20 @@
 
 
 
-       <!-- start Pop-up Group -->
-         <div class="modal fade" id="Group1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+
+
+
+      {% for i in groupingList %}
+       <!-- start Pop-up Grouping -->
+         <div class="modal fade" id="{{i.id_grouping*10000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                <div class="modal-content">
 
 
               <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Project</h4>
+                     <h4 class="modal-title" id="myModalLabel">{{i.name_grouping}}</h4>
                   </div>
 
 
@@ -647,9 +526,8 @@
                         <div class="row">
                            <div class="col-lg-6">
 
-                                 <h5><strong>Grouping type</strong></h5>
-                        <h5><strong>Number of group</strong></h5>
-                        <h5><strong>Grouping from</strong></h5>
+                                 <h5><strong>Grouping type: {{i.type_grouping}}</strong></h5>
+
 
                            </div>
                            <div class="col-lg-6">
@@ -681,20 +559,21 @@
             </div>
          </div>
          <!-- end Pop-up Group-->
+         {% endfor %}
 
 
 
 
 
-
+{% for i in taskList %}
        <!-- start Pop-up Tasks -->
-         <div class="modal fade" id="Task1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal fade" id="{{i.id_task*10000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
 
               <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Task C</h4>
+                     <h4 class="modal-title" id="myModalLabel">{{i.name_task}}</h4>
                   </div>
 
                   <div class="modal-body">
@@ -726,7 +605,7 @@
                                  <br>
                                  <h5>Teacher</h5>
                         <br>
-                        <h5>Student</h5>                          
+                        <h5>Student</h5>
                            </div>
 
                            <div class="col-lg-8">
@@ -734,6 +613,7 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Grade</button>
                         <br><br>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">OPEN Credit bank</button>
+                        <a>localhost:5000/{{subject_code}}/{{i.task_name}}</a>
                      </div>
                         </div>
                   </div>
@@ -754,8 +634,7 @@
          </div>
          <!-- end Pop-up Tasks-->
 
-
-
+{% endfor %}
 
 
 
@@ -815,84 +694,43 @@
                                         <tr>
                                             <th>Student ID.</th>
                                             <th>Name</th>
-                                            <th>Task A</th>
-                                            <th>Task B</th>
+                                            {% for i in taskList %}
+                                            <th>{{i.name_task}}</th>
+                                            {% endfor %}
                                             <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for i in range_student %}
+
                                         <tr>
-                                            <td>59340500001</td>
-                                            <td>AAA aaa</td>
+                                            <td>{{studentList[i].id_student}}</td>
+                                            <td>{{studentList[i].name_student}}</td>
+
+                                            {% for a in scorelist[i] %}
                                             <td>
+
                                                 <div class="row">
                                                     <div class="col-md-1 col-md-push-0">
-                                                        10
+                                                        {{a.score_score}}
                                                     </div>
                                                     <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key + 1000}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
                                                     </div>
                                                 </div>
                                             </td>
+                                            {% endfor %}
+
                                             <td>
                                                 <div class="row">
                                                     <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
+                                                        {{totalscore[i]}}
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>59340500002</td>
-                                            <td>BBB bbb</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>59340500003</td>
-                                            <td>CCC ccc</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        10
-                                                    </div>
-                                                    <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_score1"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+
+
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

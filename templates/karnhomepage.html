@@ -94,10 +94,11 @@
 
                      <li class="divider"></li>
 
-                        <li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
+                        <li><a href="{{url_for('login')}}" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
 
 
                   </ul>
+
                </li>
 
             </ul>
@@ -124,12 +125,12 @@
                            </div>
                            <div class="col-lg-10">
                               <div class="dropdown">
-                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" name = "select">
                                  <i class="glyphicon glyphicon-plus"></i>
                                  </button>
                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                    {% for i in all_lec%}
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{ i.name_lecturer }}</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#" value="{{ i.name_lecturer }}" >{{ i.name_lecturer }}</a></li>
                                 {% endfor %}
                                  </ul>
                               </div>
@@ -162,7 +163,7 @@
                                         </li>
 
                                         <li class="divider"></li>
-                                        <li><a href="01_login.html"><i ></i>Delete</a>
+                                        <li><a href='{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>
                                         </li>
                                      </ul>
                                 </li>

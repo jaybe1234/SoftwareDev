@@ -12,16 +12,16 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../static/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,22 +37,23 @@
     <div class="container">
 
     <br><br>
-    <img src="../softwaredev_pages/img/logo_FIBO2.png" class="img-responsive center-block">
+    <img src="../static/img/logo_FIBO2.png" class="img-responsive center-block">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Credit Bank<br>{{task_name}}</h3>
                     </div>
-                    <div>
-                        <form role='form' action='{{url_for('login',subject_code=subject_code,task_name=task_name)}}' method = 'POST'>
+                    <div class="panel-body">
+                        <form role='form' action='{{url_for('logincreditbank',subject_code=subject_code,task_name=task_name)}}' method = 'POST'>
                             <fieldset>
                                 <div class="form-group">
-                                    <input type='text' size='30' name='student_id' placeholder="Studen ID" >
+                                    <input class="form-control" type='text' name='student_id' placeholder="Studen ID" autofocus="" id="input" onkeyup="clean('input')" ><br>
+                                    <input class="form-control" placeholder="E-mail address " name="E-mail address" type="text" autofocus="">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="creditbank.html" class="btn btn-lg btn-success btn-block"><input type='submit' value='login'></a>
+                                <input type='submit' class="btn btn-lg btn-success btn-block" value='login'></a>
                             </fieldset>
                         </form>
                     </div>
@@ -62,16 +63,24 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../static/vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../static/dist/js/sb-admin-2.js"></script>
+
+    <script>
+    function clean(e){
+        var textfield = document.getElementById(e);
+        var regex = /[^0-9]/gi;
+        textfield.value = textfield.value.replace(regex,"");
+    }
+    </script>
 
 </body>
 

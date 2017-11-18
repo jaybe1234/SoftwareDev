@@ -11,4 +11,4 @@ def url(subject_code,task_name,port = None):
     else:
         url = "http://localhost:/students/" + subject_code + "/" + task_name + '/'
     return url
-print url('FRA241','Lab1',5000)
+print (url("FRA241","Lab1"))

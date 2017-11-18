@@ -134,6 +134,7 @@ def addTask(username, subject_code):
             create_score(task.id_task, i.id_student, 0)
     return redirect(url_for('subject', username = username, subject_code = subject_code))
 
+
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name):
     student = session.query(Student).filter_by(id_student = student_id).one()

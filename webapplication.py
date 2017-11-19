@@ -157,29 +157,29 @@ def logincreditbank(subject_code,task_name):
         # if len(check_exist_match) == 0:
         #   return render_template('04_creditbank-login.html',subject_code=subject_code,task_name=task_name)
         # else:
-            grouping_id_task = session.query(Task).filter_by(name_task=task_name)
-            for i in grouping_id_task:
-                if i.grouping_task.subject_code_grouping == subject_code:
-                    grouping_object = i.grouping_task
-                    group_id = session.query(Group).filter_by(grouping_group = grouping_object,student_id_group = student_id)[0].group_id_group
-                    credit = session.query(Credit).filter_by(group_id_credit = group_id)[0].credit
-                    code = ''
-                    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q','r', 's','t','u', 'v', 'w', 'x', 'y', 'z']
-                    for i in range(0, 6):
-                        number = random.randint(0, 25)
-                        code = code + alphabet[number]
-                    # Create a text/plain message
-                    msg = MIMEText(code)
-                    msg['Subject'] = 'SUBMIT CODE FOR CREDITBANK!!'
-                    # msg['From'] = 's59340500060@hotmail.com'
-                    # msg['To'] = 'kakan002@hotmail.com'
-                    s = smtplib.SMTP('smtp.live.com', 587)
-                    s.ehlo()
-                    s.starttls()
-                    s.login('FIBOgradingsystem@hotmail.com', 'Softwaredevelopment')
-                    s.sendmail('FIBOgradingsystem@hotmail.com', email, '## CODE IS : ' + msg.as_string())
-                    s.close()
-                    return redirect(url_for('submitcode',student_id = student_id,subject_code = subject_code,task_name=task_name,credit_bank=credit,number=0,email=email,code=code))
+        grouping_id_task = session.query(Task).filter_by(name_task=task_name)
+        for i in grouping_id_task:
+            if i.grouping_task.subject_code_grouping == subject_code:
+                grouping_object = i.grouping_task
+                group_id = session.query(Group).filter_by(grouping_group = grouping_object,student_id_group = student_id)[0].group_id_group
+                credit = session.query(Credit).filter_by(group_id_credit = group_id)[0].credit
+                code = ''
+                alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q','r', 's','t','u', 'v', 'w', 'x', 'y', 'z']
+                for i in range(0, 6):
+                    number = random.randint(0, 25)
+                    code = code + alphabet[number]
+                # Create a text/plain message
+                msg = MIMEText(code)
+                msg['Subject'] = 'SUBMIT CODE FOR CREDITBANK!!'
+                # msg['From'] = 's59340500060@hotmail.com'
+                # msg['To'] = 'kakan002@hotmail.com'
+                s = smtplib.SMTP('smtp.live.com', 587)
+                s.ehlo()
+                s.starttls()
+                s.login('FIBOgradingsystem@hotmail.com', 'Softwaredevelopment')
+                s.sendmail('FIBOgradingsystem@hotmail.com', email, '## CODE IS : ' + msg.as_string())
+                s.close()
+                return redirect(url_for('submitcode',student_id = student_id,subject_code = subject_code,task_name=task_name,credit_bank=credit,number=0,email=email,code=code))
     else:
         return render_template('04_creditbank-login.html',subject_code=subject_code,task_name=task_name)
 

@@ -80,8 +80,10 @@ def deleteLec(username, subject_code, lecturer_id):
     return ("Hey")
 #redirect(url_for('subject',username= username,subject_code = subject_code))
 
-@app.route('/<string:username>/<string:subject_code>' , methods = ['GET' , 'POST'])
-def subject(username,subject_code):
+
+
+@app.route('/<string:username>/<string:subject_code>', methods = ['GET' , 'POST'])
+def subject(username,subject_code,type_sort = None):
     subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)
     lecturerList = getLecturerList(subject_code)
@@ -93,6 +95,7 @@ def subject(username,subject_code):
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
+    sortgpax = sortbygpax(subject_code)
     #return str(len(scorelist[1]))
     if login == False:
         return redirect('login')
@@ -113,7 +116,7 @@ def subject(username,subject_code):
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
                                taskList = taskList, scorelist = scorelist, totalscore = totalscore,
                                range_student = range_student,nameuser = nameuser,subject = subject,
-                               len_scorelist = len_scorelist, len_tasklist = len_tasklist)
+                               len_scorelist = len_scorelist, len_tasklist = len_tasklist,sortgpax = sortgpax)
 
 @app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
 def addTask(username, subject_code):
@@ -148,32 +151,35 @@ def logincreditbank(subject_code,task_name):
     if request.method == 'POST':
         student_id = request.form['student_id']
         email = request.form['E-mail address']
-        grouping_id_task = session.query(Task).filter_by(name_task=task_name)
-        for i in grouping_id_task:
-            if i.grouping_task.subject_code_grouping == subject_code:
-                grouping_object = i.grouping_task
-                group_id = session.query(Group).filter_by(grouping_group = grouping_object,student_id_group = student_id)[0].group_id_group
-                credit = session.query(Credit).filter_by(group_id_credit = group_id)[0].credit
-                code = ''
-                alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-                            'r', 's',
-                            't',
-                            'u', 'v', 'w', 'x', 'y', 'z']
-                for i in range(0, 6):
-                    number = random.randint(1, 25)
-                    code = code + alphabet[number]
-                # Create a text/plain message
-                msg = MIMEText(code)
-                msg['Subject'] = 'SUBMIT CODE FOR CREDITBANK!!'
-                msg['From'] = 's59340500060@hotmail.com'
-                msg['To'] = 'kakan002@hotmail.com'
-                s = smtplib.SMTP('smtp.live.com', 587)
-                s.ehlo()
-                s.starttls()
-                s.login('s59340500060@hotmail.com', '@f36oxeb4S')
-                s.sendmail('s59340500060@hotmail.com', email, "## CODE IS : " + msg.as_string())
-                s.close()
-                return redirect(url_for('submitcode',student_id = student_id,subject_code = subject_code,task_name=task_name,credit_bank=credit,number=0,email=email,code=code))
+        # check
+        # student id is exist & email adrress is match with student id
+        # check_exist_match = session.query(Student).filter_by(email_student = email,student_id = student_id)
+        # if len(check_exist_match) == 0:
+        #   return render_template('04_creditbank-login.html',subject_code=subject_code,task_name=task_name)
+        # else:
+            grouping_id_task = session.query(Task).filter_by(name_task=task_name)
+            for i in grouping_id_task:
+                if i.grouping_task.subject_code_grouping == subject_code:
+                    grouping_object = i.grouping_task
+                    group_id = session.query(Group).filter_by(grouping_group = grouping_object,student_id_group = student_id)[0].group_id_group
+                    credit = session.query(Credit).filter_by(group_id_credit = group_id)[0].credit
+                    code = ''
+                    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q','r', 's','t','u', 'v', 'w', 'x', 'y', 'z']
+                    for i in range(0, 6):
+                        number = random.randint(0, 25)
+                        code = code + alphabet[number]
+                    # Create a text/plain message
+                    msg = MIMEText(code)
+                    msg['Subject'] = 'SUBMIT CODE FOR CREDITBANK!!'
+                    # msg['From'] = 's59340500060@hotmail.com'
+                    # msg['To'] = 'kakan002@hotmail.com'
+                    s = smtplib.SMTP('smtp.live.com', 587)
+                    s.ehlo()
+                    s.starttls()
+                    s.login('FIBOgradingsystem@hotmail.com', 'Softwaredevelopment')
+                    s.sendmail('FIBOgradingsystem@hotmail.com', email, '## CODE IS : ' + msg.as_string())
+                    s.close()
+                    return redirect(url_for('submitcode',student_id = student_id,subject_code = subject_code,task_name=task_name,credit_bank=credit,number=0,email=email,code=code))
     else:
         return render_template('04_creditbank-login.html',subject_code=subject_code,task_name=task_name)
 
@@ -206,7 +212,7 @@ def member(subject_code,task_name,student_id,credit_bank):
     if request.method == 'POST':
         for j in range(length):
             score = request.form[str(j)]
-            new_score = Score(score_score = score,task_score=task_object,student_id_score = student_id)
+            new_score = Score(score_score = score,task_score=task_object,student_id_score = groups[j].student_id_group)
             session.add(new_score)
             session.commit()
         return redirect(url_for('thankyou'))
@@ -216,8 +222,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
-
-
 
 if __name__ == '__main__':
     app.debug = True

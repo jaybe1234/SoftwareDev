@@ -47,7 +47,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Your Credit Bank : {{credit_bank}}<br><a href="#">
+                            Your Credit Bank : {{credit_bank}}<br>
+                            Remaining : <input type="number" id="id-3" readonly /><a href="#">
                                 <div>
                                     <p>
                                         <strong>Remaining</strong>
@@ -68,12 +69,13 @@
 
                                         <div class="form-group">
                                             {% for i in range(0,length) %}
+                                            <script>$name = i</script>
+                                            
                                             <label>{{groups[i].student_id_group}}</label>
-                                            <input class="form-control" placeholder="Score" type='text' name={{i}} id='ta' onkeyup="clean('ta')"><br>
+                                            <input class="form-control" placeholder="score" type='text' name={{i}} id="{{i}}" onkeyup="clean({{i}})"><br>
                                             {% endfor %}
                                         </div>
-                                        
-                                        
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                                         <input type='submit' class="btn btn-lg btn-success btn-block" value='submit'></a><br>
                                     </form>
                                 </div>
@@ -113,7 +115,13 @@
             var regex = /[^0-9.]/gi;
             textfield.value = textfield.value.replace(regex,"");
         }
+        $(function () {
+          $("#0, #1").keyup(function () {
+            $("#id-3").val({{credit_bank}} - +$("#0").val() - +$("#1").val());
+          });
+        });
     </script>
+
 
 
     </body>

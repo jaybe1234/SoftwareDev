@@ -52,7 +52,7 @@
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
                         {% for i in subject %}
-                        <li><a href='{{url_for('subject',username = username,subject_code = i[0]) }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        <li><a href='{{url_for('subject',username = username,subject_code = i[0])}}''><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
@@ -176,7 +176,7 @@
                                 <br><a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
                                 {% endfor %}
 
-                                <br><br><a href='{{url_for('subject',username = username,subject_code = subject[i][0]) }}' class="btn btn-primary">{{ subject[i][0] }}</a>
+                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0]) }}" class="btn btn-primary">{{ subject[i][0] }}</a>
                               </div>
                             </div>
                 <!-- -->   </div>

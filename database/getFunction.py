@@ -9,6 +9,50 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
+def sortbygpax(subject_code):
+    student = getStudentList(subject_code)
+    idstudent = []
+    sortgpax = sorted(student ,key=lambda student: student.gpax_student ,reverse=True)
+    for i in sortgpax:
+        idstudent.append(i)
+    return idstudent
+
+def sortbygroup(subject_code,namegroup):
+    group = []
+    memberIngroup = []
+    groupname = session.query(Grouping).filter_by(name_grouping = namegroup).one()
+    groupid = session.query(Group).filter_by(grouping_id_group = groupname.id_grouping)
+    for i in groupid:
+            if i.group_id_group not in group:
+                group.append(i.group_id_group)
+    memberOnegroup = session.query(Group).filter_by(group_id_group = group[0])
+    member = session.query(Group).filter_by(grouping_id_group = groupname.id_grouping)
+    memberall = []
+    for i in memberOnegroup:
+        memberIngroup.append(i.student_id_group)
+    numMember = len(memberIngroup)
+    for i in group:
+        arr = [[]* numMember for j in range(len(group))]
+    for i in member:
+        memberall.append(i.student_id_group)
+    #for i in memberall:
+    for a in range(len(group)):
+        for b in range(numMember):
+            arr[a].append(memberall[0])
+            memberall.remove(memberall[0])
+    for i in arr:
+        i.sort()
+    return arr
+
+def getlistgroupid(subject_code,namegroup):
+    group = []
+    groupname = session.query(Grouping).filter_by(name_grouping = namegroup).one()
+    groupid = session.query(Group).filter_by(grouping_id_group = groupname.id_grouping)
+    for i in groupid:
+            if i.group_id_group not in group:
+                group.append(i.group_id_group)
+    return group
+
 def getStudentList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
     studentIdList = []
@@ -113,3 +157,28 @@ def grouping_random(group_from,group_num,subjectCode,grouping_name, group_prefix
         for i in range(len(B)):
             one = B[i]
             create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(i + 1))
+
+def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
+    student = getStudentList(subjectCode)
+    people_group = int(len(student) / int(group_num))
+    create_grouping(grouping_name,'GPAX',subjectCode)
+    grouping = session.query(Grouping).filter_by(subject_code_grouping = subjectCode)
+    for i in grouping:
+        if i.name_grouping == grouping_name:
+            grouping_id = i.id_grouping
+            break
+    if group_fromm == "option1":
+        sorted_student = sorted(student, key=lambda student: student.gpax_student)
+        remain = len(student) % int(group_num)
+        for a in range(group_num - remain):
+            for b in range(people_group):
+                one = student[0]
+                create_group(grouping_id, one.id_student, group_prefix + '#' + str(a + 1))
+                student.remove(one)
+        for a in range(remain):
+            for b in range(people_group + 1):
+                one = student[0]
+                create_group(grouping_id, one.id_student, group_prefix + '#' + str(a + group_num - remain))
+                student.remove(one)
+    elif group_from == "option2":
+        pass

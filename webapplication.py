@@ -169,13 +169,13 @@ def logincreditbank(subject_code,task_name):
                 # Create a text/plain message
                 msg = MIMEText(code)
                 msg['Subject'] = 'SUBMIT CODE FOR CREDITBANK!!'
-                msg['From'] = 's59340500060@hotmail.com'
-                msg['To'] = 'kakan002@hotmail.com'
+                # msg['From'] = 's59340500060@hotmail.com'
+                # msg['To'] = 'kakan002@hotmail.com'
                 s = smtplib.SMTP('smtp.live.com', 587)
                 s.ehlo()
                 s.starttls()
-                s.login('s59340500060@hotmail.com', '@f36oxeb4S')
-                s.sendmail('s59340500060@hotmail.com', email, "## CODE IS : " + msg.as_string())
+                s.login('FIBOgradingsystem@hotmail.com', 'Softwaredevelopment')
+                s.sendmail('FIBOgradingsystem@hotmail.com', email, "## CODE IS : " + msg.as_string())
                 s.close()
                 return redirect(url_for('submitcode',student_id = student_id,subject_code = subject_code,task_name=task_name,credit_bank=credit,number=0,email=email,code=code))
     else:
@@ -210,7 +210,7 @@ def member(subject_code,task_name,student_id,credit_bank):
     if request.method == 'POST':
         for j in range(length):
             score = request.form[str(j)]
-            new_score = Score(score_score = score,task_score=task_object,student_id_score = student_id)
+            new_score = Score(score_score = score,task_score=task_object,student_id_score = groups[j].student_id_group)
             session.add(new_score)
             session.commit()
         return redirect(url_for('thankyou'))

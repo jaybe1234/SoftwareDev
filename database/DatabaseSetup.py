@@ -30,6 +30,7 @@ class Student(Base):
     year_student = Column(Integer,nullable = False)
     section_student = Column(String(1),nullable = False)
     gpax_student = Column(Float,nullable = False)
+    # email_student = Column(String(50),nullable = False)
 
 class Subject(Base):
     __tablename__ = 'subject'
@@ -84,6 +85,7 @@ class Credit(Base):
     group_id_credit = Column(String(20),nullable=False,primary_key=True)
     grouping_id_credit = Column(Integer,nullable=False)
     credit = Column(Float,nullable=False)
+
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.create_all(engine)

@@ -223,7 +223,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 def thankyou():
     return "Enjoy your score :P"
 
-
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = 'localhost', port = 8000)
+    app.run(host = 'localhost', port = 5000)

@@ -80,11 +80,10 @@ def deleteLec(username, subject_code, lecturer_id):
     return ("Hey")
 #redirect(url_for('subject',username= username,subject_code = subject_code))
 
-@app.route('/<string:username>/<string:subject_code>')
-def subject(username,subject_code):
-    return redirect(url_for('sorting', username = username, subject_code = subject_code, type_sort = "StudentID"))
-@app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
-def sorting(username,subject_code,type_sort):
+
+
+@app.route('/<string:username>/<string:subject_code>', methods = ['GET' , 'POST'])
+def subject(username,subject_code,type_sort = None):
     subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)
     lecturerList = getLecturerList(subject_code)
@@ -117,7 +116,7 @@ def sorting(username,subject_code,type_sort):
                                studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
                                taskList = taskList, scorelist = scorelist, totalscore = totalscore,
                                range_student = range_student,nameuser = nameuser,subject = subject,
-                               len_scorelist = len_scorelist, len_tasklist = len_tasklist,type_sort = type_sort,sortgpax = sortgpax)
+                               len_scorelist = len_scorelist, len_tasklist = len_tasklist,sortgpax = sortgpax)
 
 @app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
 def addTask(username, subject_code):
@@ -224,4 +223,4 @@ def thankyou():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = 'localhost', port = 5000)
+    app.run(host = 'localhost', port = 8000)

@@ -82,7 +82,7 @@ def deleteLec(username, subject_code, lecturer_id):
 
 
 @app.route('/<string:username>/<string:subject_code>', methods = ['GET' , 'POST'])
-@app.route('/<string:username>/<string:subject_code>/edit', methods = ['GET' , 'POST'])
+@app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
 def subject(username,subject_code,type_sort = None):
     subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)

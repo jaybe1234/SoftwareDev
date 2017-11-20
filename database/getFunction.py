@@ -17,6 +17,21 @@ def getgpax(subject_code):
         idstudent.append(i)
     return idstudent
 
+def getstudentgpaxscore(tasklist,subjectCode):
+    studentGpaxList = []
+    sortgpax = getgpax(subjectCode)
+    scorelist = []
+    for i in sortgpax:
+        student_score = []
+        for a in tasklist:
+            score = session.query(Score).filter_by(task_id_score = a.id_task)
+            for b in score:
+                if b.student_id_score == i.id_student:
+                    student_score.append(b)
+        scorelist.append(student_score)
+
+    return scorelist
+
 def sortbygroup(subject_code,namegroup):
     group = []
     memberIngroup = []

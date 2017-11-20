@@ -476,7 +476,7 @@
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
                   <div class="modal-body">
-                     <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer)}}">
+                     <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer,type_sort = type_sort)}}">
                         <div class="row">
                            <div class="col-lg-4">
                                  <br>
@@ -517,7 +517,7 @@
                      <h4 class="modal-title" id="myModalLabel">{{i.name_grouping}}</h4>
                   </div>
                   <div class="modal-body">
-                     <form name="test" method="post" action="{{url_for('removeGrouping',username = username, subject_code = subject_code, grouping_id = i.id_grouping)}}">
+                     <form name="test" method="post" action="{{url_for('removeGrouping',username = username, subject_code = subject_code, grouping_id = i.id_grouping,type_sort= type_sort)}}">
                         <div class="row">
                            <div class="col-lg-6">
                                  <h5><strong>Grouping type: {{i.type_grouping}}</strong></h5>
@@ -654,9 +654,9 @@
                             <div class="panel-body">
                                 <!-- <h2>Basic Table</h2>
                                 <p> ... Description of the table ... </p> -->
-                                <table class="table">
 <!-- sort by StudentID -->
                                   {% if type_sort == "studentid" %}
+                                    <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Student ID.</th>
@@ -696,6 +696,7 @@
 
 <!-- sort by GPAX -->
                                     {% elif type_sort == "gpax" %}
+                                      <table class="table">
                                       <thead>
                                           <tr>
                                               <th>Student ID.</th>
@@ -732,7 +733,48 @@
                                           </tr>
                                           {% endfor %}
                                       </tbody>
-                                      {% endif %}
+
+
+<!-- sort by group-->
+                                      {% elif type_sort == "group" %}
+                                        <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Student ID.</th>
+                                                <th>Name</th>
+                                                {% for i in taskList %}
+                                                <th>{{i.name_task}}</th>
+                                                {% endfor %}
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in range(len_sortgpax) %}
+                                            <tr>
+                                                <td>{{sortgpax[i].id_student}}</td>
+                                                <td>{{sortgpax[i].name_student}}</td>
+                                                {% for a in scoreStudentGpax[i] %}
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-1 col-md-push-0">
+                                                            {{a.score_score}}
+                                                        </div>
+                                                        <div class="col-md-1 col-md-push-0">
+                                                            <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key + 1000}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                {% endfor %}
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-1 col-md-push-0">
+                                                            {{totalscore[i]}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        {% endif %}
                                 </table>
                             </div>
                         </div>

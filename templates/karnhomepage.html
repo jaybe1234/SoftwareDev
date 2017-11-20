@@ -125,7 +125,7 @@
                               <h5>Cooperators:</h5>
                            </div>
                            <div class="col-lg-10">
-                              
+
 
 <<<<<<< HEAD
 
@@ -134,9 +134,9 @@
 											<div class="col-lg-2">
 		                                    	<div class="ckbox">
 =======
-                                   
-                                    
-		
+
+
+
 		                                    	<div class="checkbox">
 		                                    		<label for="checkbox1">
 >>>>>>> bda408c3a82a77e43eedf873b3afb79cedab2585
@@ -199,12 +199,12 @@
 
 
 
-                                	
 
-                                	
-                                    	
-                                 
-                              
+
+
+
+
+
 >>>>>>> bda408c3a82a77e43eedf873b3afb79cedab2585
                            </div>
                         </div>
@@ -243,12 +243,12 @@
                                 <div class="card-block">
                                 <br><h4 class="card-title"  > {{ subject[i][0] + " (" + sub[i] + ")"}} </h4>
                               <hr noshade="noshade" width="100%" color=000000 size="6" >
-                                <h4 class="card-title"  >Cooperators </h4>
+                                <h4 class="card-title" ><i class="text-align:left" >Cooperators <i></h4>
                                 {% for j in range(1,lensub[i+1]) %}
                                 <br><a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
                                 {% endfor %}
 
-                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0]) }}" class="btn btn-primary">{{ subject[i][0] }}</a>
+                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0],type_sort = "studentid") }}" class="btn btn-primary">{{ subject[i][0] }}</a>
                               </div>
                             </div>
                 <!-- -->   </div>

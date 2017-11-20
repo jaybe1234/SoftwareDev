@@ -108,10 +108,7 @@ def subject(username,subject_code,type_sort):
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
 def create_grouping(username,subject_code):
     if request.method == 'POST':
-<<<<<<< HEAD
-=======
-        if  request.form:
->>>>>>> f8d6f80514d37f8f8b52bc1ca4423690cde37919
+        #if  request.form:
             if request.form['optionsRadios'] == "option1":
                 grouping_random("option1", int(request.form['group_num']), subject_code,
                                 request.form['grouping_name'], request.form['group_prefix'])

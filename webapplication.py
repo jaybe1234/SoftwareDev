@@ -108,7 +108,7 @@ def subject(username,subject_code,type_sort):
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
 def create_grouping(username,subject_code):
     if request.method == 'POST':
-        if  request.form:
+        #if  request.form:
             if request.form['optionsRadios'] == "option1":
                 grouping_random("option1", int(request.form['group_num']), subject_code,
                                 request.form['grouping_name'], request.form['group_prefix'])
@@ -137,6 +137,23 @@ def addTask(username, subject_code):
             create_score(task.id_task, i.id_student, 0)
     return redirect(url_for('subject', username = username, subject_code = subject_code))
 
+@app.route('/<string:username>/<string:subject_code>/<string:lec_id>/remove_grouping', methods = ['GET', 'POST'])
+def removeLec(username,subject_code,lec_id):
+    if request.method == 'POST':
+        delete_lecturer_enrollment(lec_id, subject_code)
+        return redirect(url_for('subject', username = username, subject_code = subject_code))
+
+@app.route('/<string:username>/<string:subject_code>/<int:grouping_id>/remove_grouping', methods = ['GET', 'POST'])
+def removeGrouping(username,subject_code,grouping_id):
+    if request.method == 'POST':
+        delete_grouping(grouping_id)
+        return redirect(url_for('subject', username = username, subject_code = subject_code))
+
+@app.route('/<string:username>/<string:subject_code>/<int:task_id>/remove_task', methods = ['GET', 'POST'])
+def removeTask(username,subject_code,task_id):
+    if request.method =='POST':
+        delete_task(task_id)
+        return redirect(url_for('subject', username = username, subject_code = subject_code))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -222,6 +239,7 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
+
 
 if __name__ == '__main__':
     app.debug = True

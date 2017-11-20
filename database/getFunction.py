@@ -9,7 +9,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
-def sortbygpax(subject_code):
+def getgpax(subject_code):
     student = getStudentList(subject_code)
     idstudent = []
     sortgpax = sorted(student ,key=lambda student: student.gpax_student ,reverse=True)

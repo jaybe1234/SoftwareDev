@@ -81,9 +81,8 @@ def deleteLec(username, subject_code, lecturer_id):
 #redirect(url_for('subject',username= username,subject_code = subject_code))
 
 
-@app.route('/<string:username>/<string:subject_code>', methods = ['GET' , 'POST'])
 @app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
-def subject(username,subject_code,type_sort = None):
+def subject(username,subject_code,type_sort):
     subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)
     lecturerList = getLecturerList(subject_code)
@@ -95,12 +94,15 @@ def subject(username,subject_code,type_sort = None):
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
-    sortgpax = sortbygpax(subject_code)
+    sortgpax = getgpax(subject_code)
+    len_sortgpax = len(sortgpax)
+    scoreStudentGpax = getstudentgpaxscore(taskList,subject_code)
     return render_template('03_class.html', username = username, subject_code = subject_code,
                             studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
                             taskList = taskList, scorelist = scorelist, totalscore = totalscore,
                             range_student = range_student,nameuser = nameuser,subject = subject,
-                            len_scorelist = len_scorelist, len_tasklist = len_tasklist,sortgpax = sortgpax, type_sort=type_sort)
+                            len_scorelist = len_scorelist, len_tasklist = len_tasklist,len_sortgpax = len_sortgpax,sortgpax = sortgpax,
+                             type_sort = type_sort,scoreStudentGpax = scoreStudentGpax)
 
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
@@ -135,13 +137,13 @@ def addTask(username, subject_code):
     return redirect(url_for('subject', username = username, subject_code = subject_code))
 
 
-@app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/edit' , methods = ['GET' , 'POST'])
-def editScore(username,subject_code,student_id,task_name):
+@app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
+def editScore(username,subject_code,student_id,task_name,type_sort=None):
     student = session.query(Student).filter_by(id_student = student_id).one()
     student_name = student.name_student
     if request.method == 'POST':
         updateScore(student_id, task_name, float(request.form[student_name + task_name]), subject_code)
-    return redirect(url_for('subject', username = username, subject_code = subject_code))
+    return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
 @app.route("/<string:subject_code>/<string:task_name>/creditbank",methods=['GET','POST'])
 def logincreditbank(subject_code,task_name):

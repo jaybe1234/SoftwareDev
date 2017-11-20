@@ -455,7 +455,7 @@
                   </div>
                   <div class="modal-body">
                      <br>
-                     <form name="test" method="post" action="{{url_for('editScore',username = username, subject_code = subject_code, student_id = studentList[a].id_student, task_name = taskList[b].name_task)}}">
+                     <form name="test" method="post" action='{{url_for('editScore',username = username, subject_code = subject_code, student_id = studentList[a].id_student, task_name = taskList[b].name_task,type_sort = type_sort)}}'>
                         {{studentList[a].id_student}}: <input type="text" name="{{studentList[a].name_student + taskList[b].name_task}}">
                      <br><br>
                   </div>
@@ -630,7 +630,7 @@
                         <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'gpax')}}">GPAX</a></li>
                         <li class="divider"></li>
                         {% for i in groupingList %}
-                        <li><a href="#">{{ i.name_grouping }}</a></li>
+                        <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'group')}}">{{ i.name_grouping }}</a></li>
                         <li class="divider"></li>
                         {% endfor %}
 
@@ -653,6 +653,8 @@
                                 <!-- <h2>Basic Table</h2>
                                 <p> ... Description of the table ... </p> -->
                                 <table class="table">
+<!-- sort by StudentID -->
+                                  {% if type_sort == "studentid" %}
                                     <thead>
                                         <tr>
                                             <th>Student ID.</th>
@@ -689,6 +691,46 @@
                                         </tr>
                                         {% endfor %}
                                     </tbody>
+
+<!-- sort by GPAX -->
+                                    {% elif type_sort == "gpax" %}
+                                      <thead>
+                                          <tr>
+                                              <th>Student ID.</th>
+                                              <th>Name</th>
+                                              {% for i in taskList %}
+                                              <th>{{i.name_task}}</th>
+                                              {% endfor %}
+                                              <th>Total</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          {% for i in range(len_sortgpax) %}
+                                          <tr>
+                                              <td>{{sortgpax[i].id_student}}</td>
+                                              <td>{{sortgpax[i].name_student}}</td>
+                                              {% for a in scoreStudentGpax[i] %}
+                                              <td>
+                                                  <div class="row">
+                                                      <div class="col-md-1 col-md-push-0">
+                                                          {{a.score_score}}
+                                                      </div>
+                                                      <div class="col-md-1 col-md-push-0">
+                                                          <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key + 1000}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              {% endfor %}
+                                              <td>
+                                                  <div class="row">
+                                                      <div class="col-md-1 col-md-push-0">
+                                                          {{totalscore[i]}}
+                                                  </div>
+                                              </td>
+                                          </tr>
+                                          {% endfor %}
+                                      </tbody>
+                                      {% endif %}
                                 </table>
                             </div>
                         </div>

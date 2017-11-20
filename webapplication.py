@@ -81,8 +81,8 @@ def deleteLec(username, subject_code, lecturer_id):
 #redirect(url_for('subject',username= username,subject_code = subject_code))
 
 
-
 @app.route('/<string:username>/<string:subject_code>', methods = ['GET' , 'POST'])
+@app.route('/<string:username>/<string:subject_code>/edit', methods = ['GET' , 'POST'])
 def subject(username,subject_code,type_sort = None):
     subject = subjectpage_data(username)
     studentList = getStudentList(subject_code)
@@ -96,27 +96,24 @@ def subject(username,subject_code,type_sort = None):
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
     sortgpax = sortbygpax(subject_code)
-    #return str(len(scorelist[1]))
-    if login == False:
-        return redirect('login')
-    elif request.method == 'POST':
-    #create grouping
+    return render_template('03_class.html', username = username, subject_code = subject_code,
+                            studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
+                            taskList = taskList, scorelist = scorelist, totalscore = totalscore,
+                            range_student = range_student,nameuser = nameuser,subject = subject,
+                            len_scorelist = len_scorelist, len_tasklist = len_tasklist,sortgpax = sortgpax, type_sort=type_sort)
+
+
+@app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
+def create_grouping(username,subject_code):
+    if request.method == 'POST':
         if request.form['optionsRadios'] == "option1":
             grouping_random("option1", int(request.form['group_num']), subject_code,
                             request.form['grouping_name'], request.form['group_prefix'])
-            return redirect(url_for('subject',username = username, subject_code = subject_code))
+            return redirect(url_for('subject', username=username, subject_code=subject_code))
         elif request.form['optionsRadios'] == "option2":
             grouping_random("option2", int(request.form['group_num']), subject_code,
                             request.form['grouping_name'], request.form['group_prefix'])
-            return  redirect(url_for('subject',username = username, subject_code = subject_code))
-
-    #add task
-    else:
-        return render_template('03_class.html', username = username, subject_code = subject_code,
-                               studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
-                               taskList = taskList, scorelist = scorelist, totalscore = totalscore,
-                               range_student = range_student,nameuser = nameuser,subject = subject,
-                               len_scorelist = len_scorelist, len_tasklist = len_tasklist,sortgpax = sortgpax)
+            return redirect(url_for('subject', username=username, subject_code=subject_code))
 
 @app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
 def addTask(username, subject_code):

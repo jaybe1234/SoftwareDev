@@ -182,7 +182,7 @@ def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
         if i.name_grouping == grouping_name:
             grouping_id = i.id_grouping
             break
-    if group_fromm == "option1":
+    if group_from == "option1":
         sorted_student = sorted(student, key=lambda student: student.gpax_student)
         remain = len(student) % int(group_num)
         for a in range(group_num - remain):

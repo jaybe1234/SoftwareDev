@@ -134,9 +134,8 @@ def create_task(grouping_id,name,weight):
     session.add(new_task)
     session.commit()
     return
-def delete_task(task_id,grouping_id):
-    grouping_id = session.query(Grouping).filter_by(id_grouping = grouping_id)
-    task = session.query(Task).filter_by(id_task = task_id,grouping_id_task = grouping_id)[0]
+def delete_task(task_id):
+    task = session.query(Task).filter_by(id_task = task_id)[0]
     session.delete(task)
     session.commit()
     return

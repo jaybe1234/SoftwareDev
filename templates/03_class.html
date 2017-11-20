@@ -476,7 +476,7 @@
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
                   <div class="modal-body">
-                     <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer)}}">
+                     <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer,type_sort = type_sort)}}">
                         <div class="row">
                            <div class="col-lg-4">
                                  <br>
@@ -517,7 +517,7 @@
                      <h4 class="modal-title" id="myModalLabel">{{i.name_grouping}}</h4>
                   </div>
                   <div class="modal-body">
-                     <form name="test" method="post" action="{{url_for('removeGrouping',username = username, subject_code = subject_code, grouping_id = i.id_grouping)}}">
+                     <form name="test" method="post" action="{{url_for('removeGrouping',username = username, subject_code = subject_code, grouping_id = i.id_grouping,type_sort= type_sort)}}">
                         <div class="row">
                            <div class="col-lg-6">
                                  <h5><strong>Grouping type: {{i.type_grouping}}</strong></h5>
@@ -733,7 +733,7 @@
                                           </tr>
                                           {% endfor %}
                                       </tbody>
-                                
+
 
 <!-- sort by group-->
                                       {% elif type_sort == "group" %}

@@ -475,7 +475,7 @@
             <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
                   <div class="modal-body">
-                     <form name="test" method="post" action="">
+                     <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer)}}">
                         <div class="row">
                            <div class="col-lg-4">
                                  <br>
@@ -486,17 +486,17 @@
                            <div class="col-lg-8">
                         <br>
                                  <h6>{{i.name_lecturer}}</h6>
-                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Profile</button>
+                                 <a class="btn btn-primary btn-sm" data-dismiss="modal">Profile</a>
                            </div>
                         </div>
                   </div>
                   <div class="modal-footer">
                      <div class="row">
                         <div class="col-lg-2">
-                           <button type="submit" class="btn btn-danger" data-dismiss="modal">Remove</button>
+                           <button type="submit" class="btn btn-danger">Remove</button>
                         </div>
                         <div class="col-lg-10">
-                           <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                      </div>
                   </div>
@@ -516,7 +516,7 @@
                      <h4 class="modal-title" id="myModalLabel">{{i.name_grouping}}</h4>
                   </div>
                   <div class="modal-body">
-                     <form name="test" method="post" action="">
+                     <form name="test" method="post" action="{{url_for('removeGrouping',username = username, subject_code = subject_code, grouping_id = i.id_grouping)}}">
                         <div class="row">
                            <div class="col-lg-6">
                                  <h5><strong>Grouping type: {{i.type_grouping}}</strong></h5>
@@ -535,10 +535,10 @@
                   <div class="modal-footer">
                      <div class="row">
                         <div class="col-lg-2">
-                           <button type="submit" class="btn btn-danger" data-dismiss="modal">Remove</button>
+                           <button type="submit" class="btn btn-danger">Remove</button>
                         </div>
                         <div class="col-lg-10">
-                           <button type="submit" class="btn btn-default">Close</button>
+                           <button type="button" class="btn btn-default">Close</button>
                         </div>
                      </div>
                   </div>
@@ -558,7 +558,7 @@
                      <h4 class="modal-title" id="myModalLabel">{{i.name_task}}</h4>
                   </div>
                   <div class="modal-body">
-                     <form name="test" method="post" action="">
+                     <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task)}}">
                         <div class="row">
                            <div class="col-lg-2">
                                  <h5>Note</h5>
@@ -596,10 +596,10 @@
                   <div class="modal-footer">
                      <div class="row">
                         <div class="col-lg-2">
-                           <button type="submit" class="btn btn-danger" data-dismiss="modal">Remove</button>
+                           <button type="submit" class="btn btn-danger">Remove</button>
                         </div>
                         <div class="col-lg-10">
-                           <button type="submit" class="btn btn-default">Close</button>
+                           <button type="button" class="btn btn-default">Close</button>
                         </div>
                      </div>
                   </div>

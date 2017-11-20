@@ -9,13 +9,28 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
-def sortbygpax(subject_code):
+def getgpax(subject_code):
     student = getStudentList(subject_code)
     idstudent = []
     sortgpax = sorted(student ,key=lambda student: student.gpax_student ,reverse=True)
     for i in sortgpax:
         idstudent.append(i)
     return idstudent
+
+def getstudentgpaxscore(tasklist,subjectCode):
+    studentGpaxList = []
+    sortgpax = getgpax(subjectCode)
+    scorelist = []
+    for i in sortgpax:
+        student_score = []
+        for a in tasklist:
+            score = session.query(Score).filter_by(task_id_score = a.id_task)
+            for b in score:
+                if b.student_id_score == i.id_student:
+                    student_score.append(b)
+        scorelist.append(student_score)
+
+    return scorelist
 
 def sortbygroup(subject_code,namegroup):
     group = []
@@ -136,7 +151,7 @@ def grouping_random(group_from,group_num,subjectCode,grouping_name, group_prefix
             create_group(grouping_id, one.id_student, group_prefix + '#' + str(i + 1))
     elif group_from == "option2":
         A = getStudentSection(subjectCode, 'a')
-        B = getStudentSection(subjectCode, 'a')
+        B = getStudentSection(subjectCode, 'b')
         num_group_in_A = int(len(A)/people_group)
         num_group_in_B = int(len(B)/people_group)
         for i in range(num_group_in_A):
@@ -167,18 +182,45 @@ def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
         if i.name_grouping == grouping_name:
             grouping_id = i.id_grouping
             break
-    if group_fromm == "option1":
+    if group_from == "option1":
         sorted_student = sorted(student, key=lambda student: student.gpax_student)
         remain = len(student) % int(group_num)
         for a in range(group_num - remain):
             for b in range(people_group):
-                one = student[0]
+                one = sorted_student[0]
                 create_group(grouping_id, one.id_student, group_prefix + '#' + str(a + 1))
-                student.remove(one)
+                sorted_student.remove(one)
         for a in range(remain):
             for b in range(people_group + 1):
                 one = student[0]
                 create_group(grouping_id, one.id_student, group_prefix + '#' + str(a + group_num - remain))
-                student.remove(one)
+                sorted_student.remove(one)
     elif group_from == "option2":
-        pass
+        A = getStudentSection(subjectCode, 'a')
+        B = getStudentSection(subjectCode, 'b')
+        sorted_A = sorted(A, key=lambda student: student.gpax_student)
+        sorted_B = sorted(B, key=lambda student: student.gpax_student)
+        num_group_in_A = int(len(A)/people_group)
+        num_group_in_B = int(len(B)/people_group)
+        remain_A = len(A) % num_group_in_A
+        remain_B = len(B) % num_group_in_B
+        for a in range(num_group_in_A - remain_A):
+            for b in range(people_group):
+                one = sorted_A[0]
+                create_group(grouping_id, one.id_student, group_prefix + '_A' + '#' + str(a + 1))
+                sorted_A.remove(one)
+        for a in range(remain):
+            for b in range(people_group + 1):
+                one = sorted_A[0]
+                create_group(grouping_id, one.id_student, group_prefix + '_A' + '#' + str(a + num_group_in_A - remain_A))
+                sorted_A.remove(one)
+        for a in range(num_group_in_B - remain_B):
+            for b in range(people_group):
+                one = sorted_B[0]
+                create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(a + 1))
+                sorted_B.remove(one)
+        for a in range(remain):
+            for b in range(people_group + 1):
+                one = sorted_B[0]
+                create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(a + num_group_in_B - remain_B))
+                sorted_B.remove(one)

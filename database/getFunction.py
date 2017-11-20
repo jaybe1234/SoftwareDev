@@ -17,6 +17,42 @@ def sortbygpax(subject_code):
         idstudent.append(i)
     return idstudent
 
+def sortbygroup(subject_code,namegroup):
+    group = []
+    memberIngroup = []
+    groupname = session.query(Grouping).filter_by(name_grouping = namegroup).one()
+    groupid = session.query(Group).filter_by(grouping_id_group = groupname.id_grouping)
+    for i in groupid:
+            if i.group_id_group not in group:
+                group.append(i.group_id_group)
+    memberOnegroup = session.query(Group).filter_by(group_id_group = group[0])
+    member = session.query(Group).filter_by(grouping_id_group = groupname.id_grouping)
+    memberall = []
+    for i in memberOnegroup:
+        memberIngroup.append(i.student_id_group)
+    numMember = len(memberIngroup)
+    for i in group:
+        arr = [[]* numMember for j in range(len(group))]
+    for i in member:
+        memberall.append(i.student_id_group)
+    #for i in memberall:
+    for a in range(len(group)):
+        for b in range(numMember):
+            arr[a].append(memberall[0])
+            memberall.remove(memberall[0])
+    for i in arr:
+        i.sort()
+    return arr
+
+def getlistgroupid(subject_code,namegroup):
+    group = []
+    groupname = session.query(Grouping).filter_by(name_grouping = namegroup).one()
+    groupid = session.query(Group).filter_by(grouping_id_group = groupname.id_grouping)
+    for i in groupid:
+            if i.group_id_group not in group:
+                group.append(i.group_id_group)
+    return group
+
 def getStudentList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
     studentIdList = []

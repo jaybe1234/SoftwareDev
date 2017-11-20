@@ -106,14 +106,15 @@ def subject(username,subject_code,type_sort = None):
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
 def create_grouping(username,subject_code):
     if request.method == 'POST':
-        if request.form['optionsRadios'] == "option1":
-            grouping_random("option1", int(request.form['group_num']), subject_code,
-                            request.form['grouping_name'], request.form['group_prefix'])
-            return redirect(url_for('subject', username=username, subject_code=subject_code))
-        elif request.form['optionsRadios'] == "option2":
-            grouping_random("option2", int(request.form['group_num']), subject_code,
-                            request.form['grouping_name'], request.form['group_prefix'])
-            return redirect(url_for('subject', username=username, subject_code=subject_code))
+        if  request.form
+            if request.form['optionsRadios'] == "option1":
+                grouping_random("option1", int(request.form['group_num']), subject_code,
+                                request.form['grouping_name'], request.form['group_prefix'])
+                return redirect(url_for('subject', username=username, subject_code=subject_code))
+            elif request.form['optionsRadios'] == "option2":
+                grouping_random("option2", int(request.form['group_num']), subject_code,
+                                request.form['grouping_name'], request.form['group_prefix'])
+                return redirect(url_for('subject', username=username, subject_code=subject_code))
 
 @app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
 def addTask(username, subject_code):

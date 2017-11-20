@@ -9,7 +9,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
-def getgpax(subject_code):
+def sortbygpax(subject_code):
     student = getStudentList(subject_code)
     idstudent = []
     sortgpax = sorted(student ,key=lambda student: student.gpax_student ,reverse=True)
@@ -52,21 +52,6 @@ def getlistgroupid(subject_code,namegroup):
             if i.group_id_group not in group:
                 group.append(i.group_id_group)
     return group
-
-def getstudentgpaxscore(tasklist,subjectCode):
-    studentGpaxList = []
-    sortgpax = getgpax(subjectCode)
-    scorelist = []
-    for i in sortgpax:
-        student_score = []
-        for a in tasklist:
-            score = session.query(Score).filter_by(task_id_score = a.id_task)
-            for b in score:
-                if b.student_id_score == i.id_student:
-                    student_score.append(b)
-        scorelist.append(student_score)
-
-    return scorelist
 
 def getStudentList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)

@@ -41,10 +41,10 @@
                      <i class="glyphicon glyphicon-list"></i>
                      </a>
                      <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                        <li><a href='#'><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
                         {% for i in subject%}
-                        <li><a href="{{url_for('subject',username = username,subject_code = i[0]) }}"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
@@ -266,19 +266,38 @@
                      <div class="sidebar-nav navbar-collapse">
                         <div class="row">
                            <div class="col-lg-4">
+
+
+
                               <ul class="nav in" id="side-menu">
-                                 <li>
-                                    <a href="#" class="active"> by Student ID.</a>
-                                 </li>
-                                 <li>
-                                    <a href="#" class="active"> by GPAX</a>
-                                 </li>
-                                 <li>
-                                    <a href="#" class="active"> by Random</a>
-                                 </li>
-                                 <li>
-                                    <a href="#" class="active"> by Custom</a>
-                                 </li>
+		                        <li>
+		                           <div class="radio">
+	                                  <label>
+	                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> by Student ID.
+	                                  </label>
+                                   </div>
+		                        </li>
+		                        <li>
+		                           <div class="radio">
+	                                  <label>
+	                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> by GPAX
+	                                  </label>
+                                   </div>
+		                        </li>
+		                        <li>
+		                           <div class="radio">
+	                                  <label>
+	                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> by Random
+	                                  </label>
+                                   </div>
+		                        </li>
+		                        <li>
+		                           <div class="radio">
+	                                  <label>
+	                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> by Custom
+	                                  </label>
+                                   </div>
+		                        </li>
                               </ul>
                            </div>
                            <div class="col-lg-8">
@@ -428,7 +447,7 @@
 {% for b in range(len_tasklist) %}
          <!-- start Pop-up edit score -->
          <div class="modal fade" id="{{scorelist[a][b].primary_key+1000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-sm"" role="document">
+            <div class="modal-dialog modal-sm" role="document">
                <div class="modal-content">
                   <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -477,7 +496,7 @@
                            <button type="submit" class="btn btn-danger" data-dismiss="modal">Remove</button>
                         </div>
                         <div class="col-lg-10">
-                           <button type="submit" class="btn btn-default">Close</button>
+                           <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                      </div>
                   </div>
@@ -606,13 +625,15 @@
                      <span class="sr-only">Toggle Dropdown</span>
                      </button>
                      <ul class="dropdown-menu">
-                        <li><a href="#">Student ID.</a></li>
+                        <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'studentid')}}">Student ID.</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">GPAX</a></li>
+                        <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'gpax')}}">GPAX</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Mini-project</a></li>
+                        {% for i in groupingList %}
+                        <li><a href="#">{{ i.name_grouping }}</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Project</a></li>
+                        {% endfor %}
+
                      </ul>
                   </div>
                </div>

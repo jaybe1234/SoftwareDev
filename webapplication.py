@@ -74,12 +74,6 @@ def home(username):
         return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
 
-@app.route('/<string:username>/<string:subject_code>/<string:lecturer_id>/delete')
-def deleteLec(username, subject_code, lecturer_id):
-    #deleteLec(lecturer_id,subject_code)
-    return ("Hey")
-#redirect(url_for('subject',username= username,subject_code = subject_code))
-
 
 @app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
 def subject(username,subject_code,type_sort):
@@ -158,11 +152,15 @@ def removeGrouping(username,subject_code,grouping_id,type_sort):
         delete_grouping(grouping_id)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
 
-@app.route('/<string:username>/<string:subject_code>/<int:task_id>/remove_task', methods = ['GET', 'POST'])
-def removeTask(username,subject_code,task_id):
+@app.route('/<string:username>/<string:subject_code>/<int:task_id>/<string:type_sort>/remove_task', methods = ['GET', 'POST'])
+def removeTask(username,subject_code,task_id,type_sort):
     if request.method =='POST':
         delete_task(task_id)
-        return redirect(url_for('subject', username = username, subject_code = subject_code))
+        return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = type_grouping))
+
+@app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
+def manageStudentList(username, subject_code):
+    return render_template('03_manage_student.html')
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -252,4 +250,4 @@ def thankyou():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = 'localhost', port = 5000)
+    app.run(host = 'localhost', port = 8080)

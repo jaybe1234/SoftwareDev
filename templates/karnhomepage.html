@@ -19,7 +19,7 @@
       <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-      <link href="static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
       <link href="../static/css_box/style.css" rel="stylesheet">
 
@@ -52,7 +52,7 @@
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
                         {% for i in subject %}
-                        <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = "studentid")}}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        <li><a href="{{url_for('subject',username = username,subject_code = i[0])}}"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-save"></i>Archive</a></li>
@@ -125,19 +125,19 @@
                               <h5>Cooperators:</h5>
                            </div>
                            <div class="col-lg-10">
+                              <div class="dropdown">
+                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" name = "select">
+                                 <i class="glyphicon glyphicon-plus"></i>
+                                 </button>
+                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
 
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
                                     	<div class = "row">
 											<div class="col-lg-2">
 		                                    	<div class="ckbox">
-
-
-
-		                                    	<div class="checkbox">
-		                                    		<label for="checkbox1">
 														<input type="checkbox" id="checkbox1">
-														Bawornsak Sakulkuaekulsuk
-													</label>
+															<label for="checkbox1"></label>
 												</div>
 											</div>
 											<div class="col-lg-10">
@@ -150,12 +150,8 @@
                                     	<div class = "row">
 											<div class="col-lg-2">
 		                                    	<div class="ckbox">
-
-												<div class="checkbox">
-		                                    		<label for="checkbox1">
 														<input type="checkbox" id="checkbox1">
-														Suriya Natsupakpong
-													</label>
+															<label for="checkbox1"></label>
 												</div>
 											</div>
 											<div class="col-lg-10">
@@ -168,12 +164,8 @@
                                     	<div class = "row">
 											<div class="col-lg-2">
 		                                    	<div class="ckbox">
-
-												<div class="checkbox">
-		                                    		<label for="checkbox1">
 														<input type="checkbox" id="checkbox1">
-														Warasinee Chaisangmongkon
-													</label>
+															<label for="checkbox1"></label>
 												</div>
 											</div>
 											<div class="col-lg-10">
@@ -183,16 +175,6 @@
                                 	</li>
                                  </ul>
                               </div>
-
-
-
-
-
-
-
-
-
->>>>>>> bda408c3a82a77e43eedf873b3afb79cedab2585
                            </div>
                         </div>
                   </div>
@@ -230,12 +212,12 @@
                                 <div class="card-block">
                                 <br><h4 class="card-title"  > {{ subject[i][0] + " (" + sub[i] + ")"}} </h4>
                               <hr noshade="noshade" width="100%" color=000000 size="6" >
-                                <h4 class="card-title" ><i class="text-align:left" >Cooperators <i></h4>
+                                <h4 class="card-title"  >Cooperators </h4>
                                 {% for j in range(1,lensub[i+1]) %}
                                 <br><a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
                                 {% endfor %}
 
-                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0],type_sort = "studentid") }}" class="btn btn-primary">{{ subject[i][0] }}</a>
+                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0]) }}" class="btn btn-primary">{{ subject[i][0] }}</a>
                               </div>
                             </div>
                 <!-- -->   </div>

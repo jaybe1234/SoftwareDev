@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,6 +53,96 @@
                                 <li><a href="01_login.html"><i class="glyphicon glyphicon-save"></i>Archive</a></li>
                                 <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                             </ul>
+=======
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>SB Admin 2 - Bootstrap Admin Theme</title>
+      <!-- Bootstrap Core CSS -->
+      <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- MetisMenu CSS -->
+      <link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link href="../static/dist/css/sb-admin-2.css" rel="stylesheet">
+      <!-- Morris Charts CSS -->
+      <link href="../static/vendor/morrisjs/morris.css" rel="stylesheet">
+      <!-- Custom Fonts -->
+      <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+      <link href="../static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+      <link href="../static/css_box/style.css" rel="stylesheet">
+
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+      <![endif]-->
+   </head>
+   <body>
+      <div id="wrapper">
+         <!--start menu-->
+         <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <div class="navbar-brand">
+                  <div class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                     <i class="glyphicon glyphicon-list"></i>
+                     </a>
+                     <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                        <li class="divider"></li>
+                        {% for i in subject %}
+                        <li><a href="{{url_for('subject',username = username,subject_code = i[0])}}"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        {% endfor %}
+                        <br><br><br><br><br><br>
+                        <li><a href="01_login.html"><i class="glyphicon glyphicon-save"></i>Archive</a></li>
+                        <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <a class="navbar-brand" href="Eiei.html">FIBO Classes</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+               <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a> <!-- Add Class -->
+
+
+
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user">
+
+
+
+                        <div class="row">
+                           <div class="col-lg-5">
+                                <br>
+                                <p style="text-indent: 1em;">
+                                    <img src="../static/img/profile.png" class="img-circle">
+                                </p>
+                           </div>
+                           <div class="col-lg-5">
+                                <br>
+                                <h6>{{ nameuser[0].name_lecturer }}</h6>
+                                <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
+                           </div>
+>>>>>>> f8abec710148817c803dc1062ca4468d8dbce50b
                         </div>
                     </div>
                     <a class="navbar-brand" href="Eiei.html">FIBO Classes</a>
@@ -100,6 +191,7 @@
                     <form name="test" method="post" action="">
                         Class's name : <input type="text" name="Class_name"><br><br>
                         <div class="row">
+<<<<<<< HEAD
                             <div class="col-lg-2">
                                 <h5>Cooperators:</h5>
                             </div>
@@ -146,14 +238,90 @@
 
                                 
                             </div>
+=======
+                           <div class="col-lg-2">
+                              <h5>Cooperators:</h5>
+                           </div>
+                           <div class="col-lg-10">
+                              <div class="dropdown">
+                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" name = "select">
+                                 <i class="glyphicon glyphicon-plus"></i>
+                                 </button>
+                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                    	<div class = "row">
+											<div class="col-lg-2">
+		                                    	<div class="ckbox">
+														<input type="checkbox" id="checkbox1">
+															<label for="checkbox1"></label>
+												</div>
+											</div>
+											<div class="col-lg-10">
+												Bawornsak Sakulkuaekulsuk
+											</div>
+										</div>
+                                	</li>
+
+                                	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                    	<div class = "row">
+											<div class="col-lg-2">
+		                                    	<div class="ckbox">
+														<input type="checkbox" id="checkbox1">
+															<label for="checkbox1"></label>
+												</div>
+											</div>
+											<div class="col-lg-10">
+												Suriya Natsupakpong
+											</div>
+										</div>
+                                	</li>
+
+                                	<li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                    	<div class = "row">
+											<div class="col-lg-2">
+		                                    	<div class="ckbox">
+														<input type="checkbox" id="checkbox1">
+															<label for="checkbox1"></label>
+												</div>
+											</div>
+											<div class="col-lg-10">
+												Warasinee Chaisangmongkon
+											</div>
+										</div>
+                                	</li>
+                                 </ul>
+                              </div>
+                           </div>
+>>>>>>> f8abec710148817c803dc1062ca4468d8dbce50b
                         </div>
 
 
 
+<<<<<<< HEAD
 
                             <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Add</button>
+=======
+                                        <li class="divider"></li>
+                                        <li><a href='{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>
+                                        </li>
+                                     </ul>
+                                </li>
+                                <!-- /.dropdown-user -->
+                                <div class="card-block">
+                                <br><h4 class="card-title"  > {{ subject[i][0] + " (" + sub[i] + ")"}} </h4>
+                              <hr noshade="noshade" width="100%" color=000000 size="6" >
+                                <h4 class="card-title"  >Cooperators </h4>
+                                {% for j in range(1,lensub[i+1]) %}
+                                <br><a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
+                                {% endfor %}
+
+                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0]) }}" class="btn btn-primary">{{ subject[i][0] }}</a>
+                              </div>
+>>>>>>> f8abec710148817c803dc1062ca4468d8dbce50b
                             </div>
                     </form>
                     </div>

@@ -67,7 +67,7 @@ class Group(Base):
 class Task(Base):
     __tablename__ = 'task'
     id_task = Column(Integer,nullable=True,primary_key=True)
-    name_task = Column(String(20),nullable =False)
+    name_task = Column(String(30),nullable =False)
     weight_task = Column(Float,nullable=False)
     grouping_id_task = Column(Integer,ForeignKey('grouping.id_grouping'))
     grouping_task = relationship(Grouping)
@@ -85,6 +85,15 @@ class Credit(Base):
     group_id_credit = Column(String(20),nullable=False,primary_key=True)
     grouping_id_credit = Column(Integer,nullable=False)
     credit = Column(Float,nullable=False)
+    # credit bug : add more column that is task name
+    task_name_credit = Column(String(20),nullable=False)
+
+class Archive(Base):
+    __tablename__ = 'archive'
+    primary_key = Column(Integer,nullable=True,primary_key = True)
+    lecturer_id_archive = Column(Integer,ForeignKey('lecturer.id_lecturer'))
+    subject_code_archive = Column(String(20),nullable=False)
+    lecturer_archive = relationship(Lecturer)
 
 
 engine = create_engine('sqlite:///database.db')

@@ -144,7 +144,7 @@ def addTask(username, subject_code):
                 break
         for i in studentList:
             create_score(task.id_task, i.id_student, 0)
-    return redirect(url_for('subject', username = username, subject_code = subject_code))
+    return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = 'studentid'))
 
 @app.route('/<string:username>/<string:subject_code>/<string:lec_id>/<string:type_sort>/remove_grouping', methods = ['GET', 'POST'])
 def removeLec(username,subject_code,lec_id,type_sort):

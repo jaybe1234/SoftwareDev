@@ -3,6 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
 from random import randint
 from Database.AddData import *
+from operator import attrgetter
 #from and NameOfPythonFile
 engine = create_engine('sqlite:///database.db')
 Base.metadata.bind = engine
@@ -11,14 +12,13 @@ session = DBSession()
 
 def getgpax(subject_code):
     student = getStudentList(subject_code)
-    idstudent = []
+    studentgpax = []
     sortgpax = sorted(student ,key=lambda student: student.gpax_student ,reverse=True)
     for i in sortgpax:
-        idstudent.append(i)
-    return idstudent
+        studentgpax.append(i)
+    return studentgpax
 
 def getstudentgpaxscore(tasklist,subjectCode):
-    studentGpaxList = []
     sortgpax = getgpax(subjectCode)
     scorelist = []
     for i in sortgpax:
@@ -32,9 +32,21 @@ def getstudentgpaxscore(tasklist,subjectCode):
 
     return scorelist
 
+def getstudentgroupscore(tasklist,subjectCode,type_sort):
+    sortgroup = sortbygroup(subjectCode,type_sort)
+    test =[]
+    scorelist = []
+    for i in sortbygroup:
+        for a in i:
+            test.append(a.id_student)
+
+    return test
+
+
 def sortbygroup(subject_code,namegroup):
     group = []
     memberIngroup = []
+    sorttee = []
     groupname = session.query(Grouping).filter_by(name_grouping = namegroup).one()
     groupid = session.query(Group).filter_by(grouping_id_group = groupname.id_grouping)
     for i in groupid:
@@ -49,15 +61,17 @@ def sortbygroup(subject_code,namegroup):
     for i in group:
         arr = [[]* numMember for j in range(len(group))]
     for i in member:
-        memberall.append(i.student_id_group)
+        memberall.append(i)
     #for i in memberall:
     for a in range(len(group)):
         for b in range(numMember):
             arr[a].append(memberall[0])
             memberall.remove(memberall[0])
     for i in arr:
-        i.sort()
-    return arr
+        temp = sorted(i, key = lambda group:group.student_id_group)
+        sorttee.append(temp )
+    return sorttee
+
 
 def getlistgroupid(subject_code,namegroup):
     group = []

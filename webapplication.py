@@ -170,12 +170,11 @@ def removeGrouping(username,subject_code,grouping_id,type_sort):
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
 
 @app.route('/<string:username>/<string:subject_code>/<int:task_id>/<string:type_sort>/remove_task', methods = ['GET', 'POST'])
-<<<<<<< HEAD
 def removeTask(username,subject_code,task_id,type_sort = None):
     if request.method =='POST':
         delete_task(task_id)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
-=======
+
 def removeTask(username,subject_code,task_id,type_sort):
     if request.method =='POST':
         delete_task(task_id)
@@ -184,7 +183,6 @@ def removeTask(username,subject_code,task_id,type_sort):
 @app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
 def manageStudentList(username, subject_code):
     return render_template('03_manage_student.html')
->>>>>>> 454325e5085caff0b7434aababf2c3165e6543b2
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -281,4 +279,4 @@ def thankyou():
 #print (getstudentgroupscore(taskList,"FRA241","hello group"))
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = 'localhost', port = 8080)
+    app.run(host = 'localhost', port = 5000)

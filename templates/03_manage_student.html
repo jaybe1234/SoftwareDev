@@ -103,7 +103,7 @@
                                     {% endfor %}
                                     <li class="divider"></li>
                                     <li>
-                                        <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"></i> Add groups</a>
+                                        <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"></i>Create Grouping</a>
                                     </li>
                                 </ul>
                             </li>
@@ -115,7 +115,7 @@
                                         <a href="flot.html">{{i.name_task}}</a>
                                     </li>
                                     {% endfor %}
-                            
+
                                     <li class="divider"></li>
                                     <li>
                                         <a data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-plus"></i> Add Tasks</a>
@@ -188,56 +188,120 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Add group</h4>
+                            <h4 class="modal-title" id="myModalLabel">Create Grouping</h4>
                         </div>
                         <div class="modal-body">
                             <div class="sidebar-nav navbar-collapse">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <ul class="nav in" id="side-menu">
-                                            <li>
-                                                <a href="#" class="active"> by Student ID.</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> by GPAX</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> by Random</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> by Custom</a>
-                                            </li>
-                                        </ul>
+
+                                        <form name="test" method="post" action="{{url_for('create_grouping', username = username, subject_code = subject_code)}}}">
+                                          <div class="row">
+                                             <div class="col-lg-4">
+
+
+
+                                                <ul class="nav in" id="side-menu">
+                                              <li>
+                                                 <div class="radio">
+                                                      <label>
+                                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="studentid" checked=""> by Student ID.
+                                                      </label>
+                                                     </div>
+                                              </li>
+                                              <li>
+                                                 <div class="radio">
+                                                      <label>
+                                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="gpax" checked=""> by GPAX
+                                                      </label>
+                                                     </div>
+                                              </li>
+                                              <li>
+                                                 <div class="radio">
+                                                      <label>
+                                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="random" checked=""> by Random
+                                                      </label>
+                                                     </div>
+                                              </li>
+                                              <li>
+                                                 <div class="radio">
+                                                      <label>
+                                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="custom" checked=""> by Custom
+                                                      </label>
+                                                     </div>
+                                              </li>
+                                                </ul>
+                                             </div>
+                                             <div class="col-lg-8">
+
+                                                   Grouping's Name : <input type="text" name="grouping_name"><br><br>
+                                                   Number of Group : <input type="text" name="group_num"><br><br>
+                                                   Group's Prefix : <input type="text" name="group_prefix"><br><br>
+                                                   <div class="form-group">
+                                                      <h5>Grouping from</h5>
+                                                      <div class="col-lg-4">
+                                                         <div class="radio">
+                                                            <label>
+                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">All
+                                                            </label>
+                                                         </div>
+                                                      </div>
+                                                      <div class="col-lg-8">
+                                                         <div class="radio">
+                                                            <label>
+                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Section
+                                                            </label>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                             </div>
+                                          </div>
+                                       </div>
                                     </div>
-                                    <div class="col-lg-8">
-                                        <form name="test" method="post" action="">
-                                            Group's name : <input type="text" name="Class's name"><br><br>
-                                            Number of group : <input type="text" name="Class's name"><br><br>
-                                            <div class="form-group">
-                                                <h5>Grouping from</h5>
-                                                <div class="col-lg-4">
-                                                    <div class="radio">
-                                                        <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">All
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <div class="radio">
-                                                        <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Section
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- end Pop-up add Group-->
+                           <!-- start Pop-up add Task 1 --> <!--Individual-->
+                           <div class="modal fade" id="add_Task1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                       <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                       <div class="sidebar-nav navbar-collapse">
+                                          <div class="row">
+                                             <div class="col-lg-4">
+                                                <ul class="nav in" id="side-menu">
+                                                   <li>
+                                                      <a href="#" class="active"> Individual</a>
+                                                   </li>
+                                                   {% for i in groupingList %}
+                                                   <li>
+                                                      <a href="#" class="active"> {{i.name_grouping}}</a>
+                                                   </li>
+                                                   {% endfor %}
+                                                </ul>
+                                             </div>
+                                             <div class="col-lg-8">
+                                                <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
+                                                   Task's name : <input type="text" name="task_name"><br><br>
+                                                   Score : <input type="text" name="score"><br><br>
+                                                   Grouping's name: <input type="text" name="grouping_name"><br><br>
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                    </div>
                         </form>
                     </div>
                 </div>

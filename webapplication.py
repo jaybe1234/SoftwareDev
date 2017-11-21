@@ -160,7 +160,7 @@ def removeTask(username,subject_code,task_id,type_sort):
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
 def manageStudentList(username, subject_code):
-    return render_template('03_manage_student.html')
+    return render_template('03_manage_student.html', username = username, subject_code = subject_code)
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):

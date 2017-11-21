@@ -170,8 +170,8 @@ def create_archive(name_lecturer,subject_code):
     session.commit()
     return
 
-create_archive("Mr.Bawornsak","FRA111")
-create_archive("Mr.Bawornsak","FRA222")
+# create_archive("Mr.Bawornsak","FRA111")
+# create_archive("Mr.Bawornsak","FRA222")
 
 # create_student(59340500001,'A','12345','AA',2,'A',4.00)
 # create_student(59340500002,'B','12345','BB',2,'A',4.00)

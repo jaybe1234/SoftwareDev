@@ -106,7 +106,7 @@
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
                         {% for i in subject %}
-                        <li><a href="{{url_for('subject',username = username,subject_code = i[0])}}"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        <li><a href="{{url_for('subject',username = username,subject_code = i[0],type_sort = type_sort)}}"><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
                         <li><a href="01_login.html"><i class="glyphicon glyphicon-save"></i>Archive</a></li>
@@ -206,11 +206,11 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                                
 
-                                	</a>                                
+
+                                	</a>
                                 	<a role="menuitem" tabindex="-1" href="#">
-                                		
+
                                 				<div class="ckbox">
                                 					<div class="checkbox">
                                 						<label for="checkbox1">
@@ -223,7 +223,7 @@
 
                                 	</a>
                                 	<a role="menuitem" tabindex="-1" href="#">
-                                		
+
                                 				<div class="ckbox">
                                 					<div class="checkbox">
                                 						<label for="checkbox1">
@@ -232,13 +232,13 @@
                                 						</label>
                                 					</div>
                                					 </div>
-                                
-                                			
+
+
                                 	</a>
 
-                                
+
                             </div>
-=======
+
                            <div class="col-lg-2">
                               <h5>Cooperators:</h5>
                            </div>
@@ -294,17 +294,14 @@
                                  </ul>
                               </div>
                            </div>
->>>>>>> f8abec710148817c803dc1062ca4468d8dbce50b
                         </div>
 
 
 
-<<<<<<< HEAD
 
                             <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Add</button>
-=======
                                         <li class="divider"></li>
                                         <li><a href='{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>
                                         </li>
@@ -321,7 +318,6 @@
 
                                 <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0]) }}" class="btn btn-primary">{{ subject[i][0] }}</a>
                               </div>
->>>>>>> f8abec710148817c803dc1062ca4468d8dbce50b
                             </div>
                     </form>
                     </div>
@@ -342,7 +338,7 @@
             <li><a href="Archive"><i ></i>Archive</a>
             </li>
             <li class="divider"></li>
-            <li><a href='{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>
+            <li><a href="{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}"><i></i>Delete</a>
             </li>
             </ul>
             </li>

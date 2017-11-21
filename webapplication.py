@@ -73,7 +73,36 @@ def home(username):
     else:
         return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
-
+@app.route('/<string:username>/archive',methods = ['GET','POST'])
+def archive(username):
+    sub = []
+    lensub = []
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
+    id_user = nameuser[0].id_lecturer
+    subject = subjectpage_data(username)
+    lensub.append(len(subject))
+    all_lec = session.query(Lecturer).filter_by(name_lecturer = Lecturer.name_lecturer)
+    all_sub = session.query(Subject).filter_by(code_subject = Subject.code_subject)
+    subListAll =[]
+    for i in all_sub:
+        subListAll.append(i.code_subject)
+    for i in subject:
+        lensub.append(len(i))
+        namesub = session.query(Subject).filter_by(code_subject = i[0])
+        sub.append(namesub[0].name_subject)
+    if login == False:
+        return redirect('login')
+    elif request.method == 'POST' :
+        nameclass = request.form['Class_name']
+        if nameclass is not None :
+            for i in subListAll:
+                if nameclass == i:
+                    return ("This class's name already exists")
+            create_subject(" ",nameclass)
+            create_enrollment(nameclass, None , id_user )
+        return redirect(url_for('home',username= username))
+    else:
+        return render_template('Archive.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
 @app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
 def subject(username,subject_code,type_sort):
@@ -182,7 +211,10 @@ def removeTask(username,subject_code,task_id,type_sort):
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
 def manageStudentList(username, subject_code):
-    return render_template('03_manage_student.html', username = username, subject_code = subject_code)
+    lecturerList = getLecturerList(subject_code)
+    groupingList = getGrouping(subject_code)
+    taskList = getTask(subject_code)
+    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList, groupingList = groupingList, taskList = taskList)
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):

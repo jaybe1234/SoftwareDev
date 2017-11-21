@@ -178,11 +178,11 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                                
 
-                                  </a>                                
+
+                                  </a>
                                   <a role="menuitem" tabindex="-1" href="#">
-                                    
+
                                         <div class="ckbox">
                                           <div class="checkbox">
                                             <label for="checkbox1">
@@ -195,7 +195,7 @@
 
                                   </a>
                                   <a role="menuitem" tabindex="-1" href="#">
-                                    
+
                                         <div class="ckbox">
                                           <div class="checkbox">
                                             <label for="checkbox1">
@@ -204,11 +204,11 @@
                                             </label>
                                           </div>
                                          </div>
-                                
-                                      
+
+
                                   </a>
 
-                                
+
                             </div>
                         </div>
                   </div>
@@ -597,6 +597,7 @@
                      <h4 class="modal-title" id="myModalLabel">{{i.name_task}}</h4>
                   </div>
                   <div class="modal-body">
+                     <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task,type_sort = type_sort)}}">
                      <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task, type_sort = type_sort)}}">
                         <div class="row">
                            <div class="col-lg-2">
@@ -670,7 +671,7 @@
                         <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'gpax')}}">GPAX</a></li>
                         <li class="divider"></li>
                         {% for i in groupingList %}
-                        <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'group')}}">{{ i.name_grouping }}</a></li>
+                        <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = i.name_grouping)}}">{{ i.name_grouping }}</a></li>
                         <li class="divider"></li>
                         {% endfor %}
 
@@ -731,12 +732,14 @@
                                         </tr>
                                         {% endfor %}
                                     </tbody>
+                                    </table>
 
 <!-- sort by GPAX -->
                                     {% elif type_sort == "gpax" %}
                                       <table class="table">
                                       <thead>
                                           <tr>
+                                              <th>GPAX</th>
                                               <th>Student ID.</th>
                                               <th>Name</th>
                                               {% for i in taskList %}
@@ -748,6 +751,7 @@
                                       <tbody>
                                           {% for i in range(len_sortgpax) %}
                                           <tr>
+                                              <td>{{sortgpax[i].gpax_student}}</td>
                                               <td>{{sortgpax[i].id_student}}</td>
                                               <td>{{sortgpax[i].name_student}}</td>
                                               {% for a in scoreStudentGpax[i] %}
@@ -771,10 +775,12 @@
                                           </tr>
                                           {% endfor %}
                                       </tbody>
+                                      </table>
 
 
 <!-- sort by group-->
-                                      {% elif type_sort == "group" %}
+                                      {% else %}
+                                      {% for  i in namegroup %}
                                         <table class="table">
                                         <thead>
                                             <tr>
@@ -787,10 +793,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for i in range(len_sortgpax) %}
+                                            {% for i in range(len_studentGroup) %}
                                             <tr>
-                                                <td>{{sortgpax[i].id_student}}</td>
-                                                <td>{{sortgpax[i].name_student}}</td>
+                                                <td>{{studentListGroup[i].id_student}}</td>
+                                                <td>{{studentListGroup[i].name_student}}</td>
                                                 {% for a in scoreStudentGpax[i] %}
                                                 <td>
                                                     <div class="row">
@@ -812,8 +818,9 @@
                                             </tr>
                                             {% endfor %}
                                         </tbody>
+                                        </table>
+                                        {% endfor %}
                                         {% endif %}
-                                </table>
                             </div>
                         </div>
                     </div>

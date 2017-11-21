@@ -283,7 +283,7 @@ def create_archive(name_lecturer,subject_code):
 # create_score(1,59340500018,3)
 # create_score(1,59340500019,2)
 # create_score(1,59340500020,1)
-# 
+
 # for i in range(1,3):
 #     create_enrollment('FRA241', None, i)
 # create_enrollment('FRA142', None, 3)

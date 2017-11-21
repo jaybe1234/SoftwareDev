@@ -77,21 +77,16 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav in" id="side-menu">
                             <li>
-                                <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
+                                <a href="{{url_for('home', username = username)}}" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
                             </li>
                             <li class="">
                                 <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                  
+                                    {% for i in lecturerList %}
                                     <li>
-                                        <a href="flot.html">Bawornsak Sakulkuaekulsuk</a>
+                                        <a href="flot.html">{{i.name_lecturer}}</a>
                                     </li>
-                                    <li>
-                                        <a href="morris.html">Suriya Natsupakpong</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Warasinee Chaisangmongkon</a>
-                                    </li>
+                                    {% endfor %}
                                     <li class="divider"></li>
                                     <li>
                                         <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"></i> Add cooperators</a>
@@ -101,12 +96,11 @@
                             <li class="">
                                 <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                                    {% for i in groupingList %}
                                     <li>
-                                        <a href="flot.html">Mini-project</a>
+                                        <a href="morris.html">{{i.name_grouping}}</a>
                                     </li>
-                                    <li>
-                                        <a href="morris.html">Project</a>
-                                    </li>
+                                    {% endfor %}
                                     <li class="divider"></li>
                                     <li>
                                         <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"></i> Add groups</a>
@@ -116,15 +110,12 @@
                             <li class="">
                                 <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                                    {% for i in taskList %}
                                     <li>
-                                        <a href="flot.html">Task A (Individual)</a>
+                                        <a href="flot.html">{{i.name_task}}</a>
                                     </li>
-                                    <li>
-                                        <a href="morris.html">Task B (Project - Equal score)</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Task C (Project - Credit bank)</a>
-                                    </li>
+                                    {% endfor %}
+                            
                                     <li class="divider"></li>
                                     <li>
                                         <a data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-plus"></i> Add Tasks</a>

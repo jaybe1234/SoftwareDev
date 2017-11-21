@@ -74,12 +74,6 @@ def home(username):
         return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
 
-@app.route('/<string:username>/<string:subject_code>/<string:lecturer_id>/delete')
-def deleteLec(username, subject_code, lecturer_id):
-    #deleteLec(lecturer_id,subject_code)
-    return ("Hey")
-#redirect(url_for('subject',username= username,subject_code = subject_code))
-
 
 @app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
 def subject(username,subject_code,type_sort):
@@ -176,10 +170,21 @@ def removeGrouping(username,subject_code,grouping_id,type_sort):
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
 
 @app.route('/<string:username>/<string:subject_code>/<int:task_id>/<string:type_sort>/remove_task', methods = ['GET', 'POST'])
+<<<<<<< HEAD
 def removeTask(username,subject_code,task_id,type_sort = None):
     if request.method =='POST':
         delete_task(task_id)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
+=======
+def removeTask(username,subject_code,task_id,type_sort):
+    if request.method =='POST':
+        delete_task(task_id)
+        return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = type_grouping))
+
+@app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
+def manageStudentList(username, subject_code):
+    return render_template('03_manage_student.html')
+>>>>>>> 454325e5085caff0b7434aababf2c3165e6543b2
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -205,7 +210,7 @@ def logincreditbank(subject_code,task_name):
             if i.grouping_task.subject_code_grouping == subject_code:
                 grouping_object = i.grouping_task
                 group_id = session.query(Group).filter_by(grouping_group = grouping_object,student_id_group = student_id)[0].group_id_group
-                credit = session.query(Credit).filter_by(group_id_credit = group_id)[0].credit
+                credit = session.query(Credit).filter_by(group_id_credit = group_id,task_name_credit = task_name)[0].credit
                 code = ''
                 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q','r', 's','t','u', 'v', 'w', 'x', 'y', 'z']
                 for i in range(0, 6):
@@ -276,4 +281,4 @@ def thankyou():
 #print (getstudentgroupscore(taskList,"FRA241","hello group"))
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = 'localhost', port = 5000)
+    app.run(host = 'localhost', port = 8080)

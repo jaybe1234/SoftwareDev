@@ -9,16 +9,16 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../static/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='dist/css/sb-admin-2.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,14 +48,12 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Your Credit Bank : {{credit_bank}}<br>
-                            Remaining : <input type="number" id="id-3" readonly /><a href="#">
+                            <strong>Remaining : </strong> <input type="number" id="id-3" readonly></input> <a href="#">
                                 <div>
                                     <p>
-                                        <strong>Remaining</strong>
-                                        <span class="pull-right text-muted">none function</span>
                                     </p>
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="50" style="width: 50%">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow = "5" id="progressbar" style='width: 100%'>
                                             <span class="sr-only">50% Complete (danger)</span>
                                         </div>
                                     </div>
@@ -66,17 +64,16 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action='{{url_for('member', subject_code =subject_code,task_name = task_name ,student_id=student_id,credit_bank=credit_bank)}}' method="POST">
-
                                         <div class="form-group">
                                             {% for i in range(0,length) %}
                                             <script>$name = i</script>
                                             
                                             <label>{{groups[i].student_id_group}}</label>
-                                            <input class="form-control" placeholder="score" type='text' name={{i}} id="{{i}}" onkeyup="clean({{i}})"><br>
+                                            <input class="form-control" placeholder="score" type='text' name={{i}} id="{{i}}" value=0 onkeyup="clean({{i}})" ><br>
                                             {% endfor %}
                                         </div>
                                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                                        <input type='submit' class="btn btn-lg btn-success btn-block" value='submit'></a><br>
+                                        <input type='submit' class="btn btn-lg btn-success btn-block" value='submit' id='submit'></a><br>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
@@ -99,27 +96,44 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../static/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../static/vendor/metisMenu/metisMenu.min.js"></script>
-
+    <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/metisMenu/metisMenu.min.js')}}"></script>
+    <script src="{{url_for('static', filename='dist/js/sb-admin-2.js')}}"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="../static/dist/js/sb-admin-2.js"></script>
+    <!-- <script>document.getElementById("demo").innerHTML = {{credit_bank}};</script> -->
     <script>
-        function clean(e){
-            var textfield = document.getElementById(e);
-            var regex = /[^0-9.]/gi;
-            textfield.value = textfield.value.replace(regex,"");
-        }
         $(function () {
           $("#0, #1").keyup(function () {
             $("#id-3").val({{credit_bank}} - +$("#0").val() - +$("#1").val());
           });
         });
+        function clean(e){
+            var textfield = document.getElementById(e);
+            var regex = /[^0-9.]/gi;
+            textfield.value = textfield.value.replace(regex,"");
+
+            var elem = document.getElementById("progressbar");
+            var credit = {{credit_bank}}
+            total = 0;
+            for(i=0;i<{{length}};i++){
+                var score = document.getElementById(i);
+                if(score.value == ""){
+                    score.value = 0;
+                }
+                total = total + parseInt(score.value);
+            }
+            remain = {{credit_bank}} - total
+            if(remain < 0){
+                elem.style.width = "0" + '%'
+                document.getElementById("submit").disabled = true;
+            }
+            else{
+                document.getElementById("submit").disabled = false;
+                elem.style.width = ((remain)/(credit))*100 + '%'
+            }
+
+        }
     </script>
 
 

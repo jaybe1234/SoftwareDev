@@ -168,17 +168,48 @@
                               <h5>Cooperators:</h5>
                            </div>
                            <div class="col-lg-10">
-                              <div class="dropdown">
-                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                 <i class="glyphicon glyphicon-plus"></i>
-                                 </button>
-                                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bawornsak Sakulkuaekulsuk</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suriya Natsupakpong</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Warasinee Chaisangmongkon</a></li>
-                                 </ul>
-                              </div>
-                           </div>
+                                    <a role="menuitem" tabindex="-1" href="#">
+
+                                                <div class="ckbox">
+                                                    <div class="checkbox">
+                                                        <label for="checkbox1">
+                                                        <input type="checkbox" id="checkbox1">
+                                                        Bawornsak Sakulkuaekulsuk
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                
+
+                                  </a>                                
+                                  <a role="menuitem" tabindex="-1" href="#">
+                                    
+                                        <div class="ckbox">
+                                          <div class="checkbox">
+                                            <label for="checkbox1">
+                                            <input type="checkbox" id="checkbox1">
+                                            Suriya Natsupakpong
+                                            </label>
+                                          </div>
+                                         </div>
+
+
+                                  </a>
+                                  <a role="menuitem" tabindex="-1" href="#">
+                                    
+                                        <div class="ckbox">
+                                          <div class="checkbox">
+                                            <label for="checkbox1">
+                                            <input type="checkbox" id="checkbox1">
+                                            Warasinee Chaisangmongkon
+                                            </label>
+                                          </div>
+                                         </div>
+                                
+                                      
+                                  </a>
+
+                                
+                            </div>
                         </div>
                   </div>
                   <div class="modal-footer">
@@ -566,7 +597,7 @@
                      <h4 class="modal-title" id="myModalLabel">{{i.name_task}}</h4>
                   </div>
                   <div class="modal-body">
-                     <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task)}}">
+                     <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task, type_sort = type_sort)}}">
                         <div class="row">
                            <div class="col-lg-2">
                                  <h5>Note</h5>
@@ -621,7 +652,7 @@
             <div class="row">
                <div class="col-lg-2 col-md-5">
                         <!-- องประกอบด้านใน-->
-                        <h5 class="page-header"><i class="glyphicon glyphicon-cog"></i> <ins>Manage Student List</ins></h5>
+                        <br><br><a href="{{url_for('manageStudentList',username = username, subject_code = subject_code)}}" class="page-header"><i class="glyphicon glyphicon-cog"></i> <ins>Manage Student List</ins></a>
                     </div>
                <div class="col-lg-2 col-md-push-7">
                   <br><br>
@@ -632,6 +663,7 @@
                      <span class="caret"></span>
                      <span class="sr-only">Toggle Dropdown</span>
                      </button>
+                     <br><br><br>
                      <ul class="dropdown-menu">
                         <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'studentid')}}">Student ID.</a></li>
                         <li class="divider"></li>

@@ -113,7 +113,7 @@
                            {% endfor %}
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"> Add cooperators</i></a>
+                              <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"></i> Add cooperators</a>
                            </li>
                         </ul>
                      </li>
@@ -127,7 +127,7 @@
                            {% endfor %}
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"> Create Grouping</i></a>
+                              <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"></i> Create Grouping</a>
                            </li>
                         </ul>
                      </li>
@@ -141,7 +141,7 @@
                            {% endfor %}
                            <li class="divider"></li>
                            <li>
-                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus">Add Task</i></a>
+                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus"></i> Add Task</a>
                               <!--add_Task1 , add_Task2-->
                            </li>
                         </ul>
@@ -178,11 +178,11 @@
                                                         </label>
                                                     </div>
                                                 </div>
-                                                
 
-                                  </a>                                
+
+                                  </a>
                                   <a role="menuitem" tabindex="-1" href="#">
-                                    
+
                                         <div class="ckbox">
                                           <div class="checkbox">
                                             <label for="checkbox1">
@@ -195,7 +195,7 @@
 
                                   </a>
                                   <a role="menuitem" tabindex="-1" href="#">
-                                    
+
                                         <div class="ckbox">
                                           <div class="checkbox">
                                             <label for="checkbox1">
@@ -204,11 +204,11 @@
                                             </label>
                                           </div>
                                          </div>
-                                
-                                      
+
+
                                   </a>
 
-                                
+
                             </div>
                         </div>
                   </div>
@@ -229,14 +229,6 @@
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                  <h4 class="modal-title" id="myModalLabel">Add Cooperators</h4>
 
-                 <br>
-
-                 <div class="input-group">
-                     <input type="text" class="form-control" placeholder="Search...">
-                         <span class="input-group-btn">
-                             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                         </span>
-                 </div><!-- /input-group -->
 
                </div>
                <div class="modal-body">
@@ -380,19 +372,31 @@
                   <div class="modal-body">
                      <div class="sidebar-nav navbar-collapse">
                         <div class="row">
-                           <div class="col-lg-4">
+                           <div class="col-lg-5">
                               <ul class="nav in" id="side-menu">
                                  <li>
-                                    <a href="#" class="active"> Individual</a>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Individual
+                                      </label>
+                                    </div>
+
                                  </li>
                                  {% for i in groupingList %}
                                  <li>
-                                    <a href="#" class="active"> {{i.name_grouping}}</a>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">{{i.name_grouping}}
+                                      </label>
+                                    </div>
+
                                  </li>
                                  {% endfor %}
                               </ul>
                            </div>
-                           <div class="col-lg-8">
+                           <div class="col-lg-7">
                               <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
                                  Task's name : <input type="text" name="task_name"><br><br>
                                  Score : <input type="text" name="score"><br><br>
@@ -593,6 +597,7 @@
                      <h4 class="modal-title" id="myModalLabel">{{i.name_task}}</h4>
                   </div>
                   <div class="modal-body">
+                     <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task,type_sort = type_sort)}}">
                      <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task, type_sort = type_sort)}}">
                         <div class="row">
                            <div class="col-lg-2">
@@ -666,7 +671,7 @@
                         <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'gpax')}}">GPAX</a></li>
                         <li class="divider"></li>
                         {% for i in groupingList %}
-                        <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'group')}}">{{ i.name_grouping }}</a></li>
+                        <li><a href="{{url_for('subject',username = username,subject_code = subject_code,type_sort = i.name_grouping)}}">{{ i.name_grouping }}</a></li>
                         <li class="divider"></li>
                         {% endfor %}
 
@@ -727,12 +732,14 @@
                                         </tr>
                                         {% endfor %}
                                     </tbody>
+                                    </table>
 
 <!-- sort by GPAX -->
                                     {% elif type_sort == "gpax" %}
                                       <table class="table">
                                       <thead>
                                           <tr>
+                                              <th>GPAX</th>
                                               <th>Student ID.</th>
                                               <th>Name</th>
                                               {% for i in taskList %}
@@ -744,6 +751,7 @@
                                       <tbody>
                                           {% for i in range(len_sortgpax) %}
                                           <tr>
+                                              <td>{{sortgpax[i].gpax_student}}</td>
                                               <td>{{sortgpax[i].id_student}}</td>
                                               <td>{{sortgpax[i].name_student}}</td>
                                               {% for a in scoreStudentGpax[i] %}
@@ -767,10 +775,12 @@
                                           </tr>
                                           {% endfor %}
                                       </tbody>
+                                      </table>
 
 
 <!-- sort by group-->
-                                      {% elif type_sort == "group" %}
+                                      {% else %}
+                                      {% for  i in namegroup %}
                                         <table class="table">
                                         <thead>
                                             <tr>
@@ -783,10 +793,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for i in range(len_sortgpax) %}
+                                            {% for i in range(len_studentGroup) %}
                                             <tr>
-                                                <td>{{sortgpax[i].id_student}}</td>
-                                                <td>{{sortgpax[i].name_student}}</td>
+                                                <td>{{studentListGroup[i].id_student}}</td>
+                                                <td>{{studentListGroup[i].name_student}}</td>
                                                 {% for a in scoreStudentGpax[i] %}
                                                 <td>
                                                     <div class="row">
@@ -808,8 +818,9 @@
                                             </tr>
                                             {% endfor %}
                                         </tbody>
+                                        </table>
+                                        {% endfor %}
                                         {% endif %}
-                                </table>
                             </div>
                         </div>
                     </div>

@@ -94,15 +94,32 @@ def subject(username,subject_code,type_sort):
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
-    sortgpax = getgpax(subject_code)
-    len_sortgpax = len(sortgpax)
-    scoreStudentGpax = getstudentgpaxscore(taskList,subject_code)
-    return render_template('03_class.html', username = username, subject_code = subject_code,
-                            studentList = studentList,lecturerList = lecturerList , groupingList = groupingList ,
-                            taskList = taskList, scorelist = scorelist, totalscore = totalscore,
-                            range_student = range_student,nameuser = nameuser,subject = subject,
-                            len_scorelist = len_scorelist, len_tasklist = len_tasklist,len_sortgpax = len_sortgpax,sortgpax = sortgpax,
-                             type_sort = type_sort,scoreStudentGpax = scoreStudentGpax)
+    if type_sort == 'studentid':
+        return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
+                                lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
+                                scorelist = scorelist, totalscore = totalscore,range_student = range_student,
+                                nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
+                                type_sort = type_sort)
+    elif type_sort == 'gpax':
+        sortgpax = getgpax(subject_code)
+        len_sortgpax = len(sortgpax)
+        scoreStudentGpax = getstudentgpaxscore(taskList,subject_code)
+        return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
+                                lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
+                                scorelist = scorelist, totalscore = totalscore,range_student = range_student,
+                                nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
+                                len_sortgpax = len_sortgpax,sortgpax = sortgpax,type_sort = type_sort,scoreStudentGpax = scoreStudentGpax)
+    else :
+        namegroup = getlistgroupid(subject_code,type_sort)
+        studentListGroup = sortbygroup(subject_code,type_sort)
+        len_studentGroup = len(studentListGroup)
+        scoregroup = getstudentgroupscore(tasklist,subject_code,type_sort)
+    return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
+                            lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
+                            scorelist = scorelist, totalscore = totalscore,range_student = range_student,
+                            nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
+                            type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
+                            studentListGroup = studentListGroup,scoregroup = scoregroup)
 
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
@@ -158,11 +175,11 @@ def removeGrouping(username,subject_code,grouping_id,type_sort):
         delete_grouping(grouping_id)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
 
-@app.route('/<string:username>/<string:subject_code>/<int:task_id>/remove_task', methods = ['GET', 'POST'])
-def removeTask(username,subject_code,task_id):
+@app.route('/<string:username>/<string:subject_code>/<int:task_id>/<string:type_sort>/remove_task', methods = ['GET', 'POST'])
+def removeTask(username,subject_code,task_id,type_sort = None):
     if request.method =='POST':
         delete_task(task_id)
-        return redirect(url_for('subject', username = username, subject_code = subject_code))
+        return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -250,6 +267,13 @@ def thankyou():
     return "Enjoy your score :P"
 
 
+#print (getgpax("FRA241"))
+#print (sortbygroup("FRA241","hello group"))
+#print (getlistgroupid("FRA241","nuttyy"))
+
+#print(sortbygroup("FRA241","hello group"))
+#taskList = getTask("FRA241")
+#print (getstudentgroupscore(taskList,"FRA241","hello group"))
 if __name__ == '__main__':
     app.debug = True
     app.run(host = 'localhost', port = 5000)

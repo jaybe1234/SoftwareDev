@@ -142,7 +142,6 @@
                                 <h6>{{ nameuser[0].name_lecturer }}</h6>
                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
                            </div>
->>>>>>> f8abec710148817c803dc1062ca4468d8dbce50b
                         </div>
                     </div>
                     <a class="navbar-brand" href="Eiei.html">FIBO Classes</a>
@@ -191,7 +190,6 @@
                     <form name="test" method="post" action="">
                         Class's name : <input type="text" name="Class_name"><br><br>
                         <div class="row">
-<<<<<<< HEAD
                             <div class="col-lg-2">
                                 <h5>Cooperators:</h5>
                             </div>
@@ -298,7 +296,7 @@
 
 
 
-
+                            {% for i in range(0,lensub[0])%}
                             <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Add</button>
@@ -316,12 +314,13 @@
                                 <br><a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
                                 {% endfor %}
 
-                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0]) }}" class="btn btn-primary">{{ subject[i][0] }}</a>
+                                <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0],type_sort = 'studentid') }}" class="btn btn-primary">{{ subject[i][0] }}</a>
                               </div>
                             </div>
                     </form>
                     </div>
                    </div>
+                   {% endfor %}
                 </div>
             </div>
             <!-- context -->

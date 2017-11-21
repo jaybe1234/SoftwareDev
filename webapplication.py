@@ -186,7 +186,7 @@ def logincreditbank(subject_code,task_name):
             if i.grouping_task.subject_code_grouping == subject_code:
                 grouping_object = i.grouping_task
                 group_id = session.query(Group).filter_by(grouping_group = grouping_object,student_id_group = student_id)[0].group_id_group
-                credit = session.query(Credit).filter_by(group_id_credit = group_id)[0].credit
+                credit = session.query(Credit).filter_by(group_id_credit = group_id,task_name_credit = task_name)[0].credit
                 code = ''
                 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q','r', 's','t','u', 'v', 'w', 'x', 'y', 'z']
                 for i in range(0, 6):

@@ -192,7 +192,7 @@ def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
                 sorted_student.remove(one)
         for a in range(remain):
             for b in range(people_group + 1):
-                one = sorted_student[0]
+                one = student[0]
                 create_group(grouping_id, one.id_student, group_prefix + '#' + str(a + group_num - remain))
                 sorted_student.remove(one)
     elif group_from == "option2":
@@ -209,7 +209,7 @@ def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
                 one = sorted_A[0]
                 create_group(grouping_id, one.id_student, group_prefix + '_A' + '#' + str(a + 1))
                 sorted_A.remove(one)
-        for a in range(remain_A):
+        for a in range(remain):
             for b in range(people_group + 1):
                 one = sorted_A[0]
                 create_group(grouping_id, one.id_student, group_prefix + '_A' + '#' + str(a + num_group_in_A - remain_A))
@@ -219,11 +219,12 @@ def grouping_gpax(group_from,group_num,subjectCode,grouping_name, group_prefix):
                 one = sorted_B[0]
                 create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(a + 1))
                 sorted_B.remove(one)
-        for a in range(remain_B):
+        for a in range(remain):
             for b in range(people_group + 1):
                 one = sorted_B[0]
                 create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(a + num_group_in_B - remain_B))
                 sorted_B.remove(one)
+<<<<<<< HEAD
 
 
 def grouping_studentid(group_from,group_num,subjectCode,grouping_name, group_prefix):
@@ -277,3 +278,5 @@ def grouping_studentid(group_from,group_num,subjectCode,grouping_name, group_pre
                 one = sorted_B[0]
                 create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(a + num_group_in_B - remain_B))
                 sorted_B.remove(one)
+=======
+>>>>>>> 5987844c1023479a79b963d71000f7da5353b011

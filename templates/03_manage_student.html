@@ -783,7 +783,7 @@
                         <div class="col-md-11 col-md-push-0">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Students in "FRA 241 (2560)" class</h3>
+                                    <h3 class="panel-title">Students in "{{subject_code}}" class</h3>
                                 </div>
                                 <div class="panel-body">
                                     <!-- <h2>Basic Table</h2>
@@ -798,7 +798,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          {% for i in studentList %}
                                             <tr>
+<<<<<<< HEAD
                                                 <td>59340500001</td>
                                                 <td>AAA aaa</td>
                                                 <td>10</td>
@@ -824,6 +826,11 @@
                                                 <td>59340500003</td>
                                                 <td>CCC ccc</td>
                                                 <td>10</td>
+=======
+                                                <td>{{i.id_student}}</td>
+                                                <td>{{i.name_student}}</td>
+                                                <td>{{i.year_student}}</td>
+>>>>>>> a60623050b9eb585bc8ba2f51afcb5daa40f88c7
                                                 <td>
 													<div class="ckbox">
 														<input type="checkbox" id="checkbox1">
@@ -831,6 +838,7 @@
 													</div>
 												</td>
                                             </tr>
+                                          {% endfor %}
                                         </tbody>
                                     </table>
                                     <div class="row">
@@ -867,10 +875,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          {% for i in otherstudent %}
                                             <tr>
-                                                <td>59340500001</td>
-                                                <td>AAA aaa</td>
-                                                <td>10</td>
+                                                <td>{{i.id_student}}</td>
+                                                <td>{{i.name_student}}</td>
+                                                <td>{{i.year_student}}</td>
                                                 <td>
 													<div class="ckbox">
 														<input type="checkbox" id="checkbox1">
@@ -878,6 +887,7 @@
 													</div>
 												</td>
                                             </tr>
+                                            {% endfor %}
                                             <tr>
                                                 <td>59340500002</td>
                                                 <td>BBB bbb</td>

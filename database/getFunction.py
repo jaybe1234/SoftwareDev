@@ -34,14 +34,26 @@ def getstudentgpaxscore(tasklist,subjectCode):
 
 def getstudentgroupscore(tasklist,subjectCode,type_sort):
     sortgroup = sortbygroup(subjectCode,type_sort)
-    test =[]
+    idstu = []
     scorelist = []
-    for i in sortbygroup:
-        for a in i:
-            test.append(a.id_student)
-
-    return test
-
+    for i in sortgroup:
+        for j in i:
+            idstu.append(j.student_id_group)
+    for i in idstu:
+        student_score = []
+        for a in tasklist:
+            score = session.query(Score).filter_by(task_id_score = a.id_task)
+            for b in score:
+                if b.student_id_score == i:
+                    student_score.append(b)
+        scorelist.append(student_score)
+    return scorelist
+  
+def lenlist(list):
+    lenoflist = []
+    for i in list:
+        lenoflist.append(len(i))
+    return lenoflist
 
 def sortbygroup(subject_code,namegroup):
     group = []
@@ -69,7 +81,7 @@ def sortbygroup(subject_code,namegroup):
             memberall.remove(memberall[0])
     for i in arr:
         temp = sorted(i, key = lambda group:group.student_id_group)
-        sorttee.append(temp )
+        sorttee.append(temp)
     return sorttee
 
 
@@ -93,6 +105,15 @@ def getStudentList(subjectCode):
         student = session.query(Student).filter_by(id_student = i).one()
         studentList.append(student)
     return studentList
+
+def otherStudentList(subjectCode):
+    otherstudent = []
+    studentList = getStudentList(subjectCode)
+    everystudent = session.query(Student)
+    for i in everystudent:
+        if i not in studentList:
+            otherstudent.append(i)
+    return otherstudent
 
 def getLecturerList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)

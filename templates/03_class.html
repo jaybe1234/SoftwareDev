@@ -190,7 +190,7 @@
 
 
 
-         
+
          <!-- start Pop-up add class -->
          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -833,9 +833,10 @@
                                         </thead>
                                         <tbody>
                                             {% for i in range(len_studentGroup) %}
+                                            {% for a in studentListGroup[i]%}
                                             <tr>
-                                                <td>{{studentListGroup[i].id_student}}</td>
-                                                <td>{{studentListGroup[i].name_student}}</td>
+                                                <td>{{a.student_id_group}}</td>
+
                                                 {% for a in scoregroup[i] %}
                                                 <td>
                                                     <div class="row">
@@ -856,8 +857,10 @@
                                                 </td>
                                             </tr>
                                             {% endfor %}
+                                            {% endfor %}
                                         </tbody>
                                         </table>
+
                                         {% endfor %}
                                         {% endif %}
                             </div>

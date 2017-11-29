@@ -48,7 +48,27 @@ def getstudentgroupscore(tasklist,subjectCode,type_sort):
                     student_score.append(b)
         scorelist.append(student_score)
     return scorelist
-  
+
+def getstudentnameIngroup(subjectCode,type_sort):
+    namegroup = getlistgroupid(subjectCode,type_sort)
+    studentListGroup = sortbygroup(subjectCode,type_sort)
+    student1group = []
+    for i in range(len(studentListGroup)):
+        for j in studentListGroup[i]:
+            student1group.append(j)
+    numberStudent = int(len(student1group) / len(namegroup))
+    arr = [[]* numberStudent for j in range(len(namegroup))]
+    nameList = []
+    for i in range(len(studentListGroup)):
+        for a in studentListGroup[i]:
+            name = session.query(Student).filter_by(id_student = a.student_id_group).one()
+            nameList.append(name.name_student)
+    for i in range(len(namegroup)):
+        for a in range(0,numberStudent):
+            arr[i].append(nameList[0])
+            nameList.remove(nameList[0])
+    print(arr)
+
 def lenlist(list):
     lenoflist = []
     for i in list:

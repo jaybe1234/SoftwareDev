@@ -71,7 +71,7 @@ def home(username):
             create_enrollment(nameclass, None , id_user )
         return redirect(url_for('home',username= username))
     else:
-        return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
+        return render_template('02_home.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
 @app.route('/<string:username>/archive',methods = ['GET','POST'])
 def archive(username):
@@ -138,12 +138,15 @@ def subject(username,subject_code,type_sort):
         len_studentGroup = len(studentListGroup)
         scoregroup = getstudentgroupscore(taskList,subject_code,type_sort)
         len_scoregroup = len(scoregroup)
+        namestudent_ingroup = getstudentnameIngroup(subject_code,type_sort)
+        #len_namestudentIngroup = len(namestudent_ingroup)
         return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
                             lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                             scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                             nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                             type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
-                            studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup)
+                            studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
+                            namestudent_ingroup = namestudent_ingroup)
 
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
@@ -216,16 +219,31 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-                            otherstudent = otherstudent)
+                            otherstudent = otherstudent, nameuser = nameuser)
 
-    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
-                             groupingList = groupingList, taskList = taskList, nameuser = nameuser)
 
+
+@app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
+def removeStudent(username,subject_code):
+    if request.method == 'POST':
+        studentlist = request.form.getlist('studentinclass')
+        for i in studentlist:
+            delete_student_enrollment(i,subject_code)
+    return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
+
+
+@app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
+def enrollStudent(username,subject_code):
+    if request.method == 'POST':
+        studentlist = request.form.getlist('studentinclass')
+        for i in studentlist:
+            delete_student_enrollment(i,subject_code)
+    return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -303,7 +321,10 @@ def member(subject_code,task_name,student_id,credit_bank):
             score = request.form[str(j)]
             new_score = Score(score_score = score,task_score=task_object,student_id_score = groups[j].student_id_group)
             session.add(new_score)
-            session.commit()
+            try:
+                session.commit()
+            except:
+               session.rollback()
         return redirect(url_for('thankyou'))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id, length=length,task_name=task_name,subject_code=subject_code)
@@ -312,15 +333,18 @@ def member(subject_code,task_name,student_id,credit_bank):
 def thankyou():
     return "Enjoy your score :P"
 
-# taskList = getTask("FRA241")
-# studentListGroup = sortbygroup("FRA241","nutty")
-# len_studentGroup = len(studentListGroup)
-# scoregroup = getstudentgroupscore(taskList,"FRA241","nutty")
-# list_score = []
-# for i in range(len_studentGroup):
-#     for a in scoregroup[i]:
-#         list_score.append(a.score_score)
-# print (list_score)
+@app.context_processor
+def override_url_for():
+    return dict(url_for=dated_url_for)
+
+def dated_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            file_path = os.path.join(app.root_path,
+                                     endpoint, filename)
+            values['q'] = int(os.stat(file_path).st_mtime)
+    return url_for(endpoint, **values)
 
 if __name__ == '__main__':
     app.debug = True

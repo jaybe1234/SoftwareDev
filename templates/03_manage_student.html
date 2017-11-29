@@ -82,7 +82,7 @@
                             <li class="">
                                 <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                  
+
                                     <li>
                                         <a href="flot.html">Bawornsak Sakulkuaekulsuk</a>
                                     </li>
@@ -348,41 +348,22 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
+                                        <form name="studentlist" method="post" action="{{url_for('removeStudent', username = username, subject_code = subject_code)}}">
                                         <tbody>
+                                          {% for i in studentList %}
                                             <tr>
-                                                <td>59340500001</td>
-                                                <td>AAA aaa</td>
-                                                <td>10</td>
+                                                <td>{{i.id_student}}</td>
+                                                <td>{{i.name_student}}</td>
+                                                <td>{{i.year_student}}</td>
                                                 <td>
                                                     <div class="ckbox">
-                                                        <input type="checkbox" id="checkbox1">
+                                                        <input type="checkbox" name="studentinclass" id="checkbox1" value="{{i.id_student}}">
                                                         <label for="checkbox1"></label>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>59340500002</td>
-                                                <td>BBB bbb</td>
-                                                <td>10</td>
-                                                <td>
-                                                    <div class="ckbox">
-                                                        <input type="checkbox" id="checkbox1">
-                                                        <label for="checkbox1"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>59340500003</td>
-                                                <td>CCC ccc</td>
-                                                <td>10</td>
-                                                <td>
-                                                    <div class="ckbox">
-                                                        <input type="checkbox" id="checkbox1">
-                                                        <label for="checkbox1"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                            {% endfor %}
+
                                     </table>
                                     <div class="row">
                                         <div class="col-lg-2 col-md-5">
@@ -418,39 +399,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for i in otherstudent %}
                                             <tr>
-                                                <td>59340500001</td>
-                                                <td>AAA aaa</td>
-                                                <td>10</td>
+                                                <td>{{i.id_student}}</td>
+                                                <td>{{i.name_student}}</td>
+                                                <td>{{i.year_student}}</td>
                                                 <td>
                                                     <div class="ckbox">
-                                                        <input type="checkbox" id="checkbox1">
+                                                        <input type="checkbox" id="checkbox1" name="otherstudent" value="{{i.id_student}}">
                                                         <label for="checkbox1"></label>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>59340500002</td>
-                                                <td>BBB bbb</td>
-                                                <td>10</td>
-                                                <td>
-                                                    <div class="ckbox">
-                                                        <input type="checkbox" id="checkbox1">
-                                                        <label for="checkbox1"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>59340500003</td>
-                                                <td>CCC ccc</td>
-                                                <td>10</td>
-                                                <td>
-                                                    <div class="ckbox">
-                                                        <input type="checkbox" id="checkbox1">
-                                                        <label for="checkbox1"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            {% endfor %}
+
                                         </tbody>
                                     </table>
                                     <div class="row">

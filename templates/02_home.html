@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>SB Admin 2 - Bootstrap Admin Theme</title>
+      <!-- Bootstrap Core CSS -->
+      <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- MetisMenu CSS -->
+      <link href="../static/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+      <!-- Custom CSS -->
+      <link href="../static/dist/css/sb-admin-2.css" rel="stylesheet">
+      <!-- Morris Charts CSS -->
+      <link href="../static/vendor/morrisjs/morris.css" rel="stylesheet">
+      <!-- Custom Fonts -->
+      <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      
+
+      <link href="static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+      <link href="../static/css_box/style.css" rel="stylesheet">
+
+      
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+      <![endif]-->
+   </head>
+   <body>
+      <div id="wrapper">
+         <!--start menu-->
+         <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <div class="navbar-brand">
+                  <div class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                     <i class="glyphicon glyphicon-list"></i>
+                     </a>
+                     <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                        <li class="divider"></li>
+                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
+                        <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
+                        <br><br><br><br><br><br>
+                        <li><a href="01_login.html"><i class="glyphicon glyphicon-save"></i >Archive</a></li>
+                        <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
+                     </ul>
+                  </div>
+               </div>
+               <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+               <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a> <!-- Add Class -->
+
+
+
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user">
+
+
+
+                        <div class="row">
+                           <div class="col-lg-5">
+                                <br>
+                                <p style="text-indent: 1em;">
+                                    <img src="../static/img/profile.png" class="img-circle">
+                                </p>
+                           </div>
+                           <div class="col-lg-5">
+                                <br>
+                                <h6>Bawornsak Sakulkuaekulsuk</h6>
+                                <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
+                           </div>
+                        </div>
+
+
+
+
+                     <li class="divider"></li>
+
+                        <li><a href="01_login.html" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
+
+
+                  </ul>
+               </li>
+
+            </ul>
+            <!--end menu-->
+            <!--start side bar-->
+               <!-- /.sidebar-collapse -->
+            </div>
+         </nav>
+         <!--end side bar-->
+         <!-- start Pop-up add class -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="test" method="post" action="">
+                            Class's name : <input type="text" name="Class_name"><br><br>
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <h5>Cooperators:</h5>
+                                </div>
+                                <div class="col-lg-10">
+                                    <a role="menuitem" tabindex="-1" href="#">
+                                        <div class="ckbox">
+                                            <div class="checkbox">
+                                                <label for="checkbox1">
+                                                <input type="checkbox" id="checkbox1">
+                                                Bawornsak Sakulkuaekulsuk
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a role="menuitem" tabindex="-1" href="#">
+                                        <div class="ckbox">
+                                            <div class="checkbox">
+                                                <label for="checkbox1">
+                                                <input type="checkbox" id="checkbox1">
+                                                Suriya Natsupakpong
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a role="menuitem" tabindex="-1" href="#">
+                                        <div class="ckbox">
+                                            <div class="checkbox">
+                                                <label for="checkbox1">
+                                                <input type="checkbox" id="checkbox1">
+                                                Warasinee Chaisangmongkon
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+         <!-- context -->
+         <div class="container">
+                    <div class = "row" >
+                      {% for i in range(0,lensub[0]) %}
+              <!-- -->      <div class="col-lg-4 ">
+                            <div class="card" style="width: 30rem; background-color: None;">
+
+
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i style="position: absolute; margin-left: -137px;" class="glyphicon glyphicon-option-vertical"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li><a href="#"><i ></i>Archive</a>
+                                        </li>
+
+                                        <li class="divider"></li>
+                                        <li><a href="01_login.html"><i ></i>Delete</a>
+                                        </li>
+                                     </ul>
+                                </li>
+                                <!-- /.dropdown-user -->
+                                <div class="card-block">
+                                <br><h4 class="card-title"  > {{ subject[i][0] }} </h4>
+                              <hr noshade="noshade" width="100%" color=000000 size="6" >
+                                <h4 class="card-title"  >Cooperators </h4>
+                                {% for j in range(1,lensub[i+1]) %}
+                                <br><a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
+                                {% endfor %}
+
+                                <br><br><a href='{{url_for('subject',username = username,subject_code = subject[i][0]) }}' class="btn btn-primary">{{ subject[i][0] }}</a>
+                              </div>
+                            </div>
+                <!-- -->   </div>
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+            <!-- end context -->
+
+         <!-- end Pop-up add class-->
+         <!-- start Pop-up add Cooperators -->
+         
+         <!-- end Pop-up add Cooperators-->
+         <!-- start Pop-up add Group -->
+         
+         <!-- end Pop-up add Group-->
+         <!-- start Pop-up add Task -->
+         
+         <!-- end Pop-up add Task-->
+
+
+
+
+
+
+
+
+
+<!-- start Pop-up add 55555555 -->
+
+
+
+
+
+         <!-- end Pop-up add 55555555555-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+         <!-- start Pop-up Cooperators 1 -->
+         
+         <!-- end Pop-up Cooperators 1-->
+
+
+
+
+
+
+
+
+
+
+
+         <!-- start Pop-up Cooperators 2 -->
+      
+         <!-- end Pop-up Cooperators 2-->
+
+
+
+
+
+
+
+
+
+
+         <!-- start Pop-up Cooperators 3 -->
+        
+         <!-- end Pop-up Cooperators 3-->
+
+
+
+
+
+
+
+
+
+
+
+
+         <!-- start Pop-up Group -->
+        
+         <!-- end Pop-up Group-->
+
+
+
+
+
+
+         <!-- start Pop-up Tasks -->
+         
+         <!-- end Pop-up Tasks-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+      </div>
+      <script src="../static/vendor/jquery/jquery.min.js"></script>
+      <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <script src="../static/vendor/metisMenu/metisMenu.min.js"></script>
+      <script src="../static/vendor/raphael/raphael.min.js"></script>
+      <script src="../static/vendor/morrisjs/morris.min.js"></script>
+      <script src="../static/data/morris-data.js"></script>
+      <script src="../static/dist/js/sb-admin-2.js"></script>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="js/jquery-3.2.1.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src="js/bootstrap.min.js"></script>
+   </body>
+</html>

@@ -200,17 +200,18 @@ def addTask(username, subject_code):
             create_score(task.id_task, i.id_student, 0)
     return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = 'studentid'))
 
-@app.route('/<string:username>/<string:subject_code>/<string:lec_id>/<string:type_sort>/remove_grouping', methods = ['GET', 'POST'])
+@app.route('/<string:username>/<string:subject_code>/<string:lec_id>/<string:type_sort>/remove_lec', methods = ['GET', 'POST'])
 def removeLec(username,subject_code,lec_id,type_sort):
     if request.method == 'POST':
-        delete_lecturer_enrollment(lec_id, subject_code)
+        delete_lecturer_enrollment(lec_id,subject_code)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
 @app.route('/<string:username>/<string:subject_code>/<int:grouping_id>/<string:type_sort>/remove_grouping', methods = ['GET', 'POST'])
 def removeGrouping(username,subject_code,grouping_id,type_sort):
     if request.method == 'POST':
-        delete_grouping(grouping_id)
-        return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
+        return "Hey"
+        #delete_grouping(grouping_id)
+        #return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
 
 @app.route('/<string:username>/<string:subject_code>/<int:task_id>/<string:type_sort>/remove_task', methods = ['GET', 'POST'])
 def removeTask(username,subject_code,task_id,type_sort = None):

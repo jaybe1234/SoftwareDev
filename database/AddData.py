@@ -129,8 +129,11 @@ def create_group(grouping_id,student_id,group_id):
 #Dont have delete function in group
 ######################################################################################
 def create_task(grouping_id,name,weight):
-    grouping_id = session.query(Grouping).filter_by(id_grouping=grouping_id)[0]
-    new_task = Task(name_task = name, weight_task = weight ,grouping_task = grouping_id)
+    if grouping_id is not None:
+        grouping_id = session.query(Grouping).filter_by(id_grouping=grouping_id)[0]
+        new_task = Task(name_task = name, weight_task = weight ,grouping_task = grouping_id)
+    else:
+        new_task = Task(name_task = name, weight_task = weight ,grouping_task = None)
     session.add(new_task)
     session.commit()
     return

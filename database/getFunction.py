@@ -48,7 +48,28 @@ def getstudentgroupscore(tasklist,subjectCode,type_sort):
                     student_score.append(b)
         scorelist.append(student_score)
     return scorelist
-  
+
+
+def getstudentnameIngroup(subjectCode,type_sort):
+    namegroup = getlistgroupid(subjectCode,type_sort)
+    studentListGroup = sortbygroup(subjectCode,type_sort)
+    student1group = []
+    for i in range(len(studentListGroup)):
+        for j in studentListGroup[i]:
+            student1group.append(j)
+    numberStudent = int(len(student1group) / len(namegroup))
+    arr = [[]* numberStudent for j in range(len(namegroup))]
+    nameList = []
+    for i in range(len(studentListGroup)):
+        for a in studentListGroup[i]:
+            name = session.query(Student).filter_by(id_student = a.student_id_group).one()
+            nameList.append(name.name_student)
+    for i in range(len(namegroup)):
+        for a in range(0,numberStudent):
+            arr[i].append(nameList[0])
+            nameList.remove(nameList[0])
+    print(arr)
+
 def lenlist(list):
     lenoflist = []
     for i in list:
@@ -104,7 +125,8 @@ def getStudentList(subjectCode):
     for i in studentIdList:
         student = session.query(Student).filter_by(id_student = i).one()
         studentList.append(student)
-    return studentList
+    finalstdlist = sorted(studentList, key=lambda student: student.id_student)
+    return finalstdlist
 
 def otherStudentList(subjectCode):
     otherstudent = []
@@ -114,6 +136,14 @@ def otherStudentList(subjectCode):
         if i not in studentList:
             otherstudent.append(i)
     return otherstudent
+
+def getLecturerNotinclass(listLecIn):
+    lecall = session.query(Lecturer)
+    lecOther = []
+    for i in lecall:
+        if i not in listLecIn:
+            lecOther.append(i)
+    return lecOther
 
 def getLecturerList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
@@ -130,6 +160,15 @@ def getLecturerList(subjectCode):
 def getGrouping(subjectCode):
     groupingList = session.query(Grouping).filter_by(subject_code_grouping = subjectCode)
     return  groupingList
+
+def getTaskco(groupingList):
+    taskco = []
+    for i in groupingList:
+        nametask = session.query(Task).filter_by(grouping_id_task = i.id_grouping)
+        for j in nametask:
+            taskco.append(j.name_task)
+    return taskco
+
 
 def getTask(subjectCode):
     groupingList = getGrouping(subjectCode)

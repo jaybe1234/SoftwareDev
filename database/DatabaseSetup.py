@@ -74,7 +74,7 @@ class Task(Base):
 
 class Score(Base):
     __tablename__ = 'score'
-    primary_key = Column(Float,nullable=True,primary_key = True)
+    primary_key = Column(Integer,nullable=True,primary_key = True)
     score_score = Column(Float,nullable=False)
     student_id_score = Column(Integer,nullable=False)
     task_id_score = Column(String(20),ForeignKey('task.id_task'))

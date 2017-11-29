@@ -41,26 +41,23 @@
                      <i class="glyphicon glyphicon-list"></i>
                      </a>
                      <ul class="dropdown-menu dropdown-user">
-                        <li><a href='#'><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                        <li><a href="{{url_for("home", username = username)}}"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
                         {% for i in subject%}
                         <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
-                        <li><a href="01_login.html"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
                         <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
                   </div>
                </div>
-               <a class="navbar-brand" href="Eiei.html">{{subject_code}}</a>
+               <a class="navbar-brand" href='{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'studentid')}}'>{{subject_code}}</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
                <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a> <!-- Add Class -->
-
-
-
                <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                   <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -105,7 +102,10 @@
                      </li>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
@@ -122,7 +122,10 @@
                      </li>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groupings<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
@@ -158,9 +161,12 @@
             </div>
          </nav>
          <!--end side bar-->
+<<<<<<< HEAD
 
 
          
+=======
+>>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
          <!-- start Pop-up add class -->
          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -238,50 +244,34 @@
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                  <h4 class="modal-title" id="myModalLabel">Add Cooperators</h4>
 
+                 <div class="modal-body">
+                    <form name="test" method="post" action="{{url_for('add_lecturer',username = username,subject_code = subject_code)}}">
+                       <div class="row">
+                          <div class="col-lg-2">
+                             <h5>Cooperators:</h5>
+                          </div>
+                          <div class="col-lg-10">
 
-               </div>
-               <div class="modal-body">
-                 <div class="row">
-                             <ul class="nav in" id="side-menu">
-
-                                 <div class="col-lg-5">
-                                     <li>
-                                         <a href="#" class="active">Bawornsak Sakulkuaekulsuk </a>
-                                     </li>
-                                 </div>
-                                 <div class="col-lg-7">
-                                     <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>
-                                 </div>
-
-                                 <br><br>
-
-                                 <div class="col-lg-5">
-                                     <li>
-                                         <a href="#" class="active">Suriya Natsupakpong </a>
-                                     </li>
-
-                                 </div>
-                                 <div class="col-lg-7">
-                                     <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>
-                                 </div>
-
-                                 <br><br>
-
-                                 <div class="col-lg-5">
-                                     <li>
-                                         <a href="#" class="active">Warasinee Chaisangmongkon </a>
-                                     </li>
-                                 </div>
-                                 <div class="col-lg-7">
-                                     <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>
-                                 </div>
-                             </ul>
-
+                                   <a role="menuitem" tabindex="-1" href="#">
+                                              {% for i in lecOther%}
+                                               <div class="ckbox">
+                                                   <div class="checkbox">
+                                                       <label for="checkbox1">
+                                                       <input type="checkbox" name="otherlec" value="{{i.id_lecturer}}" id="checkbox1">
+                                                       {{ i.name_lecturer }}
+                                                       </label>
+                                                   </div>
+                                               </div>
+                                               {% endfor %}
+                           </div>
+                       </div>
                  </div>
-
                </div>
+
                <div class="modal-footer">
                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-primary">Add</button>
+               </form>
                </div>
 
              </div>
@@ -383,11 +373,12 @@
                         <div class="row">
                            <div class="col-lg-5">
                               <ul class="nav in" id="side-menu">
+                                <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
                                  <li>
 
                                     <div class="radio">
                                       <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Individual
+                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="individual" checked="">Individual
                                       </label>
                                     </div>
 
@@ -397,7 +388,7 @@
 
                                     <div class="radio">
                                       <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">{{i.name_grouping}}
+                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="{{i.id_grouping}}" checked="">{{i.name_grouping}}
                                       </label>
                                     </div>
 
@@ -409,8 +400,6 @@
                               <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
                                  Task's name : <input type="text" name="task_name"><br><br>
                                  Score : <input type="text" name="score"><br><br>
-                                 Grouping's name: <input type="text" name="grouping_name"><br><br>
-
                            </div>
                         </div>
                      </div>
@@ -425,65 +414,6 @@
          </div>
          <!-- end Pop-up add Task-->
 
-       <!-- start Pop-up add Task2 --><!--Group-->
-         <div class="modal fade" id="add_Task2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Add Task</h4>
-                  </div>
-                  <div class="modal-body">
-                     <div class="sidebar-nav navbar-collapse">
-                        <div class="row">
-                           <div class="col-lg-4">
-                              <ul class="nav in" id="side-menu">
-                                 <li>
-                                    <a href="#" class="active"> Individual</a>
-                                 </li>
-                                 <li>
-                                    <a href="#" class="active"> Group (Mini-project)</a>
-                                 </li>
-                                 <li>
-                                    <a href="#" class="active"> Group (Project)</a>
-                                 </li>
-                              </ul>
-                           </div>
-                           <div class="col-lg-8">
-                              <form name="test" method="post" action="">
-                                 Task's name : <input type="text" name="task_name"><br><br>
-                                 Score : <input type="text" name="task_score"><br><br>
-                                 Grouping's name: <input type="text" name="grouping_name"><br><br>
-                                 <div class="form-group">
-                                    <h5>Scoring type</h5>
-                                    <div class="col-lg-4">
-                                       <div class="radio">
-                                          <label>
-                                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Equal
-                                          </label>
-                                       </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                       <div class="radio">
-                                          <label>
-                                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Credit bank
-                                          </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Add</button>
-                  </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-         <!-- end Pop-up add Task2-->
 
 
 
@@ -518,39 +448,39 @@
 {% endfor %}
       {% for i in lecturerList %}
        <!-- start Pop-up Cooperators 1 -->
-         <div class="modal fade" id="{{i.id_lecturer+1000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-               <div class="modal-content">
-                  <div class="modal-body">
-                     <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer,type_sort = type_sort)}}">
-                        <div class="row">
-                           <div class="col-lg-4">
-                                 <br>
-                                 <p style="text-indent: 1em;">
-                                    <img src="{{url_for('static', filename='img/profile.png')}}" class="img-circle">
-                                 </p>
-                           </div>
-                           <div class="col-lg-8">
-                        <br>
-                                 <h6>{{i.name_lecturer}}</h6>
-                                 <a class="btn btn-primary btn-sm" data-dismiss="modal">Profile</a>
-                           </div>
-                        </div>
-                  </div>
-                  <div class="modal-footer">
-                     <div class="row">
-                        <div class="col-lg-2">
-                           <button type="submit" class="btn btn-default">Remove</button>
-                        </div>
-                        <div class="col-lg-10">
-                           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-                     </div>
-                  </div>
-                  </form>
-               </div>
-            </div>
-         </div>
+       <div class="modal fade" id="{{i.id_lecturer+1000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+             <div class="modal-content">
+                <div class="modal-body">
+                   <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer,type_sort = type_sort)}}">
+                      <div class="row">
+                         <div class="col-lg-4">
+                               <br>
+                               <p style="text-indent: 1em;">
+                                  <img src="{{url_for('static', filename='img/profile.png')}}" class="img-circle">
+                               </p>
+                         </div>
+                         <div class="col-lg-8">
+                      <br>
+                               <h6>{{i.name_lecturer}}</h6>
+                               <a class="btn btn-primary btn-sm" data-dismiss="modal">Profile</a>
+                         </div>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                   <div class="row">
+                      <div class="col-lg-2">
+                         <button type="submit" class="btn btn-default">Remove</button>
+                      </div>
+                      <div class="col-lg-10">
+                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                   </div>
+                </div>
+                </form>
+             </div>
+          </div>
+       </div>
          <!-- end Pop-up Cooperators 1-->
          {% endfor %}
       {% for i in groupingList %}
@@ -576,8 +506,9 @@
                         </div>
                         <br>
                         <h5><strong>Tasks</strong></h5>
-                        <h5><i class="glyphicon glyphicon-stop"> Task B</i></h5>
-                        <h5><i class="glyphicon glyphicon-stop"> Task C</i></h5>
+                        {% for j in taskco%}
+                        <h5><i class="glyphicon glyphicon-stop"> {{ j }}</i></h5>
+                        {% endfor %}
                   </div>
                   <div class="modal-footer">
                      <div class="row">
@@ -727,7 +658,7 @@
                                                         {{a.score_score}}
                                                     </div>
                                                     <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key +1000}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -803,9 +734,10 @@
                                         </thead>
                                         <tbody>
                                             {% for i in range(len_studentGroup) %}
+                                            {% for a in studentListGroup[i]%}
                                             <tr>
-                                                <td>{{studentListGroup[i].id_student}}</td>
-                                                <td>{{studentListGroup[i].name_student}}</td>
+                                                <td>{{a.student_id_group}}</td>
+
                                                 {% for a in scoregroup[i] %}
                                                 <td>
                                                     <div class="row">
@@ -826,8 +758,10 @@
                                                 </td>
                                             </tr>
                                             {% endfor %}
+                                            {% endfor %}
                                         </tbody>
                                         </table>
+
                                         {% endfor %}
                                         {% endif %}
                             </div>

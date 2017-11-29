@@ -236,14 +236,13 @@ def removeStudent(username,subject_code):
             delete_student_enrollment(i,subject_code)
     return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
 
-
-@app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
-def enrollStudent(username,subject_code):
+@app.route('/<string:username>/<string:subject_code>/Manage_student/addstudent', methods = ['GET', 'POST'])
+def addStudent(username,subject_code):
     if request.method == 'POST':
-        studentlist = request.form.getlist('studentinclass')
+        studentlist = request.form.getlist('otherstudent')
         for i in studentlist:
-            delete_student_enrollment(i,subject_code)
-    return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
+            create_enrollment(subject_code,i,None)
+        return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -333,19 +332,7 @@ def member(subject_code,task_name,student_id,credit_bank):
 def thankyou():
     return "Enjoy your score :P"
 
-@app.context_processor
-def override_url_for():
-    return dict(url_for=dated_url_for)
-
-def dated_url_for(endpoint, **values):
-    if endpoint == 'static':
-        filename = values.get('filename', None)
-        if filename:
-            file_path = os.path.join(app.root_path,
-                                     endpoint, filename)
-            values['q'] = int(os.stat(file_path).st_mtime)
-    return url_for(endpoint, **values)
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = 'localhost', port = 5000)
+    app.run(host = 'localhost', port = 8080)

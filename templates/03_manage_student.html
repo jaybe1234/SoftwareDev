@@ -36,24 +36,6 @@
                     <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand">
-<<<<<<< HEAD
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
-                                <li class="divider"></li>
-                                {% for i in subject%}
-                                <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
-                                {% endfor %}
-                                <br><br><br><br><br><br>
-                                <li><a href='{{url_for('archive',username = username)}}'><i class="glyphicon glyphicon-save"></i>Archive</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <a class="navbar-brand" href='{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'studentid')}}'>FRA 241 (2560)</a>
-=======
                   <div class="dropdown">
                      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                      <i class="glyphicon glyphicon-list"></i>
@@ -72,7 +54,6 @@
                   </div>
                </div>
                     <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
->>>>>>> 30adcfeb1e05c969fb778af6d21b704928fab130
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">

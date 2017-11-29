@@ -370,9 +370,9 @@ def lenInList(lis):
     num_list = []
     for i in lis:
         num_list.append(len(i))
-<<<<<<< HEAD
+
     return num_list
-=======
+
     return num_list
 
 def getTaskListFromGrouping(subjectcode, grouping_name):
@@ -382,4 +382,4 @@ def getTaskListFromGrouping(subjectcode, grouping_name):
 
 def taskListScore(studentlist, tasklist):
     pass
->>>>>>> 3b0a04ed3e46decc602a6f77423f6d766a11c927
+

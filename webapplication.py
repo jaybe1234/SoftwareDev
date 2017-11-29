@@ -219,18 +219,12 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-<<<<<<< HEAD
-=======
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
->>>>>>> 074cf902022e7fa90097cfc80f43dfb8b78d6de9
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-<<<<<<< HEAD
-                            otherstudent = otherstudent)
-=======
-                            otherstudent = otherstudent, nameuser = nameuser)
+                            otherstudent = otherstudent,nameuser = nameuser)
 
 
 
@@ -241,7 +235,6 @@ def removeStudent(username,subject_code):
         for i in studentlist:
             delete_student_enrollment(i,subject_code)
     return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
->>>>>>> 074cf902022e7fa90097cfc80f43dfb8b78d6de9
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -330,6 +323,18 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
+
+@app.after_request
+def add_header(r):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
 
 if __name__ == '__main__':
     app.debug = True

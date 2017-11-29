@@ -47,7 +47,7 @@
                         <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
-                        <li><a href="#"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
+                        <li><a href='{{url_for('archive',username = username)}}'><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
@@ -171,45 +171,19 @@
                            </div>
                            <div class="col-lg-10">
                                     <a role="menuitem" tabindex="-1" href="#">
-
+                                      {%for i in lecturerList%}
                                                 <div class="ckbox">
                                                     <div class="checkbox">
                                                         <label for="checkbox1">
                                                         <input type="checkbox" id="checkbox1">
-                                                        Bawornsak Sakulkuaekulsuk
+                                                        {{ i.name_lecturer}}
                                                         </label>
                                                     </div>
                                                 </div>
+                                        {% endfor %}
 
 
                                   </a>
-                                  <a role="menuitem" tabindex="-1" href="#">
-
-                                        <div class="ckbox">
-                                          <div class="checkbox">
-                                            <label for="checkbox1">
-                                            <input type="checkbox" id="checkbox1">
-                                            Suriya Natsupakpong
-                                            </label>
-                                          </div>
-                                         </div>
-
-
-                                  </a>
-                                  <a role="menuitem" tabindex="-1" href="#">
-
-                                        <div class="ckbox">
-                                          <div class="checkbox">
-                                            <label for="checkbox1">
-                                            <input type="checkbox" id="checkbox1">
-                                            Warasinee Chaisangmongkon
-                                            </label>
-                                          </div>
-                                         </div>
-
-
-                                  </a>
-
 
                             </div>
                         </div>
@@ -401,6 +375,70 @@
          </div>
          <!-- end Pop-up add Task-->
 
+<<<<<<< HEAD
+
+
+       <!-- start Pop-up add Task2 --><!--Group-->
+         <div class="modal fade" id="add_Task2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="sidebar-nav navbar-collapse">
+                        <div class="row">
+                           <div class="col-lg-4">
+                              <ul class="nav in" id="side-menu">
+                                 <li>
+                                    <a href="#" class="active"> Individual</a>
+                                 </li>
+                                 <li>
+                                    <a href="#" class="active"> Group (Mini-project)</a>
+                                 </li>
+                                 <li>
+                                    <a href="#" class="active"> Group (Project)</a>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="col-lg-8">
+                              <form name="test" method="post" action="">
+                                 Task's name : <input type="text" name="task_name"><br><br>
+                                 Score : <input type="text" name="task_score"><br><br>
+                                 Grouping's name: <input type="text" name="grouping_name"><br><br>
+                                 <div class="form-group">
+                                    <h5>Scoring type</h5>
+                                    <div class="col-lg-4">
+                                       <div class="radio">
+                                          <label>
+                                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Equal
+                                          </label>
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                       <div class="radio">
+                                          <label>
+                                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Credit bank
+                                          </label>
+                                       </div>
+                                    </div>
+                                 </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Add</button>
+                  </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <!-- end Pop-up add Task2-->
+=======
+>>>>>>> ec194157ef3d2fb02c4a304642bc666bbdc74a1f
 
 
 
@@ -558,7 +596,7 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Grade</button>
                         <br><br>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">OPEN Credit bank</button>
-                        <a>localhost:5000/{{subject_code}}/{{i.task_name}}</a>
+                        <a href = "{{url_for('logincreditbank',subject_code = subject_code , task_name = i.name_task)}}" creditbank><ins>Credit bank</ins></a>
                      </div>
                         </div>
                   </div>
@@ -706,9 +744,6 @@
 
                                       </tbody>
                                       </table>
-
-
-<!-- sort by group-->
                                       {% else %}
                                       {% for a in range(len_grouplist) %}
                                       <br>

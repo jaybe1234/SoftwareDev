@@ -224,12 +224,21 @@ def manageStudentList(username, subject_code):
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-                            otherstudent = otherstudent,nameuser = nameuser)
+                            otherstudent = otherstudent, nameuser = nameuser)
 
 
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
 def removeStudent(username,subject_code):
+    if request.method == 'POST':
+        studentlist = request.form.getlist('studentinclass')
+        for i in studentlist:
+            delete_student_enrollment(i,subject_code)
+    return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
+
+
+@app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
+def enrollStudent(username,subject_code):
     if request.method == 'POST':
         studentlist = request.form.getlist('studentinclass')
         for i in studentlist:
@@ -323,18 +332,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
-
-@app.after_request
-def add_header(r):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    r.headers["Pragma"] = "no-cache"
-    r.headers["Expires"] = "0"
-    r.headers['Cache-Control'] = 'public, max-age=0'
-    return r
 
 if __name__ == '__main__':
     app.debug = True

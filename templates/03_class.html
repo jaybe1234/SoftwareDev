@@ -171,45 +171,19 @@
                            </div>
                            <div class="col-lg-10">
                                     <a role="menuitem" tabindex="-1" href="#">
-
+                                      {%for i in lecturerList%}
                                                 <div class="ckbox">
                                                     <div class="checkbox">
                                                         <label for="checkbox1">
                                                         <input type="checkbox" id="checkbox1">
-                                                        Bawornsak Sakulkuaekulsuk
+                                                        {{ i.name_lecturer}}
                                                         </label>
                                                     </div>
                                                 </div>
+                                        {% endfor %}
 
 
                                   </a>
-                                  <a role="menuitem" tabindex="-1" href="#">
-
-                                        <div class="ckbox">
-                                          <div class="checkbox">
-                                            <label for="checkbox1">
-                                            <input type="checkbox" id="checkbox1">
-                                            Suriya Natsupakpong
-                                            </label>
-                                          </div>
-                                         </div>
-
-
-                                  </a>
-                                  <a role="menuitem" tabindex="-1" href="#">
-
-                                        <div class="ckbox">
-                                          <div class="checkbox">
-                                            <label for="checkbox1">
-                                            <input type="checkbox" id="checkbox1">
-                                            Warasinee Chaisangmongkon
-                                            </label>
-                                          </div>
-                                         </div>
-
-
-                                  </a>
-
 
                             </div>
                         </div>

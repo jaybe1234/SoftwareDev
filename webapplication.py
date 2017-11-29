@@ -209,9 +209,8 @@ def removeLec(username,subject_code,lec_id,type_sort):
 @app.route('/<string:username>/<string:subject_code>/<int:grouping_id>/<string:type_sort>/remove_grouping', methods = ['GET', 'POST'])
 def removeGrouping(username,subject_code,grouping_id,type_sort):
     if request.method == 'POST':
-        return "Hey"
-        #delete_grouping(grouping_id)
-        #return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
+        delete_grouping(grouping_id)
+        return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort ))
 
 @app.route('/<string:username>/<string:subject_code>/<int:task_id>/<string:type_sort>/remove_task', methods = ['GET', 'POST'])
 def removeTask(username,subject_code,task_id,type_sort = None):

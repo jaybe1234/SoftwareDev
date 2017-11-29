@@ -95,6 +95,13 @@ class Archive(Base):
     subject_code_archive = Column(String(20),nullable=False)
     lecturer_archive = relationship(Lecturer)
 
+class Storage(Base):
+    __tablename__ = 'storage'
+    primary_key = Column(Integer,nullable=True,primary_key = True)
+    student_id_storage = Column(Integer,nullable=False)
+    task_name_storage = Column(String(30),nullable=False)
+    score_storage = Column(Integer,nullable=False)
+
 
 engine = create_engine('sqlite:///database.db')
 Base.metadata.create_all(engine)

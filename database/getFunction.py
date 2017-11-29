@@ -49,6 +49,7 @@ def getstudentgroupscore(tasklist,subjectCode,type_sort):
         scorelist.append(student_score)
     return scorelist
 
+
 def getstudentnameIngroup(subjectCode,type_sort):
     namegroup = getlistgroupid(subjectCode,type_sort)
     studentListGroup = sortbygroup(subjectCode,type_sort)
@@ -136,6 +137,14 @@ def otherStudentList(subjectCode):
             otherstudent.append(i)
     return otherstudent
 
+def getLecturerNotinclass(listLecIn):
+    lecall = session.query(Lecturer)
+    lecOther = []
+    for i in lecall:
+        if i not in listLecIn:
+            lecOther.append(i)
+    return lecOther
+
 def getLecturerList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
     lecturerIdList = []
@@ -151,6 +160,15 @@ def getLecturerList(subjectCode):
 def getGrouping(subjectCode):
     groupingList = session.query(Grouping).filter_by(subject_code_grouping = subjectCode)
     return  groupingList
+
+def getTaskco(groupingList):
+    taskco = []
+    for i in groupingList:
+        nametask = session.query(Task).filter_by(grouping_id_task = i.id_grouping)
+        for j in nametask:
+            taskco.append(j.name_task)
+    return taskco
+
 
 def getTask(subjectCode):
     groupingList = getGrouping(subjectCode)

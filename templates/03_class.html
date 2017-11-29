@@ -132,23 +132,6 @@
                      </li>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groupings<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
@@ -455,6 +438,8 @@
          </div>
          <!-- end Pop-up add Task-->
 
+
+
        <!-- start Pop-up add Task2 --><!--Group-->
          <div class="modal fade" id="add_Task2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -668,7 +653,7 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Grade</button>
                         <br><br>
                         <button type="button" class="btn btn-primary" data-dismiss="modal">OPEN Credit bank</button>
-                        <a>localhost:5000/{{subject_code}}/{{i.task_name}}</a>
+                        <a href = "{{url_for('logincreditbank',subject_code = subject_code , task_name = i.name_task)}}" creditbank><ins>Credit bank</ins></a>
                      </div>
                         </div>
                   </div>
@@ -815,9 +800,6 @@
                                           {% endfor %}
                                       </tbody>
                                       </table>
-
-
-<!-- sort by group-->
                                       {% else %}
                                       {% for  i in namegroup %}
                                         <table class="table">

@@ -170,6 +170,58 @@ def create_grouping(username,subject_code):
                 grouping_gpax("option2", int(request.form['group_num']), subject_code,
                                 request.form['grouping_name'], request.form['group_prefix'])
                 return redirect(url_for('subject', username=username, subject_code=subject_code, type_sort = "studentid"))
+        elif request.form['grouping_type'] == "custom":
+            if request.form['optionsRadios'] == "option1":
+                # return render_template('Custom.html', username = username, subject_code = subject_code,studentList = studentList,
+                #                 lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
+                #                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
+                #                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist)
+                return redirect(url_for('custom_grouping',username=username, subject_code=subject_code, type_sort = "studentid" , grouping_name = request.form['grouping_name'] , prefix = request.form['group_prefix']))
+            elif request.form['optionsRadios'] == "option2":
+                return redirect(url_for('custom_grouping',username=username, subject_code=subject_code, type_sort = "studentid" , grouping_name = request.form['grouping_name'] , prefix = request.form['group_prefix']))
+                # return render_template('Custom.html', username = username, subject_code = subject_code,studentList = studentList,
+                #                 lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
+                #                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
+                #                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist)
+
+@app.route('/<string:username>/<string:subject_code>/<string:type_sort>/<string:grouping_name>/<string:prefix>/custom_grouping' , methods = ['GET' , 'POST'])
+def custom_grouping(username,subject_code,type_sort,grouping_name,prefix):
+    subject = subjectpage_data(username)
+    studentList = getStudentList(subject_code)
+    lecturerList = getLecturerList(subject_code)
+    groupingList = getGrouping(subject_code)
+    taskList = getTask(subject_code)
+    scorelist = getScoreFromTask(taskList, studentList)
+    totalscore = totalScore(taskList, studentList)
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
+    range_student = range(len(studentList))
+    len_scorelist = len(scorelist)
+    len_tasklist = len(taskList)
+    type_sort = "studentid"
+    if request.method == 'POST':
+        # create_grouping(grouping_name, "Custom" ,subject_code)
+        subject_code = session.query(Subject).filter_by(code_subject= subject_code)[0]
+        new_grouping = Grouping(name_grouping=grouping_name,type_grouping="custom",subject_grouping=subject_code)
+        session.add(new_grouping)
+        session.commit()
+        for i in range(len(studentList)):
+            group_number = request.form[str(i)]
+            # return len(studentList)
+            subject_code = subject_code.code_subject
+            subject_code = session.query(Subject).filter_by(code_subject = subject_code)[0]
+            grouping_id = session.query(Grouping).filter_by(name_grouping = grouping_name,subject_grouping = subject_code)[0]
+            group_number = prefix + str(group_number)
+            create_group(grouping_id.id_grouping,studentList[i].id_student,group_number)
+        return redirect(url_for('subject', username=username, subject_code=subject_code.code_subject, type_sort = "studentid"))
+    else:
+        return render_template('Custom.html', username = username, subject_code = subject_code,studentList = studentList,
+                                lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
+                                scorelist = scorelist, totalscore = totalscore,range_student = range_student,
+                                nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,type_sort = type_sort ,grouping_name = grouping_name
+                                ,prefix=prefix)
+
+
+
 
 @app.route('/<string:username>/<string:subject_code>/add_task' , methods = ['GET' , 'POST'])
 def addTask(username, subject_code):
@@ -219,24 +271,15 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-<<<<<<< HEAD
-=======
-
->>>>>>> 239e5535e32cecc967c9d448053dc9f205a23f74
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
                             otherstudent = otherstudent)
-<<<<<<< HEAD
     return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
                              groupingList = groupingList, taskList = taskList, nameuser = nameuser)
-=======
-
     return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
                              groupingList = groupingList, taskList = taskList, nameuser = nameuser)
-
->>>>>>> 239e5535e32cecc967c9d448053dc9f205a23f74
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -312,8 +355,8 @@ def member(subject_code,task_name,student_id,credit_bank):
     if request.method == 'POST':
         for j in range(length):
             score = request.form[str(j)]
-            new_score = Score(score_score = score,task_score=task_object,student_id_score = groups[j].student_id_group)
-            session.add(new_score)
+            new_storage = Storage(student_id_storage = student_id , task_name_storage = task_name , score_storage = score )
+            session.add(new_storage)
             try:
                 session.commit()
             except:

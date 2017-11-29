@@ -100,10 +100,12 @@ def delete_lecturer_enrollment(lecturer_id,subject_code):
     return
 ######################################################################################
 def create_grouping(grouping_name,grouping_type,subject_code):
-    new_grouping = Grouping(name_grouping=grouping_name,type_grouping=grouping_type,subject_code_grouping=subject_code)
+    subject_code = session.query(Subject).filter_by(code_subject= subject_code)[0]
+    new_grouping = Grouping(name_grouping=grouping_name,type_grouping=grouping_type,subject_grouping=subject_code)
     session.add(new_grouping)
     session.commit()
     return
+
 def delete_grouping(grouping_id):
     #change subject_code into object
     grouping = session.query(Grouping).filter_by(id_grouping = grouping_id)[0]
@@ -169,6 +171,13 @@ def create_archive(name_lecturer,subject_code):
     session.add(new_archive)
     session.commit()
     return
+######################################################################################
+def create_storage(student_id,task_name,score):
+    storage = session.query(storage).filter_by(student_id_storage = student_id,task_name_storage = task_name,score_storage = score)
+    session.add(storage)
+    session.commit()
+    return
+######################################################################################
 
 # create_archive("Mr.Bawornsak","FRA111")
 # create_archive("Mr.Bawornsak","FRA222")
@@ -237,7 +246,7 @@ def create_archive(name_lecturer,subject_code):
 # create_enrollment("FRA142", 593405000010 , None)
 
 
-# create_grouping('Grouping by RANDOM','RANDOM','FRA241')
+# create_grouping('Grouping by RANDOMsssssssss','RANDOM','FRA241')
 
 # create_group(1,59340500001,'AB01')
 # create_group(1,59340500002,'AB02')

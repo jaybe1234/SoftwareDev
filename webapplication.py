@@ -219,38 +219,22 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-<<<<<<< HEAD
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 239e5535e32cecc967c9d448053dc9f205a23f74
->>>>>>> f69d39eb2a1816aceebeab88d2264b8d4e4a5500
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-<<<<<<< HEAD
                             otherstudent = otherstudent, nameuser = nameuser)
-=======
-                            otherstudent = otherstudent)
-<<<<<<< HEAD
-    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
-                             groupingList = groupingList, taskList = taskList, nameuser = nameuser)
-=======
->>>>>>> f69d39eb2a1816aceebeab88d2264b8d4e4a5500
+
+
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
 def removeStudent(username,subject_code):
     if request.method == 'POST':
         studentlist = request.form.getlist('studentinclass')
-        #return str(studentlist)
         for i in studentlist:
             delete_student_enrollment(i,subject_code)
     return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
-
->>>>>>> 239e5535e32cecc967c9d448053dc9f205a23f74
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):

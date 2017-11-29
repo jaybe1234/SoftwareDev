@@ -49,6 +49,7 @@ def getstudentgroupscore(tasklist,subjectCode,type_sort):
         scorelist.append(student_score)
     return scorelist
 
+
 def getstudentnameIngroup(subjectCode,type_sort):
     namegroup = getlistgroupid(subjectCode,type_sort)
     studentListGroup = sortbygroup(subjectCode,type_sort)
@@ -124,7 +125,8 @@ def getStudentList(subjectCode):
     for i in studentIdList:
         student = session.query(Student).filter_by(id_student = i).one()
         studentList.append(student)
-    return studentList
+    finalstdlist = sorted(studentList, key=lambda student: student.id_student)
+    return finalstdlist
 
 def otherStudentList(subjectCode):
     otherstudent = []
@@ -134,6 +136,14 @@ def otherStudentList(subjectCode):
         if i not in studentList:
             otherstudent.append(i)
     return otherstudent
+
+def getLecturerNotinclass(listLecIn):
+    lecall = session.query(Lecturer)
+    lecOther = []
+    for i in lecall:
+        if i not in listLecIn:
+            lecOther.append(i)
+    return lecOther
 
 def getLecturerList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
@@ -150,6 +160,7 @@ def getLecturerList(subjectCode):
 def getGrouping(subjectCode):
     groupingList = session.query(Grouping).filter_by(subject_code_grouping = subjectCode)
     return  groupingList
+
 
 def getTask(subjectCode):
     groupingList = getGrouping(subjectCode)
@@ -333,3 +344,30 @@ def grouping_studentid(group_from,group_num,subjectCode,grouping_name, group_pre
                 one = sorted_B[0]
                 create_group(grouping_id, one.id_student, group_prefix + '_B' + '#' + str(a + num_group_in_B - remain_B))
                 sorted_B.remove(one)
+
+def getGroupList(subject_code, grouping_name):
+    grouping = session.query(Grouping).filter_by(name_grouping = grouping_name, subject_code_grouping = subject_code).one()
+    grouplist = session.query(Group).filter_by(grouping_id_group = grouping.id_grouping)
+    name_group_list = []
+    for i in grouplist:
+        if i.group_id_group not in name_group_list:
+            name_group_list.append(i.group_id_group)
+    return name_group_list
+
+def studentInGroupList(subject_code,grouping_name,getgrouplist):
+    grouping = session.query(Grouping).filter_by(name_grouping = grouping_name, subject_code_grouping = subject_code).one()
+    member_group = []
+    for i in getgrouplist:
+        member = []
+        group = list(session.query(Group).filter_by(group_id_group = i, grouping_id_group = grouping.id_grouping))
+        for a in group:
+            student = session.query(Student).filter_by(id_student = a.student_id_group).one()
+            member.append(student)
+        member_group.append(member)
+    return member_group
+
+def lenInList(lis):
+    num_list = []
+    for i in lis:
+        num_list.append(len(i))
+    return num_list

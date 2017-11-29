@@ -71,7 +71,7 @@ def home(username):
             create_enrollment(nameclass, None , id_user )
         return redirect(url_for('home',username= username))
     else:
-        return render_template('karnhomepage.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
+        return render_template('02_home.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
 
 @app.route('/<string:username>/archive',methods = ['GET','POST'])
 def archive(username):
@@ -117,12 +117,13 @@ def subject(username,subject_code,type_sort):
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
+    lecOther = getLecturerNotinclass(lecturerList)
     if type_sort == 'studentid':
         return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
                                 lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
-                                type_sort = type_sort)
+                                type_sort = type_sort,lecOther = lecOther)
     elif type_sort == 'gpax':
         sortgpax = getgpax(subject_code)
         len_sortgpax = len(sortgpax)
@@ -131,8 +132,13 @@ def subject(username,subject_code,type_sort):
                                 lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
-                                len_sortgpax = len_sortgpax,sortgpax = sortgpax,type_sort = type_sort,scoreStudentGpax = scoreStudentGpax)
+                                len_sortgpax = len_sortgpax,sortgpax = sortgpax,type_sort = type_sort,scoreStudentGpax = scoreStudentGpax,
+                                lecOther = lecOther)
     else :
+        grouplist = getGroupList(subject_code, type_sort)
+        member_group = studentInGroupList(subject_code, type_sort, grouplist)
+        len_grouplist = len(grouplist)
+        len_member_group = lenInList(member_group)
         namegroup = getlistgroupid(subject_code,type_sort)
         studentListGroup = sortbygroup(subject_code,type_sort)
         len_studentGroup = len(studentListGroup)
@@ -146,8 +152,16 @@ def subject(username,subject_code,type_sort):
                             nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                             type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
-                            namestudent_ingroup = namestudent_ingroup)
+                            namestudent_ingroup = namestudent_ingroup,lecOther = lecOther, len_grouplist = len_grouplist,
+                            len_member_group = len_member_group, grouplist = grouplist, member_group = member_group)
 
+@app.route('/<string:username>/<string:subject_code>/addLecturer', methods = ['GET' , 'POST'])
+def add_lecturer(username,subject_code):
+    if request.method == 'POST':
+        lecList = request.form.getlist('otherlec')
+        for i in lecList:
+            create_enrollment(subject_code,None,i)
+    return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = 'studentid'))
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
 def create_grouping(username,subject_code):
@@ -228,24 +242,25 @@ def addTask(username, subject_code):
     studentList = getStudentList(subject_code)
     if request.method == 'POST':
         grouping = getGrouping(subject_code)
-        for i in grouping:
-            if i.name_grouping == request.form['grouping_name']:
-                grouping_id = i.id_grouping
-                break
-        create_task(grouping_id, request.form['task_name'], request.form['score'])
+        if request.form['grouping_name'] == "individual":
+            grouping = session.query(Grouping).filter_by(subject_code_grouping = subject_code, name_grouping = 'Individual')
+            create_task(None, request.form['task_name'], request.form['score'])
+        else:
+            create_task(request.form['grouping_name'], request.form['task_name'], request.form['score'])
         tasklist = getTask(subject_code)
         for i in tasklist:
             if i.name_task == request.form['task_name']:
                 task = i
                 break
+
         for i in studentList:
             create_score(task.id_task, i.id_student, 0)
     return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = 'studentid'))
 
-@app.route('/<string:username>/<string:subject_code>/<string:lec_id>/<string:type_sort>/remove_grouping', methods = ['GET', 'POST'])
+@app.route('/<string:username>/<string:subject_code>/<string:lec_id>/<string:type_sort>/remove_lec', methods = ['GET', 'POST'])
 def removeLec(username,subject_code,lec_id,type_sort):
     if request.method == 'POST':
-        delete_lecturer_enrollment(lec_id, subject_code)
+        delete_lecturer_enrollment(lec_id,subject_code)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
 @app.route('/<string:username>/<string:subject_code>/<int:grouping_id>/<string:type_sort>/remove_grouping', methods = ['GET', 'POST'])
@@ -260,10 +275,6 @@ def removeTask(username,subject_code,task_id,type_sort = None):
         delete_task(task_id)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
-def removeTask(username,subject_code,task_id,type_sort):
-    if request.method =='POST':
-        delete_task(task_id)
-        return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = type_grouping))
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
 def manageStudentList(username, subject_code):
@@ -271,16 +282,43 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
+<<<<<<< HEAD
+=======
+    nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
+>>>>>>> ec194157ef3d2fb02c4a304642bc666bbdc74a1f
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
+<<<<<<< HEAD
                             otherstudent = otherstudent)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
                              groupingList = groupingList, taskList = taskList, nameuser = nameuser)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
                              groupingList = groupingList, taskList = taskList, nameuser = nameuser)
 
+=======
+                            otherstudent = otherstudent, nameuser = nameuser)
+
+
+
+@app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
+def removeStudent(username,subject_code):
+    if request.method == 'POST':
+        studentlist = request.form.getlist('studentinclass')
+        for i in studentlist:
+            delete_student_enrollment(i,subject_code)
+    return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
+
+@app.route('/<string:username>/<string:subject_code>/Manage_student/addstudent', methods = ['GET', 'POST'])
+def addStudent(username,subject_code):
+    if request.method == 'POST':
+        studentlist = request.form.getlist('otherstudent')
+        for i in studentlist:
+            create_enrollment(subject_code,i,None)
+        return redirect(url_for('manageStudentList', username = username, subject_code = subject))
+
+>>>>>>> ec194157ef3d2fb02c4a304642bc666bbdc74a1f
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
     student = session.query(Student).filter_by(id_student = student_id).one()

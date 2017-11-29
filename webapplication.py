@@ -216,16 +216,16 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-<<<<<<< HEAD
+
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
                             otherstudent = otherstudent)
-=======
+
     return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
                              groupingList = groupingList, taskList = taskList, nameuser = nameuser)
->>>>>>> 9376f1d94e7f8b63a25666b907adb7d910b83708
+
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):

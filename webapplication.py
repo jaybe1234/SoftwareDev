@@ -282,23 +282,16 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-<<<<<<< HEAD
-=======
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
->>>>>>> ec194157ef3d2fb02c4a304642bc666bbdc74a1f
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-<<<<<<< HEAD
                             otherstudent = otherstudent)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
                              groupingList = groupingList, taskList = taskList, nameuser = nameuser)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
                              groupingList = groupingList, taskList = taskList, nameuser = nameuser)
-
-=======
-                            otherstudent = otherstudent, nameuser = nameuser)
 
 
 
@@ -318,7 +311,6 @@ def addStudent(username,subject_code):
             create_enrollment(subject_code,i,None)
         return redirect(url_for('manageStudentList', username = username, subject_code = subject))
 
->>>>>>> ec194157ef3d2fb02c4a304642bc666bbdc74a1f
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
     student = session.query(Student).filter_by(id_student = student_id).one()

@@ -208,10 +208,6 @@ def removeTask(username,subject_code,task_id,type_sort = None):
         delete_task(task_id)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
-def removeTask(username,subject_code,task_id,type_sort):
-    if request.method =='POST':
-        delete_task(task_id)
-        return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = type_grouping))
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
 def manageStudentList(username, subject_code):
@@ -242,7 +238,7 @@ def addStudent(username,subject_code):
         studentlist = request.form.getlist('otherstudent')
         for i in studentlist:
             create_enrollment(subject_code,i,None)
-        return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
+        return redirect(url_for('manageStudentList', username = username, subject_code = subject))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -332,7 +328,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 def thankyou():
     return "Enjoy your score :P"
 
-
 if __name__ == '__main__':
     app.debug = True
-    app.run(host = 'localhost', port = 8080)
+    app.run(host = 'localhost', port = 5000)

@@ -36,159 +36,164 @@
                     <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
-                                <li class="divider"></li>
-                                <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 141 (2560)</a></li>
-                                <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>FRA 241 (2560)</a></li>
-                                <br><br><br><br><br><br>
-                                <li><a href="01_login.html"><i class="glyphicon glyphicon-save"></i>Archive</a></li>
-                                <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                  <div class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                     <i class="glyphicon glyphicon-list"></i>
+                     </a>
+                     <ul class="dropdown-menu dropdown-user">
+                        <li><a href="/Bawornsak/home"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                        <li class="divider"></li>
+                        
+                        <li><a href="/Bawornsak/FRA241/studentid"><i class="fa fa-sign-out fa-fw"></i>FRA241</a></li>
+                        
+                        <br><br><br><br><br><br>
+                        <li><a href="#"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
+                     </ul>
+                  </div>
+               </div>
                     <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
-                    <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a> <!-- Add Class -->
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i>My Account</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="01_login.html"><i class="fa fa-sign-out fa-fw"></i>Sign out</a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-user -->
-                    </li>
-                    <!-- /.dropdown -->
-                </ul>
+               <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a> <!-- Add Class -->
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user">
+
+
+
+                  <div class="row">
+                           <div class="col-lg-5">
+                                 <br>
+                                 <p style="text-indent: 1em;">
+                                    <img src="{{url_for('static', filename='img/profile.png')}}" class="img-circle">
+                                 </p>
+                           </div>
+                           <div class="col-lg-5">
+                        <br>
+                                 <h6>{{nameuser.name_lecturer}}</h6>
+                                 <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">My Account</button>
+                           </div>
+                        </div>
+
+
+
+
+                     <li class="divider"></li>
+
+                        <li><a href="{{url_for('login')}}" style="margin-left:150px"><i class="fa fa-sign-out fa-fw"></i>Sign out</a></li>
+
+
+                  </ul>
+               </li>
+
+            </ul>
                 <!--end menu-->
                 <!--start side bar-->
                 <div class="navbar-default sidebar" role="navigation">
-                    <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav in" id="side-menu">
-                            <li>
-                                <a href="Eiei.html" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
-                            </li>
-                            <li class="">
-                                <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+               <div class="sidebar-nav navbar-collapse">
+                  <ul class="nav in" id="side-menu">
+                     <li>
+                        <a href="{{url_for("home", username = username)}}" class="active"><i class="glyphicon glyphicon-home"></i> Home</a>
+                     </li>
 
-                                    <li>
-                                        <a href="flot.html">Bawornsak Sakulkuaekulsuk</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Suriya Natsupakpong</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Warasinee Chaisangmongkon</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"></i> Add cooperators</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groups<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                    <li>
-                                        <a href="flot.html">Mini-project</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Project</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"></i> Add groups</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                                    <li>
-                                        <a href="flot.html">Task A (Individual)</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Task B (Project - Equal score)</a>
-                                    </li>
-                                    <li>
-                                        <a href="morris.html">Task C (Project - Credit bank)</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a data-toggle="modal" data-target="#myModal4"><i class="glyphicon glyphicon-plus"></i> Add Tasks</a>
-                                    </li>
-                                </ul>
-                            </li>
+
+                     <li class="">
+                        <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                          {% for i in lecturerList %}
+                           <li>
+                              <a data-toggle="modal" data-target="#{{i.id_lecturer+1000000}}">{{i.name_lecturer}}</a>
+                           </li>
+                           {% endfor %}
+                           <li class="divider"></li>
+                           <li>
+                              <a data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-plus"></i> Add cooperators</a>
+                           </li>
                         </ul>
-                    </div>
-                    <!-- /.sidebar-collapse -->
-                </div>
+                     </li>
+
+
+                     <li class="">
+                        <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groupings<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                          {% for i in groupingList %}
+                           <li>
+                              <a data-toggle="modal" data-target="#{{i.id_grouping+10000}}">{{i.name_grouping}}</a>
+                           </li>
+                           {% endfor %}
+                           <li class="divider"></li>
+                           <li>
+                              <a data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-plus"></i> Create Grouping</a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li class="">
+                        <a href="#"><i class="glyphicon glyphicon-pencil"></i> Tasks<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                          {% for i in taskList %}
+                           <li>
+                              <a data-toggle="modal" data-target="#{{i.id_task +10000000}}">{{i.name_task}}</a>
+                           </li>
+                           {% endfor %}
+                           <li class="divider"></li>
+                           <li>
+                              <a data-toggle="modal" data-target="#add_Task1"><i class="glyphicon glyphicon-plus"></i> Add Task</a>
+                              <!--add_Task1 , add_Task2-->
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+               <!-- /.sidebar-collapse -->
+            </div>
             </nav>
             <!--end side bar-->
             <!-- start Pop-up add class -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Add Class</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form name="test" method="post" action="">
-                                Class's name : <input type="text" name="Class's name"><br><br>
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <h5>Cooperators:</h5>
-                                    </div>
-                                    <div class="col-lg-10">
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+           <div class="modal-dialog" role="document">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                 <h4 class="modal-title" id="myModalLabel">Add Cooperators</h4>
 
+                 <div class="modal-body">
+                    <form name="test" method="post" action="/Bawornsak/FRA241/addLecturer">
+                       <div class="row">
+                          <div class="col-lg-2">
+                             <h5>Cooperators:</h5>
+                          </div>
+                          <div class="col-lg-10">
 
+                                   <a role="menuitem" tabindex="-1" href="#">
+                                              
+                                               <div class="ckbox">
+                                                   <div class="checkbox">
+                                                       <label for="checkbox1">
+                                                       <input type="checkbox" name="otherlec" value="4" id="checkbox1">
+                                                       Mr.Suriya
+                                                       </label>
+                                                   </div>
+                                               </div>
+                                               
+                           </a></div><a role="menuitem" tabindex="-1" href="#">
+                       </a></div><a role="menuitem" tabindex="-1" href="#">
+                 </a></form></div><a role="menuitem" tabindex="-1" href="#">
+               </a></div><a role="menuitem" tabindex="-1" href="#">
 
+               <div class="modal-footer">
+                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-primary">Add</button>
+               
+               </div>
 
-
-                                                <div class="checkbox">
-                                                    <label for="checkbox1">
-                                                        <input type="checkbox" id="checkbox1">
-                                                        Bawornsak Sakulkuaekulsuk
-                                                    </label>
-                                                </div>
-
-                                                <div class="checkbox">
-                                                    <label for="checkbox1">
-                                                        <input type="checkbox" id="checkbox1">
-                                                        Suriya Natsupakpong
-                                                    </label>
-                                                </div>
-
-                                                <div class="checkbox">
-                                                    <label for="checkbox1">
-                                                        <input type="checkbox" id="checkbox1">
-                                                        Warasinee Chaisangmongkon
-                                                    </label>
-                                                </div>
-
-                           </div>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+             </a></div>
+           </div>
+         </div>
             <!-- end Pop-up add class-->
             <!-- start Pop-up add Group -->
             <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -202,21 +207,40 @@
                             <div class="sidebar-nav navbar-collapse">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <ul class="nav in" id="side-menu">
-                                            <li>
-                                                <a href="#" class="active"> by Student ID.</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> by GPAX</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> by Random</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> by Custom</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+
+
+
+                              <ul class="nav in" id="side-menu">
+                                <li>
+                                   <div class="radio">
+                                      <label>
+                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="studentid" checked=""> by Student ID.
+                                      </label>
+                                   </div>
+                                </li>
+                                <li>
+                                   <div class="radio">
+                                      <label>
+                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="gpax" checked=""> by GPAX
+                                      </label>
+                                   </div>
+                                </li>
+                                <li>
+                                   <div class="radio">
+                                      <label>
+                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="random" checked=""> by Random
+                                      </label>
+                                   </div>
+                                </li>
+                                <li>
+                                   <div class="radio">
+                                      <label>
+                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="custom" checked=""> by Custom
+                                      </label>
+                                   </div>
+                                </li>
+                              </ul>
+                           </div>
                                     <div class="col-lg-8">
                                         <form name="test" method="post" action="">
                                             Group's name : <input type="text" name="Class's name"><br><br>
@@ -252,57 +276,49 @@
             </div>
             <!-- end Pop-up add Group-->
             <!-- start Pop-up add Task -->
-            <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Add Task</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="sidebar-nav navbar-collapse">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <ul class="nav in" id="side-menu">
-                                            <li>
-                                                <a href="#" class="active"> Individual</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> Group</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> Mini-project</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="active"> Project</a>
-                                            </li>
-                                        </ul>
+           <div class="modal fade" id="add_Task1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div class="sidebar-nav navbar-collapse">
+                        <div class="row">
+                           <div class="col-lg-5">
+                              <ul class="nav in" id="side-menu">
+                                <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
+                                 <li>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="individual" checked="">Individual
+                                      </label>
                                     </div>
-                                    <div class="col-lg-8">
-                                        <form name="test" method="post" action="">
-                                            Task's name : <input type="text" name="Class's name"><br><br>
-                                            Score : <input type="text" name="Class's name"><br><br>
-                                            <div class="form-group">
-                                                <h5>Scoring type</h5>
-                                                <div class="col-lg-4">
-                                                    <div class="radio">
-                                                        <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Equal
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <div class="radio">
-                                                        <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Credit bank
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+                                 </li>
+                                 {% for i in groupingList %}
+                                 <li>
+
+                                    <div class="radio">
+                                      <label>
+                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="{{i.id_grouping}}" checked="">{{i.name_grouping}}
+                                      </label>
                                     </div>
-                                </div>
-                            </div>
+
+                                 </li>
+                                 {% endfor %}
+                              </ul>
+                           </div>
+                           <div class="col-lg-7">
+                              <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
+                                 Task's name : <input type="text" name="task_name"><br><br>
+                                 Score : <input type="text" name="score"><br><br>
+                           </div>
                         </div>
+                     </div>
+                  </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Add</button>
@@ -318,11 +334,7 @@
                         <!-- องประกอบด้านใน-->
                         <h5 class="page-header"><i class="glyphicon glyphicon-cog"></i> <ins>Manage Student List</ins></h5>
                     </div>
-                    <div class="col-lg-2 col-md-push-7">
-                        <br><br>
-                        <!-- Split button -->
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
+                    
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->

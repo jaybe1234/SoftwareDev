@@ -135,6 +135,10 @@ def subject(username,subject_code,type_sort):
                                 len_sortgpax = len_sortgpax,sortgpax = sortgpax,type_sort = type_sort,scoreStudentGpax = scoreStudentGpax,
                                 lecOther = lecOther)
     else :
+        grouplist = getGroupList(subject_code, type_sort)
+        member_group = studentInGroupList(subject_code, type_sort, grouplist)
+        len_grouplist = len(grouplist)
+        len_member_group = lenInList(member_group)
         namegroup = getlistgroupid(subject_code,type_sort)
         studentListGroup = sortbygroup(subject_code,type_sort)
         len_studentGroup = len(studentListGroup)
@@ -148,7 +152,8 @@ def subject(username,subject_code,type_sort):
                             nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                             type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
-                            namestudent_ingroup = namestudent_ingroup,lecOther = lecOther)
+                            namestudent_ingroup = namestudent_ingroup,lecOther = lecOther, len_grouplist = len_grouplist,
+                            len_member_group = len_member_group, grouplist = grouplist, member_group = member_group)
 
 @app.route('/<string:username>/<string:subject_code>/addLecturer', methods = ['GET' , 'POST'])
 def add_lecturer(username,subject_code):

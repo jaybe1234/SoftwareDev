@@ -138,12 +138,15 @@ def subject(username,subject_code,type_sort):
         len_studentGroup = len(studentListGroup)
         scoregroup = getstudentgroupscore(taskList,subject_code,type_sort)
         len_scoregroup = len(scoregroup)
+        namestudent_ingroup = getstudentnameIngroup(subject_code,type_sort)
+        #len_namestudentIngroup = len(namestudent_ingroup)
         return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
                             lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                             scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                             nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                             type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
-                            studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup)
+                            studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
+                            namestudent_ingroup = namestudent_ingroup)
 
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
@@ -216,12 +219,27 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
+<<<<<<< HEAD
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 239e5535e32cecc967c9d448053dc9f205a23f74
+>>>>>>> f69d39eb2a1816aceebeab88d2264b8d4e4a5500
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
+<<<<<<< HEAD
                             otherstudent = otherstudent, nameuser = nameuser)
+=======
+                            otherstudent = otherstudent)
+<<<<<<< HEAD
+    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
+                             groupingList = groupingList, taskList = taskList, nameuser = nameuser)
+=======
+>>>>>>> f69d39eb2a1816aceebeab88d2264b8d4e4a5500
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
 def removeStudent(username,subject_code):
@@ -232,6 +250,7 @@ def removeStudent(username,subject_code):
             delete_student_enrollment(i,subject_code)
     return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
 
+>>>>>>> 239e5535e32cecc967c9d448053dc9f205a23f74
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -309,7 +328,10 @@ def member(subject_code,task_name,student_id,credit_bank):
             score = request.form[str(j)]
             new_score = Score(score_score = score,task_score=task_object,student_id_score = groups[j].student_id_group)
             session.add(new_score)
-            session.commit()
+            try:
+                session.commit()
+            except:
+               session.rollback()
         return redirect(url_for('thankyou'))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id, length=length,task_name=task_name,subject_code=subject_code)
@@ -317,16 +339,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
-
-# taskList = getTask("FRA241")
-# studentListGroup = sortbygroup("FRA241","nutty")
-# len_studentGroup = len(studentListGroup)
-# scoregroup = getstudentgroupscore(taskList,"FRA241","nutty")
-# list_score = []
-# for i in range(len_studentGroup):
-#     for a in scoregroup[i]:
-#         list_score.append(a.score_score)
-# print (list_score)
 
 if __name__ == '__main__':
     app.debug = True

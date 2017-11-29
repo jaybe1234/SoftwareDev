@@ -117,14 +117,13 @@ def subject(username,subject_code,type_sort):
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
-    taskco = getTaskco(groupingList)
     lecOther = getLecturerNotinclass(lecturerList)
     if type_sort == 'studentid':
         return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
                                 lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
-                                type_sort = type_sort,taskco = taskco,lecOther = lecOther)
+                                type_sort = type_sort,lecOther = lecOther)
     elif type_sort == 'gpax':
         sortgpax = getgpax(subject_code)
         len_sortgpax = len(sortgpax)
@@ -134,7 +133,7 @@ def subject(username,subject_code,type_sort):
                                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                                 len_sortgpax = len_sortgpax,sortgpax = sortgpax,type_sort = type_sort,scoreStudentGpax = scoreStudentGpax,
-                                taskco = taskco,lecOther = lecOther)
+                                lecOther = lecOther)
     else :
         namegroup = getlistgroupid(subject_code,type_sort)
         studentListGroup = sortbygroup(subject_code,type_sort)
@@ -149,7 +148,7 @@ def subject(username,subject_code,type_sort):
                             nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                             type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
-                            namestudent_ingroup = namestudent_ingroup,taskco = taskco,lecOther = lecOther)
+                            namestudent_ingroup = namestudent_ingroup,lecOther = lecOther)
 
 @app.route('/<string:username>/<string:subject_code>/addLecturer', methods = ['GET' , 'POST'])
 def add_lecturer(username,subject_code):
@@ -226,22 +225,11 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-<<<<<<< HEAD
-
-=======
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
->>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-<<<<<<< HEAD
-                            otherstudent = otherstudent)
-
-    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
-                             groupingList = groupingList, taskList = taskList, nameuser = nameuser)
-
-=======
                             otherstudent = otherstudent, nameuser = nameuser)
 
 
@@ -261,7 +249,6 @@ def addStudent(username,subject_code):
         for i in studentlist:
             create_enrollment(subject_code,i,None)
         return redirect(url_for('manageStudentList', username = username, subject_code = subject))
->>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):
@@ -350,7 +337,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
-
 
 if __name__ == '__main__':
     app.debug = True

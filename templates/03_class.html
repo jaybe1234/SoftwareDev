@@ -102,10 +102,6 @@
                      </li>
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-user"></i> Cooperators<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
@@ -122,10 +118,6 @@
                      </li>
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
                      <li class="">
                         <a href="#"><i class="glyphicon glyphicon-briefcase"></i> Groupings<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
@@ -161,12 +153,7 @@
             </div>
          </nav>
          <!--end side bar-->
-<<<<<<< HEAD
 
-
-         
-=======
->>>>>>> f66fd4f3172ad81ca9dab632ded9982e0accfc8e
          <!-- start Pop-up add class -->
          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -506,8 +493,10 @@
                         </div>
                         <br>
                         <h5><strong>Tasks</strong></h5>
-                        {% for j in taskco%}
-                        <h5><i class="glyphicon glyphicon-stop"> {{ j }}</i></h5>
+                        {% for a in taskList %}
+                        {% if i.id_grouping == a.grouping_id_task%}
+                        <h5><i class="glyphicon glyphicon-stop"> {{ a.name_task }}</i></h5>
+                        {% endif %}
                         {% endfor %}
                   </div>
                   <div class="modal-footer">

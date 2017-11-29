@@ -176,21 +176,22 @@ def addTask(username, subject_code):
     studentList = getStudentList(subject_code)
     if request.method == 'POST':
         grouping = getGrouping(subject_code)
-        for i in grouping:
-            if i.name_grouping == request.form['grouping_name']:
-                grouping_id = i.id_grouping
-                break
-        create_task(grouping_id, request.form['task_name'], request.form['score'])
+        if request.form['grouping_name'] == "individual":
+            grouping = session.query(Grouping).filter_by(subject_code_grouping = subject_code, name_grouping = 'Individual')
+            create_task(None, request.form['task_name'], request.form['score'])
+        else:
+            create_task(request.form['grouping_name'], request.form['task_name'], request.form['score'])
         tasklist = getTask(subject_code)
         for i in tasklist:
             if i.name_task == request.form['task_name']:
                 task = i
                 break
+
         for i in studentList:
             create_score(task.id_task, i.id_student, 0)
     return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = 'studentid'))
 
-@app.route('/<string:username>/<string:subject_code>/<string:lec_id>/<string:type_sort>/remove_grouping', methods = ['GET', 'POST'])
+@app.route('/<string:username>/<string:subject_code>/<string:lec_id>/<string:type_sort>/remove_lec', methods = ['GET', 'POST'])
 def removeLec(username,subject_code,lec_id,type_sort):
     if request.method == 'POST':
         delete_lecturer_enrollment(lec_id, subject_code)

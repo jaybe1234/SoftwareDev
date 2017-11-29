@@ -226,7 +226,7 @@ def manageStudentList(username, subject_code):
     lecturerList = getLecturerList(subject_code)
     groupingList = getGrouping(subject_code)
     taskList = getTask(subject_code)
-<<<<<<< HEAD
+
 
 =======
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()

@@ -125,7 +125,8 @@ def getStudentList(subjectCode):
     for i in studentIdList:
         student = session.query(Student).filter_by(id_student = i).one()
         studentList.append(student)
-    return studentList
+    finalstdlist = sorted(studentList, key=lambda student: student.id_student)
+    return finalstdlist
 
 def otherStudentList(subjectCode):
     otherstudent = []

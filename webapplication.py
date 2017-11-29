@@ -216,10 +216,6 @@ def removeTask(username,subject_code,task_id,type_sort = None):
         delete_task(task_id)
         return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
-def removeTask(username,subject_code,task_id,type_sort):
-    if request.method =='POST':
-        delete_task(task_id)
-        return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = type_grouping))
 
 @app.route('/<string:username>/<string:subject_code>/Manage_student', methods = ['GET', 'POST'])
 def manageStudentList(username, subject_code):
@@ -244,14 +240,13 @@ def removeStudent(username,subject_code):
             delete_student_enrollment(i,subject_code)
     return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
 
-
-@app.route('/<string:username>/<string:subject_code>/Manage_student/remove_student', methods = ['GET', 'POST'])
-def enrollStudent(username,subject_code):
+@app.route('/<string:username>/<string:subject_code>/Manage_student/addstudent', methods = ['GET', 'POST'])
+def addStudent(username,subject_code):
     if request.method == 'POST':
-        studentlist = request.form.getlist('studentinclass')
+        studentlist = request.form.getlist('otherstudent')
         for i in studentlist:
-            delete_student_enrollment(i,subject_code)
-    return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
+            create_enrollment(subject_code,i,None)
+        return redirect(url_for('manageStudentList', username = username, subject_code = subject))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort=None):

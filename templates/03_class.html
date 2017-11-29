@@ -700,13 +700,18 @@
                                               </td>
                                           </tr>
                                           {% endfor %}
+
                                       </tbody>
                                       </table>
 
 
 <!-- sort by group-->
                                       {% else %}
-                                      {% for  i in namegroup %}
+                                      {% for a in range(len_grouplist) %}
+                                      <br>
+                                      <span class="label label-primary">{{grouplist[a]}}</span>
+
+                                      <!-- <h3 class="panel-title">{{grouplist[a]}}</h3> -->
                                         <table class="table">
                                         <thead>
                                             <tr>
@@ -715,40 +720,21 @@
                                                 {% for i in taskList %}
                                                 <th>{{i.name_task}}</th>
                                                 {% endfor %}
-                                                <th>Total</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for i in range(len_studentGroup) %}
-                                            {% for a in studentListGroup[i]%}
+                                            {% for b in range(len_member_group[a]) %}
                                             <tr>
-                                                <td>{{a.student_id_group}}</td>
-
-                                                {% for a in scoregroup[i] %}
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-md-1 col-md-push-0">
-                                                            {{a.score_score}}
-                                                        </div>
-                                                        <div class="col-md-1 col-md-push-0">
-                                                            <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key + 1000}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                {% endfor %}
-                                                <td>
-                                                    <div class="row">
-                                                        <div class="col-md-1 col-md-push-0">
-                                                            {{totalscore[i]}}
-                                                    </div>
-                                                </td>
+                                                <td>{{member_group[a][b].id_student}}</td>
+                                                <td>{{member_group[a][b].name_student}}</td>
                                             </tr>
                                             {% endfor %}
-                                            {% endfor %}
+
                                         </tbody>
                                         </table>
-
                                         {% endfor %}
+                                        <br><br><br><br>
                                         {% endif %}
                             </div>
                         </div>

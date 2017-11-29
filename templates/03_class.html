@@ -41,19 +41,19 @@
                      <i class="glyphicon glyphicon-list"></i>
                      </a>
                      <ul class="dropdown-menu dropdown-user">
-                        <li><a href='#'><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                        <li><a href="{{url_for("home", username = username)}}"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
                         {% for i in subject%}
                         <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
-                        <li><a href="01_login.html"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
                         <li class="divider"></li>
-                        <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
                   </div>
                </div>
-               <a class="navbar-brand" href="Eiei.html">{{subject_code}}</a>
+               <a class="navbar-brand" href='{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'studentid')}}'>{{subject_code}}</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -287,7 +287,6 @@
                                                    </div>
                                                </div>
                                                {% endfor %}
-
                            </div>
                        </div>
                  </div>
@@ -534,39 +533,39 @@
 {% endfor %}
       {% for i in lecturerList %}
        <!-- start Pop-up Cooperators 1 -->
-         <div class="modal fade" id="{{i.id_lecturer+1000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-sm" role="document">
-               <div class="modal-content">
-                  <div class="modal-body">
-                     <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer,type_sort = type_sort)}}">
-                        <div class="row">
-                           <div class="col-lg-4">
-                                 <br>
-                                 <p style="text-indent: 1em;">
-                                    <img src="{{url_for('static', filename='img/profile.png')}}" class="img-circle">
-                                 </p>
-                           </div>
-                           <div class="col-lg-8">
-                        <br>
-                                 <h6>{{i.name_lecturer}}</h6>
-                                 <a class="btn btn-primary btn-sm" data-dismiss="modal">Profile</a>
-                           </div>
-                        </div>
-                  </div>
-                  <div class="modal-footer">
-                     <div class="row">
-                        <div class="col-lg-2">
-                           <button type="submit" class="btn btn-default">Remove</button>
-                        </div>
-                        <div class="col-lg-10">
-                           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-                     </div>
-                  </div>
-                  </form>
-               </div>
-            </div>
-         </div>
+       <div class="modal fade" id="{{i.id_lecturer+1000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-sm" role="document">
+             <div class="modal-content">
+                <div class="modal-body">
+                   <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer,type_sort = type_sort)}}">
+                      <div class="row">
+                         <div class="col-lg-4">
+                               <br>
+                               <p style="text-indent: 1em;">
+                                  <img src="{{url_for('static', filename='img/profile.png')}}" class="img-circle">
+                               </p>
+                         </div>
+                         <div class="col-lg-8">
+                      <br>
+                               <h6>{{i.name_lecturer}}</h6>
+                               <a class="btn btn-primary btn-sm" data-dismiss="modal">Profile</a>
+                         </div>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                   <div class="row">
+                      <div class="col-lg-2">
+                         <button type="submit" class="btn btn-default">Remove</button>
+                      </div>
+                      <div class="col-lg-10">
+                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                   </div>
+                </div>
+                </form>
+             </div>
+          </div>
+       </div>
          <!-- end Pop-up Cooperators 1-->
          {% endfor %}
       {% for i in groupingList %}

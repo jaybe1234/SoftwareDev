@@ -117,12 +117,14 @@ def subject(username,subject_code,type_sort):
     range_student = range(len(studentList))
     len_scorelist = len(scorelist)
     len_tasklist = len(taskList)
+    taskco = getTaskco(groupingList)
+    lecOther = getLecturerNotinclass(lecturerList)
     if type_sort == 'studentid':
         return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
                                 lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
-                                type_sort = type_sort)
+                                type_sort = type_sort,taskco = taskco,lecOther = lecOther)
     elif type_sort == 'gpax':
         sortgpax = getgpax(subject_code)
         len_sortgpax = len(sortgpax)
@@ -131,7 +133,8 @@ def subject(username,subject_code,type_sort):
                                 lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                                 scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                                 nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
-                                len_sortgpax = len_sortgpax,sortgpax = sortgpax,type_sort = type_sort,scoreStudentGpax = scoreStudentGpax)
+                                len_sortgpax = len_sortgpax,sortgpax = sortgpax,type_sort = type_sort,scoreStudentGpax = scoreStudentGpax,
+                                taskco = taskco,lecOther = lecOther)
     else :
         namegroup = getlistgroupid(subject_code,type_sort)
         studentListGroup = sortbygroup(subject_code,type_sort)
@@ -146,8 +149,13 @@ def subject(username,subject_code,type_sort):
                             nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                             type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
-                            namestudent_ingroup = namestudent_ingroup)
+                            namestudent_ingroup = namestudent_ingroup,taskco = taskco,lecOther = lecOther)
 
+@app.route('/<string:username>/<string:subject_code>/addLecturer', methods = ['GET' , 'POST'])
+def add_lecturer(username,subject_code):
+    if request.method == 'POST':
+        lecList = request.form.getlist('otherlec')
+    return str(lecList)
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
 def create_grouping(username,subject_code):
@@ -332,6 +340,7 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
+
 
 if __name__ == '__main__':
     app.debug = True

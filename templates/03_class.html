@@ -268,50 +268,35 @@
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                  <h4 class="modal-title" id="myModalLabel">Add Cooperators</h4>
 
+                 <div class="modal-body">
+                    <form name="test" method="post" action="{{url_for('add_lecturer',username = username,subject_code = subject_code)}}">
+                       <div class="row">
+                          <div class="col-lg-2">
+                             <h5>Cooperators:</h5>
+                          </div>
+                          <div class="col-lg-10">
 
-               </div>
-               <div class="modal-body">
-                 <div class="row">
-                             <ul class="nav in" id="side-menu">
+                                   <a role="menuitem" tabindex="-1" href="#">
+                                              {% for i in lecOther%}
+                                               <div class="ckbox">
+                                                   <div class="checkbox">
+                                                       <label for="checkbox1">
+                                                       <input type="checkbox" name="otherlec" value="{{i.id_lecturer}}" id="checkbox1">
+                                                       {{ i.name_lecturer }}
+                                                       </label>
+                                                   </div>
+                                               </div>
+                                               {% endfor %}
 
-                                 <div class="col-lg-5">
-                                     <li>
-                                         <a href="#" class="active">Bawornsak Sakulkuaekulsuk </a>
-                                     </li>
-                                 </div>
-                                 <div class="col-lg-7">
-                                     <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>
-                                 </div>
-
-                                 <br><br>
-
-                                 <div class="col-lg-5">
-                                     <li>
-                                         <a href="#" class="active">Suriya Natsupakpong </a>
-                                     </li>
-
-                                 </div>
-                                 <div class="col-lg-7">
-                                     <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>
-                                 </div>
-
-                                 <br><br>
-
-                                 <div class="col-lg-5">
-                                     <li>
-                                         <a href="#" class="active">Warasinee Chaisangmongkon </a>
-                                     </li>
-                                 </div>
-                                 <div class="col-lg-7">
-                                     <button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal">Add</button>
-                                 </div>
-                             </ul>
-
+                           </div>
+                       </div>
                  </div>
-
                </div>
+
                <div class="modal-footer">
                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-primary">Add</button>
+               </form>
                </div>
 
              </div>
@@ -606,8 +591,9 @@
                         </div>
                         <br>
                         <h5><strong>Tasks</strong></h5>
-                        <h5><i class="glyphicon glyphicon-stop"> Task B</i></h5>
-                        <h5><i class="glyphicon glyphicon-stop"> Task C</i></h5>
+                        {% for j in taskco%}
+                        <h5><i class="glyphicon glyphicon-stop"> {{ j }}</i></h5>
+                        {% endfor %}
                   </div>
                   <div class="modal-footer">
                      <div class="row">

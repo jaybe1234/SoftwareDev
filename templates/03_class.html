@@ -47,7 +47,7 @@
                         <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                         {% endfor %}
                         <br><br><br><br><br><br>
-                        <li><a href="#"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
+                        <li><a href='{{url_for('archive',username = username)}}'><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>

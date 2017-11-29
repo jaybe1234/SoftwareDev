@@ -126,6 +126,15 @@ def getStudentList(subjectCode):
         studentList.append(student)
     return studentList
 
+def otherStudentList(subjectCode):
+    otherstudent = []
+    studentList = getStudentList(subjectCode)
+    everystudent = session.query(Student)
+    for i in everystudent:
+        if i not in studentList:
+            otherstudent.append(i)
+    return otherstudent
+
 def getLecturerList(subjectCode):
     enrollList = session.query(Enrollment).filter_by(subject_code_enrollment = subjectCode)
     lecturerIdList = []

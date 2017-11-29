@@ -402,7 +402,7 @@
 
                                     <div class="radio">
                                       <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Individual
+                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="individual" checked="">Individual
                                       </label>
                                     </div>
 
@@ -412,7 +412,7 @@
 
                                     <div class="radio">
                                       <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">{{i.name_grouping}}
+                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="{{i.id_grouping}}" checked="">{{i.name_grouping}}
                                       </label>
                                     </div>
 
@@ -424,7 +424,7 @@
                               <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
                                  Task's name : <input type="text" name="task_name"><br><br>
                                  Score : <input type="text" name="score"><br><br>
-                                 <br><br>
+
 
                            </div>
                         </div>
@@ -743,7 +743,7 @@
                                                         {{a.score_score}}
                                                     </div>
                                                     <div class="col-md-1 col-md-push-0">
-                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key +1000}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#{{a.primary_key}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
                                                     </div>
                                                 </div>
                                             </td>

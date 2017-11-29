@@ -155,7 +155,9 @@ def subject(username,subject_code,type_sort):
 def add_lecturer(username,subject_code):
     if request.method == 'POST':
         lecList = request.form.getlist('otherlec')
-    return str(lecList)
+        for i in lecList:
+            create_enrollment(subject_code,None,i)
+    return redirect(url_for('subject', username = username, subject_code = subject_code, type_sort = 'studentid'))
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
 def create_grouping(username,subject_code):

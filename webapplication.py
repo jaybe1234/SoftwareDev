@@ -138,12 +138,15 @@ def subject(username,subject_code,type_sort):
         len_studentGroup = len(studentListGroup)
         scoregroup = getstudentgroupscore(taskList,subject_code,type_sort)
         len_scoregroup = len(scoregroup)
+        namestudent_ingroup = getstudentnameIngroup(subject_code,type_sort)
+        #len_namestudentIngroup = len(namestudent_ingroup)
         return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
                             lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
                             scorelist = scorelist, totalscore = totalscore,range_student = range_student,
                             nameuser = nameuser,subject = subject,len_scorelist = len_scorelist,len_tasklist = len_tasklist,
                             type_sort = type_sort,namegroup = namegroup,len_studentGroup = len_studentGroup,
-                            studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup)
+                            studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
+                            namestudent_ingroup = namestudent_ingroup)
 
 
 @app.route('/<string:username>/<string:subject_code>/create_grouping', methods = ['GET' , 'POST'])
@@ -303,16 +306,6 @@ def member(subject_code,task_name,student_id,credit_bank):
 @app.route('/thankyou')
 def thankyou():
     return "Enjoy your score :P"
-
-# taskList = getTask("FRA241")
-# studentListGroup = sortbygroup("FRA241","nutty")
-# len_studentGroup = len(studentListGroup)
-# scoregroup = getstudentgroupscore(taskList,"FRA241","nutty")
-# list_score = []
-# for i in range(len_studentGroup):
-#     for a in scoregroup[i]:
-#         list_score.append(a.score_score)
-# print (list_score)
 
 if __name__ == '__main__':
     app.debug = True

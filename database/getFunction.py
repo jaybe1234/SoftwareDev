@@ -161,14 +161,6 @@ def getGrouping(subjectCode):
     groupingList = session.query(Grouping).filter_by(subject_code_grouping = subjectCode)
     return  groupingList
 
-def getTaskco(groupingList):
-    taskco = []
-    for i in groupingList:
-        nametask = session.query(Task).filter_by(grouping_id_task = i.id_grouping)
-        for j in nametask:
-            taskco.append(j.name_task)
-    return taskco
-
 
 def getTask(subjectCode):
     groupingList = getGrouping(subjectCode)

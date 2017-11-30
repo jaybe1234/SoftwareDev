@@ -166,8 +166,10 @@ def subject(username,subject_code,type_sort):
         len_studentGroup = len(studentListGroup)
         scoregroup = getstudentgroupscore(taskList,subject_code,type_sort)
         len_scoregroup = len(scoregroup)
-        groupingtasklist = getTaskListFromGrouping(subject_code, type_sort)
+        groupingtasklist = list(getTaskListFromGrouping(subject_code, type_sort))
         namestudent_ingroup = getstudentnameIngroup(subject_code,type_sort)
+        scorelist = taskListScore(member_group, groupingtasklist)
+        len_scorelist = len(scorelist)
         #len_namestudentIngroup = len(namestudent_ingroup)
         return render_template('03_class.html', username = username, subject_code = subject_code,studentList = studentList,
                             lecturerList = lecturerList , groupingList = groupingList ,taskList = taskList,
@@ -177,7 +179,11 @@ def subject(username,subject_code,type_sort):
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
                             namestudent_ingroup = namestudent_ingroup,lecOther = lecOther, len_grouplist = len_grouplist,
                             len_member_group = len_member_group, grouplist = grouplist, member_group = member_group,
+<<<<<<< HEAD
                              groupingtasklist = groupingtasklist,lecnotuser = lecnotuser)
+=======
+                            groupingtasklist = groupingtasklist)
+>>>>>>> 7af21372893a1c946df631861f08d448847ccaca
 
 @app.route('/<string:username>/<string:subject_code>/addLecturer', methods = ['GET' , 'POST'])
 def add_lecturer(username,subject_code):
@@ -335,7 +341,7 @@ def addStudent(username,subject_code):
         return redirect(url_for('manageStudentList', username = username, subject_code = subject))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
-def editScore(username,subject_code,student_id,task_name,type_sort=None):
+def editScore(username,subject_code,student_id,task_name,type_sort):
     student = session.query(Student).filter_by(id_student = student_id).one()
     student_name = student.name_student
     if request.method == 'POST':

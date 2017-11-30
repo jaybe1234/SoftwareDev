@@ -19,7 +19,7 @@
       <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-      <link href="static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../static/vendor_for_slidebar/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
       <link href="../static/css_box/style.css" rel="stylesheet">
 
@@ -179,62 +179,46 @@
         <!--end side bar-->
         <!-- start Pop-up add class -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form name="test" method="post" action="">
-                            Class's name : <input type="text" name="Class_name"><br><br>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h5>Cooperators:</h5>
-                                </div>
-                                <div class="col-lg-10">
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Bawornsak Sakulkuaekulsuk
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Suriya Natsupakpong
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Warasinee Chaisangmongkon
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
+           <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Class</h4>
+                 </div>
+                 <div class="modal-body">
+                    <form name="test" method="post" action="{{url_for('add_class',username = username)}}">
+                       Class's name : <input type="text" name="classname"><br><br>
+                       <div class="row">
+                          <div class="col-lg-2">
+                             <h5>Cooperators:</h5>
+                          </div>
+                          <div class="col-lg-10">
+                                   <a role="menuitem" tabindex="-1" href="#">
+                                     {%for i in lecnotuser%}
+                                               <div class="ckbox">
+                                                   <div class="checkbox">
+                                                       <label for="checkbox1">
+                                                       <input type="checkbox"name="lecturer" value="{{i.id_lecturer}}" id="checkbox1">
+                                                       {{ i.name_lecturer}}
+                                                       </label>
+                                                   </div>
+                                               </div>
+                                       {% endfor %}
+
+
+                                 </a>
+
+                           </div>
+                       </div>
+                 </div>
+                 <div class="modal-footer">
+                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-primary">Add</button>
+                 </div>
+                 </form>
+              </div>
+           </div>
         </div>
-        <!-- context -->
         <div class="container">
             <div class = "row" >
                 {% for i in range(0,lensub[0]) %}
@@ -291,13 +275,13 @@
         </div>
         <!-- end context -->
         </div>
-        <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/metisMenu/metisMenu.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/raphael/raphael.min.js')}}"></script>
-        <script src="{{url_for('static', filename='vendor/morrisjs/morris.min.js')}}"></script>
-        <script src="{{url_for('static', filename='data/morris-data.js')}}"></script>
-        <script src="{{url_for('static', filename='dist/js/sb-admin-2.js')}}"></script>
+        <script src="../static/vendor/jquery/jquery.min.js"></script>
+        <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../static/vendor/metisMenu/metisMenu.min.js"></script>
+        <script src="../static/vendor/raphael/raphael.min.js"></script>
+        <script src="../static/vendor/morrisjs/morris.min.js"></script>
+        <script src="../static/data/morris-data.js"></script>
+        <script src="../static/dist/js/sb-admin-2.js"></script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="js/jquery-3.2.1.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

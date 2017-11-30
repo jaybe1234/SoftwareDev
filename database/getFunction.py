@@ -366,6 +366,19 @@ def studentInGroupList(subject_code,grouping_name,getgrouplist):
         member_group.append(member)
     return member_group
 
+def getarchive(iduser):
+    listar = []
+    ar = session.query(Archive).filter_by(lecturer_id_archive = iduser)
+    for i in ar:
+        listar.append(i.subject_code_archive)
+    return listar
+
+#def getlistEnroll (listarchive,subListAll):
+#    for i in listarchive:
+#        for a in subListAll:
+#            if i == a:
+
+
 def getlecnotuser(username):
     leclist = session.query(Lecturer)
     lecnotuser= []

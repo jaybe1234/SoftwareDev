@@ -3,7 +3,7 @@ import smtplib
 import random
 from email.mime.text import MIMEText
 from flask import Flask, render_template, redirect, request, url_for, flash
-from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score,Credit
+from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score,Credit,Storage
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from Database.getFunction import *
@@ -386,20 +386,35 @@ def member(subject_code,task_name,student_id,credit_bank):
     if request.method == 'POST':
         for j in range(length):
             score = request.form[str(j)]
-            new_storage = Storage(student_id_storage = student_id , task_name_storage = task_name , score_storage = score )
+            new_storage = Storage(student_id_storage = groups[j].student_id_group , task_name_storage = task_name , score_storage = score )
+            # return str(groups[j].student_id_group)
             session.add(new_storage)
             try:
                 session.commit()
             except:
                session.rollback()
+            score_obj_list = session.query(Storage).filter_by(student_id_storage = groups[j].student_id_group ,task_name_storage = task_name)
+            task_id = session.query(Task).filter_by(name_task = task_name)[0].id_task
+            score = 0
+            score_own = session.query(Score).filter_by(task_id_score = task_id,student_id_score = groups[j].student_id_group)
+            if score_own is not None:
+                if score_obj_list is not None:
+                    delete_score(task_id,groups[j].student_id_group)
+                    for k in score_obj_list:
+                        score = score + k.score_storage
+                        create_score(task_id,groups[j].student_id_group,score)
+            else:
+                if score_obj_list is not None:
+                    for k in score_obj_list:
+                        score = score + k.score_storage
+                        create_score(task_id,groups[j].student_id_group,score)
         return redirect(url_for('thankyou'))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id, length=length,task_name=task_name,subject_code=subject_code)
 
 @app.route('/thankyou')
 def thankyou():
-    return "Enjoy your score :P"
-
+    return render_template("testenjoy.html")
 if __name__ == '__main__':
     app.debug = True
     app.run(host = 'localhost', port = 5000)

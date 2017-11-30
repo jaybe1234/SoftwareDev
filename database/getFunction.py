@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score
+from Database.DatabaseSetup import Base,Lecturer,Student,Enrollment,Subject,Grouping,Group,Task,Score,Storage
 from random import randint
 from Database.AddData import *
 from operator import attrgetter
@@ -370,9 +370,6 @@ def lenInList(lis):
     num_list = []
     for i in lis:
         num_list.append(len(i))
-<<<<<<< HEAD
-    return num_list
-=======
     return num_list
 
 def getTaskListFromGrouping(subjectcode, grouping_name):
@@ -381,5 +378,46 @@ def getTaskListFromGrouping(subjectcode, grouping_name):
     return tasklist
 
 def taskListScore(studentlist, tasklist):
-    pass
->>>>>>> 3b0a04ed3e46decc602a6f77423f6d766a11c927
+    number_of_task = len(tasklist)
+    number_of_group = len(studentlist)
+    number_of_student = 0
+    for q in studentlist:
+        number_of_student = number_of_student + len(q)
+    result = []
+    list_score_student = []
+    for i in range(number_of_group):
+        result.append([])
+    for j in range(len(studentlist)):
+        for q in studentlist[j]:
+            result[j].append([])
+    for e in range(0,number_of_group):
+        for r in range (0,len(studentlist[e])):
+            for t in range (0,number_of_task):
+                score = scoreTask(studentlist[e][r],tasklist[t])
+                result[e][r].append(score)
+    return result
+
+def scoreTask(student_obj,task_obj):
+    task_id = task_obj.id_task
+    student_id = student_obj.id_student
+    score = session.query(Score).filter_by(student_id_score = student_id , task_id_score = task_id)[0].score_score
+    return score
+
+def creditbankScore(task_name,subject_code,student_id):
+    score_obj_list = session.query(Storage).filter_by(student_id_storage = student_id,task_name_storage = task_name)
+    task_id = session.query(Task).filter_by(name_task = task_name)[0].id_task
+    score = 2
+    score_own = session.query(Score).filter_by(task_id_score = task_id,student_id_score = student_id)
+    if score_own is not None:
+        delete_score(task_id,student_id)
+    else:
+        if score_obj_list is not None:
+            for i in score_obj_list:
+                return i.score_storage
+                score = score + i.score_storage
+    return create_score(task_id,student_id,score)
+
+
+
+
+

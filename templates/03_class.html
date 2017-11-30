@@ -163,19 +163,19 @@
                      <h4 class="modal-title" id="myModalLabel">Add Class</h4>
                   </div>
                   <div class="modal-body">
-                     <form name="test" method="post" action="">
-                        Class's name : <input type="text" name="Class's name"><br><br>
+                     <form name="test" method="post" action="{{url_for('add_class',username = username)}}">
+                        Class's name : <input type="text" name="classname"><br><br>
                         <div class="row">
                            <div class="col-lg-2">
                               <h5>Cooperators:</h5>
                            </div>
                            <div class="col-lg-10">
                                     <a role="menuitem" tabindex="-1" href="#">
-                                      {%for i in lecturerList%}
+                                      {%for i in lecnotuser%}
                                                 <div class="ckbox">
                                                     <div class="checkbox">
                                                         <label for="checkbox1">
-                                                        <input type="checkbox" id="checkbox1">
+                                                        <input type="checkbox"name="lecturer" value="{{i.id_lecturer}}" id="checkbox1">
                                                         {{ i.name_lecturer}}
                                                         </label>
                                                     </div>

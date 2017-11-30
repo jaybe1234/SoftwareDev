@@ -366,6 +366,14 @@ def studentInGroupList(subject_code,grouping_name,getgrouplist):
         member_group.append(member)
     return member_group
 
+def getlecnotuser(username):
+    leclist = session.query(Lecturer)
+    lecnotuser= []
+    for i in leclist:
+        if i.user_lecturer not in username:
+            lecnotuser.append(i)
+    return lecnotuser
+
 def lenInList(lis):
     num_list = []
     for i in lis:

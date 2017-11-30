@@ -90,50 +90,35 @@
         <!--end side bar-->
         <!-- start Pop-up add class -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form name="test" method="post" action="">
-                            Class's name : <input type="text" name="Class_name"><br><br>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h5>Cooperators:</h5>
-                                </div>
-                                <div class="col-lg-10">
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Bawornsak Sakulkuaekulsuk
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Suriya Natsupakpong
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Warasinee Chaisangmongkon
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
+           <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Class</h4>
+                 </div>
+                 <div class="modal-body">
+                    <form name="test" method="post" action="{{url_for('add_class',username = username)}}">
+                       Class's name : <input type="text" name="classname"><br><br>
+                       <div class="row">
+                          <div class="col-lg-2">
+                             <h5>Cooperators:</h5>
+                          </div>
+                          <div class="col-lg-10">
+                                   <a role="menuitem" tabindex="-1" href="#">
+                                     {%for i in lecnotuser%}
+                                               <div class="ckbox">
+                                                   <div class="checkbox">
+                                                       <label for="checkbox1">
+                                                       <input type="checkbox"name="lecturer" value="{{i.id_lecturer}}" id="checkbox1">
+                                                       {{ i.name_lecturer}}
+                                                       </label>
+                                                   </div>
+                                               </div>
+                                       {% endfor %}
+
+
+                                 </a>
+
                                 </div>
                             </div>
                     </div>
@@ -157,7 +142,7 @@
                             <i style="position: absolute; margin-left: -137px;" class="glyphicon glyphicon-option-vertical"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i ></i>Archive</a>
+                                <li><a href='{{url_for('add_archive',username = username,subject_code = subject[i][0]) }}'><i ></i>Archive</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href='{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>

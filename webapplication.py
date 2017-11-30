@@ -290,19 +290,9 @@ def manageStudentList(username, subject_code):
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
-<<<<<<< HEAD
-    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
-                             groupingList = groupingList, taskList = taskList, nameuser = nameuser,
-                            otherstudent = otherstudent)
-=======
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-                            otherstudent = otherstudent)
-    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
-                             groupingList = groupingList, taskList = taskList, nameuser = nameuser)
-    return render_template('03_manage_student.html', username = username, subject_code = subject_code, lecturerList = lecturerList,
-                             groupingList = groupingList, taskList = taskList, nameuser = nameuser)
->>>>>>> 4065367e94f9100c557a1a9b3af0c5783ba7a512
+                            otherstudent = otherstudent,nameuser = nameuser)
 
 
 

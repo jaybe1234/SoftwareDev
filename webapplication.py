@@ -156,6 +156,7 @@ def subject(username,subject_code,type_sort):
         scoregroup = getstudentgroupscore(taskList,subject_code,type_sort)
         len_scoregroup = len(scoregroup)
         groupingtasklist = list(getTaskListFromGrouping(subject_code, type_sort))
+        len_groupingtasklist = len(groupingtasklist)
         namestudent_ingroup = getstudentnameIngroup(subject_code,type_sort)
         scorelist = taskListScore(member_group, groupingtasklist)
         len_scorelist = len(scorelist)
@@ -168,8 +169,12 @@ def subject(username,subject_code,type_sort):
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
                             namestudent_ingroup = namestudent_ingroup,lecOther = lecOther, len_grouplist = len_grouplist,
                             len_member_group = len_member_group, grouplist = grouplist, member_group = member_group,
+<<<<<<< HEAD
+                            groupingtasklist = groupingtasklist,len_groupingtasklist = len_groupingtasklist)
+=======
                             groupingtasklist = groupingtasklist,lecnotuser = lecnotuser)
 
+>>>>>>> e3044a5a23a7381dc418ff110914e33d86b23a69
 
 @app.route('/<string:username>/<string:subject_code>/addLecturer', methods = ['GET' , 'POST'])
 def add_lecturer(username,subject_code):
@@ -334,6 +339,18 @@ def editScore(username,subject_code,student_id,task_name,type_sort):
         updateScore(student_id, task_name, float(request.form[student_name + task_name]), subject_code)
     return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
 
+@app.route('/<string:username>/<string:subject_code>/<string:group_name>/<string:task_name>/<string:type_sort>/edit_group_score' , methods = ['GET' , 'POST'])
+def editGroupScore(username,subject_code,group_name,task_name,type_sort):
+    grouping = session.query(Grouping).filter_by(name_grouping = type_sort, subject_code_grouping = subject_code).one()
+    group = session.query(Group).filter_by(group_id_group = group_name,grouping_id_group = grouping.id_grouping)
+    if request.method == 'POST':
+        for i in group:
+            updateScore(i.student_id_group, task_name, float(request.form[i.group_id_group + task_name]), subject_code)
+    return redirect(url_for('subject', username = username, subject_code = subject_code,type_sort = type_sort))
+
+
+
+
 @app.route("/<string:subject_code>/<string:task_name>/creditbank",methods=['GET','POST'])
 def logincreditbank(subject_code,task_name):
     if request.method == 'POST':
@@ -416,12 +433,12 @@ def member(subject_code,task_name,student_id,credit_bank):
                     delete_score(task_id,groups[j].student_id_group)
                     for k in score_obj_list:
                         score = score + k.score_storage
-                        create_score(task_id,groups[j].student_id_group,score)
+                        create_score(task_id,groups[j].student_id_group,score/8.0)
             else:
                 if score_obj_list is not None:
                     for k in score_obj_list:
                         score = score + k.score_storage
-                        create_score(task_id,groups[j].student_id_group,score)
+                        create_score(task_id,groups[j].student_id_group,score/8.0)
         return redirect(url_for('thankyou'))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id, length=length,task_name=task_name,subject_code=subject_code)

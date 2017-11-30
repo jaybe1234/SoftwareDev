@@ -169,11 +169,7 @@ def subject(username,subject_code,type_sort):
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
                             namestudent_ingroup = namestudent_ingroup,lecOther = lecOther, len_grouplist = len_grouplist,
                             len_member_group = len_member_group, grouplist = grouplist, member_group = member_group,
-<<<<<<< HEAD
                             groupingtasklist = groupingtasklist,len_groupingtasklist = len_groupingtasklist)
-=======
-                            len_groupingtasklist = len_groupingtasklist,groupingtasklist = groupingtasklist,lecnotuser = lecnotuser)
->>>>>>> e352d368e0a4a3312baa2659be914334900ae32c
 
 
 
@@ -332,7 +328,7 @@ def addStudent(username,subject_code):
         studentlist = request.form.getlist('otherstudent')
         for i in studentlist:
             create_enrollment(subject_code,i,None)
-        return redirect(url_for('manageStudentList', username = username, subject_code = subject))
+        return redirect(url_for('manageStudentList', username = username, subject_code = subject_code))
 
 @app.route('/<string:username>/<string:subject_code>/<int:student_id>/<string:task_name>/<string:type_sort>/edit' , methods = ['GET' , 'POST'])
 def editScore(username,subject_code,student_id,task_name,type_sort):

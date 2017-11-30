@@ -230,7 +230,7 @@
                             <i style="position: absolute; margin-left: -137px;" class="glyphicon glyphicon-option-vertical"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i ></i>Archive</a>
+                                <li><a href="{{url_for('add_archive',username = username,subject_code = subject[i][0])}}"><i ></i>Archive</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href='{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>

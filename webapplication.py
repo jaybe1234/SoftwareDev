@@ -70,6 +70,7 @@ def add_class(username):
         nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
         all_sub = session.query(Subject).filter_by(code_subject = Subject.code_subject)
         subListAll =[]
+        lensub = []
         id_user = nameuser[0].id_lecturer
         for i in all_sub:
             subListAll.append(i.code_subject)
@@ -89,41 +90,29 @@ def add_class(username):
 def home2(username):
     return render_template('bamhompage.html')
 
-@app.route('/<string:username>/<string:subject_code>/add_archive',methods = ['GET','POST'])
+@app.route('/<string:username>/<string:subject_code>/movetohome')
+def movetohome(username):
+    delete_archive(username,subject_code)
+    return redirect(url_for('home',username= username))
+
+@app.route('/<string:username>/<string:subject_code>/archive')
 def add_archive(username,subject_code):
     create_archive(username,subject_code)
     return redirect(url_for('home',username= username))
 
 @app.route('/<string:username>/archive',methods = ['GET','POST'])
 def archive(username):
-    sub = []
-    lensub = []
-    nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
-    id_user = nameuser[0].id_lecturer
-    subject = subjectpage_data(username)
-    lensub.append(len(subject))
-    all_lec = session.query(Lecturer).filter_by(name_lecturer = Lecturer.name_lecturer)
-    all_sub = session.query(Subject).filter_by(code_subject = Subject.code_subject)
-    subListAll =[]
-    for i in all_sub:
-        subListAll.append(i.code_subject)
-    for i in subject:
-        lensub.append(len(i))
-        namesub = session.query(Subject).filter_by(code_subject = i[0])
-        sub.append(namesub[0].name_subject)
     if login == False:
         return redirect('login')
-    elif request.method == 'POST' :
-        nameclass = request.form['Class_name']
-        if nameclass is not None :
-            for i in subListAll:
-                if nameclass == i:
-                    return ("This class's name already exists")
-            create_subject(" ",nameclass)
-            create_enrollment(nameclass, None , id_user )
-        return redirect(url_for('home',username= username))
     else:
-        return render_template('Archive.html',username = username,subject = subject,lensub = lensub,nameuser = nameuser,sub = sub,all_lec = all_lec)
+        nameuser = session.query(Lecturer).filter_by(user_lecturer = username)
+        id_user = nameuser[0].id_lecturer
+        lecnotuser = getlecnotuser(username)
+        listarchive = getarchive(id_user)
+        len_listarchive = len(listarchive)
+        subject = subjectpage_data(username)
+        return render_template('Archive.html',username = username,subject = subject,lecnotuser = lecnotuser,listarchive = listarchive,
+                                len_listarchive = len_listarchive,nameuser = nameuser)
 
 @app.route('/<string:username>/<string:subject_code>/<string:type_sort>', methods = ['GET' , 'POST'])
 def subject(username,subject_code,type_sort):

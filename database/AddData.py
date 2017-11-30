@@ -169,9 +169,16 @@ def create_credit(group_id,subject_code,credit,task_name):
             return
 ######################################################################################
 def create_archive(name_lecturer,subject_code):
-    lecturer = session.query(Lecturer).filter_by(name_lecturer = name_lecturer)[0]
+    lecturer = session.query(Lecturer).filter_by(user_lecturer = name_lecturer).one()
     new_archive = Archive(subject_code_archive = subject_code,lecturer_archive = lecturer)
     session.add(new_archive)
+    session.commit()
+    return
+
+def delete_archive(name_lecturer,subject_code):
+    lecturer = session.query(Lecturer).filter_by(user_lecturer = name_lecturer)[0]
+    archive = session.query(Archive),filter_by(subject_code_archive = subject_code,lecturer_id_archive = name_lecturer )
+    session.delete(archive)
     session.commit()
     return
 ######################################################################################

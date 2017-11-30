@@ -43,22 +43,23 @@
                             <i class="glyphicon glyphicon-list"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
+                                <li><a href="{{url_for('home',username = username)}}"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                                 <li class="divider"></li>
                                 {% for i in subject %}
                                 <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid')}}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
                                 {% endfor %}
                                 <br><br><br><br><br><br>
-                                <li><a href="01_login.html"><i class="glyphicon glyphicon-save"></i >Archive</a></li>
-                                <li><a href="01_login.html"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
+                                <li><a href="{{url_for('archive',username = username)}}"><i class="glyphicon glyphicon-save"></i >Archive</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                             </ul>
                         </div>
                     </div>
-                    <a class="navbar-brand" href="Eiei.html">Archive</a>
+                    <a class="navbar-brand" href="{{url_for('archive',username = username)}}">Archive</a>
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
-                    <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a> <!-- Add Class -->
+                    <a data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></a>
+                    <!-- Add Class -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -90,65 +91,50 @@
         <!--end side bar-->
         <!-- start Pop-up add class -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form name="test" method="post" action="">
-                            Class's name : <input type="text" name="Class_name"><br><br>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h5>Cooperators:</h5>
-                                </div>
-                                <div class="col-lg-10">
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Bawornsak Sakulkuaekulsuk
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Suriya Natsupakpong
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a role="menuitem" tabindex="-1" href="#">
-                                        <div class="ckbox">
-                                            <div class="checkbox">
-                                                <label for="checkbox1">
-                                                <input type="checkbox" id="checkbox1">
-                                                Warasinee Chaisangmongkon
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
+           <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Class</h4>
+                 </div>
+                 <div class="modal-body">
+                    <form name="test" method="post" action="{{url_for('add_class',username = username)}}">
+                       Class's name : <input type="text" name="classname"><br><br>
+                       <div class="row">
+                          <div class="col-lg-2">
+                             <h5>Cooperators:</h5>
+                          </div>
+                          <div class="col-lg-10">
+                                   <a role="menuitem" tabindex="-1" href="#">
+                                     {%for i in lecnotuser%}
+                                               <div class="ckbox">
+                                                   <div class="checkbox">
+                                                       <label for="checkbox1">
+                                                       <input type="checkbox"name="lecturer" value="{{i.id_lecturer}}" id="checkbox1">
+                                                       {{ i.name_lecturer}}
+                                                       </label>
+                                                   </div>
+                                               </div>
+                                       {% endfor %}
+
+
+                                 </a>
+
+                           </div>
+                       </div>
+                 </div>
+                 <div class="modal-footer">
+                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-primary">Add</button>
+                 </div>
+                 </form>
+              </div>
+           </div>
         </div>
         <!-- context -->
         <div class="container">
             <div class = "row" >
-                {% for i in range(0,lensub[0]) %}
+                {% for i in range(len_listarchive) %}
                 <!-- -->
                 <div class="col-lg-4 ">
                     <div class="card" style="width: 30rem; background-color: None;">
@@ -157,24 +143,24 @@
                             <i style="position: absolute; margin-left: -137px;" class="glyphicon glyphicon-option-vertical"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i ></i>Archive</a>
+                                <li><a href="{{url_for('home',username = username)}}"><i ></i>Move back to Homepage</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href='{{url_for('deleteSub',username = username,subject_code = subject[i][0]) }}'><i ></i>Delete</a>
+                                <li><a href='{{url_for('deleteSub',username = username,subject_code = listarchive[i]) }}'><i ></i>Delete</a>
                                 </li>
                             </ul>
                         </li>
                         <!-- /.dropdown-user -->
                         <div class="card-block">
                             <br>
-                            <h4 class="card-title"  > {{ subject[i][0] + " (" + sub[i] + ")"}} </h4>
+                            <h4 class="card-title"  > {{listarchive[i]}} </h4>
                             <hr noshade="noshade" width="100%" color=000000 size="6" >
                             <h4 class="card-title"  >Cooperators </h4>
-                            {% for j in range(1,lensub[i+1]) %}
+
                             <br>
-                            <a2 href="#"><i class="glyphicon glyphicon-user"  ></i>{{ subject[i][j] }}</a2>
-                            {% endfor %}
-                            <br><br><a href="{{url_for('subject',username = username,subject_code = subject[i][0],type_sort = 'studentid') }}" class="btn btn-primary">{{ subject[i][0] }}</a>
+                            <a2 href="#"><i class="glyphicon glyphicon-user"  ></i>nutty</a2>
+
+                            <br><br><a href='{{url_for('subject',username = username,subject_code = listarchive[i],type_sort = 'studentid') }}' class="btn btn-primary">{{ listarchive[i] }}</a>
                         </div>
                     </div>
                     <!-- -->

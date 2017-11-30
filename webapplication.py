@@ -169,7 +169,11 @@ def subject(username,subject_code,type_sort):
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
                             namestudent_ingroup = namestudent_ingroup,lecOther = lecOther, len_grouplist = len_grouplist,
                             len_member_group = len_member_group, grouplist = grouplist, member_group = member_group,
+<<<<<<< HEAD
                             groupingtasklist = groupingtasklist,len_groupingtasklist = len_groupingtasklist)
+=======
+                            len_groupingtasklist = len_groupingtasklist,groupingtasklist = groupingtasklist,lecnotuser = lecnotuser)
+>>>>>>> e352d368e0a4a3312baa2659be914334900ae32c
 
 
 
@@ -304,11 +308,13 @@ def manageStudentList(username, subject_code):
     nameuser = session.query(Lecturer).filter_by(user_lecturer = username).one()
     studentList = getStudentList(subject_code)
     otherstudent = otherStudentList(subject_code)
+    subject = subjectpage_data(username)
     lecOther = getLecturerNotinclass(lecturerList)
     lecnotuser = getlecnotuser(username)
     return render_template('03_manage_student.html', username = username, subject_code = subject_code,
                             lecturerList = lecturerList, groupingList = groupingList, taskList = taskList, studentList = studentList,
-                            otherstudent = otherstudent,nameuser = nameuser,lecOther = lecOther,lecnotuser = lecnotuser)
+                            otherstudent = otherstudent,nameuser = nameuser,lecOther = lecOther,lecnotuser = lecnotuser,
+                            subject = subject)
 
 
 

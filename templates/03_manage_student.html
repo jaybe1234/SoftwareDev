@@ -36,25 +36,6 @@
                     <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand">
-<<<<<<< HEAD
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
-                                <li class="divider"></li>
-                                {% for i in subject%}
-                                <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
-                                {% endfor %}
-                                <br><br><br><br><br><br>
-                                <li><a href='{{url_for('archive',username = username)}}'><i class="glyphicon glyphicon-save"></i>Archive</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <a class="navbar-brand" href='{{url_for('subject',username = username,subject_code = subject_code,type_sort = 'studentid')}}'>FRA 241 (2560)</a>
-=======
->>>>>>> f8af4ce55ea96a8b361d481c68d9d77d56c07fb7
                   <div class="dropdown">
                      <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                      <i class="glyphicon glyphicon-list"></i>
@@ -62,17 +43,17 @@
                      <ul class="dropdown-menu dropdown-user">
                         <li><a href="/Bawornsak/home"><i class="glyphicon glyphicon-home"></i> Classes</a></li>
                         <li class="divider"></li>
-                        
-                        <li><a href="/Bawornsak/FRA241/studentid"><i class="fa fa-sign-out fa-fw"></i>FRA241</a></li>
-                        
+                        {% for i in subject%}
+                        <li><a href='{{url_for('subject',username = username,subject_code = i[0],type_sort = 'studentid') }}'><i class="fa fa-sign-out fa-fw"></i>{{i[0]}}</a></li>
+                        {% endfor %}
                         <br><br><br><br><br><br>
-                        <li><a href="#"><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
+                        <li><a href='{{url_for('archive',username = username)}}'><i class="glyphicon glyphicon-download-alt"></i>Archive</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="glyphicon glyphicon-cog"></i>Setting</a></li>
                      </ul>
                   </div>
                </div>
-                    <a class="navbar-brand" href="Eiei.html">FRA 241 (2560)</a>
+                    <a class="navbar-brand" href="Eiei.html">{{subject_code}}</a>
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
@@ -173,15 +154,59 @@
             </nav>
             <!--end side bar-->
             <!-- start Pop-up add class -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Class</h4>
+                     </div>
+                     <div class="modal-body">
+                        <form name="test" method="post" action="{{url_for('add_class',username = username)}}">
+                           Class's name : <input type="text" name="classname"><br><br>
+                           <div class="row">
+                              <div class="col-lg-2">
+                                 <h5>Cooperators:</h5>
+                              </div>
+                              <div class="col-lg-10">
+                                       <a role="menuitem" tabindex="-1" href="#">
+                                         {%for i in lecnotuser%}
+                                                   <div class="ckbox">
+                                                       <div class="checkbox">
+                                                           <label for="checkbox1">
+                                                           <input type="checkbox"name="lecturer" value="{{i.id_lecturer}}" id="checkbox1">
+                                                           {{ i.name_lecturer}}
+                                                           </label>
+                                                       </div>
+                                                   </div>
+                                           {% endfor %}
+
+
+                                     </a>
+
+                               </div>
+                           </div>
+                     </div>
+                     <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary">Add</button>
+                     </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <!-- end Pop-up add class-->
+
+            <!-- start Pop-up add co -->
             <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
            <div class="modal-dialog" role="document">
              <div class="modal-content">
                <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">ื</span></button>
                  <h4 class="modal-title" id="myModalLabel">Add Cooperators</h4>
 
                  <div class="modal-body">
-                    <form name="test" method="post" action="/Bawornsak/FRA241/addLecturer">
+                    <form name="test" method="post" action="{{url_for('add_lecturer',username = username,subject_code = subject_code)}}">
                        <div class="row">
                           <div class="col-lg-2">
                              <h5>Cooperators:</h5>
@@ -189,171 +214,379 @@
                           <div class="col-lg-10">
 
                                    <a role="menuitem" tabindex="-1" href="#">
-                                              
+                                              {% for i in lecOther%}
                                                <div class="ckbox">
                                                    <div class="checkbox">
                                                        <label for="checkbox1">
-                                                       <input type="checkbox" name="otherlec" value="4" id="checkbox1">
-                                                       Mr.Suriya
+                                                       <input type="checkbox" name="otherlec" value="{{i.id_lecturer}}" id="checkbox1">
+                                                       {{ i.name_lecturer }}
                                                        </label>
                                                    </div>
                                                </div>
-                                               
-                           </a></div><a role="menuitem" tabindex="-1" href="#">
-                       </a></div><a role="menuitem" tabindex="-1" href="#">
-                 </a></form></div><a role="menuitem" tabindex="-1" href="#">
-               </a></div><a role="menuitem" tabindex="-1" href="#">
+                                               {% endfor %}
 
-               <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                 <button type="submit" class="btn btn-primary">Add</button>
-               
-               </div>
+                                             </div>
+                                         </div>
+                                   </div>
+                                  </div>
 
-             </a></div>
-           </div>
-         </div>
-            <!-- end Pop-up add class-->
+                                  <div class="modal-footer">
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                   <button type="submit" class="btn btn-primary">Add</button>
+                                  </form>
+                                  </div>
+
+                                  </div>
+                                  </div>
+                                  </div>
+            <!-- end Pop-up add co-->
             <!-- start Pop-up add Group -->
             <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Add group</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="sidebar-nav navbar-collapse">
-                                <div class="row">
-                                    <div class="col-lg-4">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Create Grouping</h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="sidebar-nav navbar-collapse">
+                        <form name="test" action="{{url_for('create_grouping', username = username, subject_code = subject_code)}}" method="post">
+                           <div class="row">
+                              <div class="col-lg-4">
 
 
 
-                              <ul class="nav in" id="side-menu">
-                                <li>
-                                   <div class="radio">
-                                      <label>
-                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="studentid" checked=""> by Student ID.
-                                      </label>
-                                   </div>
-                                </li>
-                                <li>
-                                   <div class="radio">
-                                      <label>
-                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="gpax" checked=""> by GPAX
-                                      </label>
-                                   </div>
-                                </li>
-                                <li>
-                                   <div class="radio">
-                                      <label>
-                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="random" checked=""> by Random
-                                      </label>
-                                   </div>
-                                </li>
-                                <li>
-                                   <div class="radio">
-                                      <label>
-                                        <input type="radio" name="grouping_type" id="optionsRadios1" value="custom" checked=""> by Custom
-                                      </label>
-                                   </div>
-                                </li>
-                              </ul>
-                           </div>
-                                    <div class="col-lg-8">
-                                        <form name="test" method="post" action="">
-                                            Group's name : <input type="text" name="Class's name"><br><br>
-                                            Number of group : <input type="text" name="Class's name"><br><br>
-                                            <div class="form-group">
-                                                <h5>Grouping from</h5>
-                                                <div class="col-lg-4">
-                                                    <div class="radio">
-                                                        <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">All
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <div class="radio">
-                                                        <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Section
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                 <ul class="nav in" id="side-menu">
+   		                        <li>
+   		                           <div class="radio">
+   	                                  <label>
+   	                                    <input type="radio" name="grouping_type" id="optionsRadios1" value="studentid" checked=""> by Student ID.
+   	                                  </label>
+                                      </div>
+   		                        </li>
+   		                        <li>
+   		                           <div class="radio">
+   	                                  <label>
+   	                                    <input type="radio" name="grouping_type" id="optionsRadios1" value="gpax" checked=""> by GPAX
+   	                                  </label>
+                                      </div>
+   		                        </li>
+   		                        <li>
+   		                           <div class="radio">
+   	                                  <label>
+   	                                    <input type="radio" name="grouping_type" id="optionsRadios1" value="random" checked=""> by Random
+   	                                  </label>
+                                      </div>
+   		                        </li>
+   		                        <li>
+   		                           <div class="radio">
+   	                                  <label>
+   	                                    <input type="radio" name="grouping_type" id="optionsRadios1" value="custom" checked=""> by Custom
+   	                                  </label>
+                                      </div>
+   		                        </li>
+                                 </ul>
+                              </div>
+                              <div class="col-lg-8">
+
+                                    Grouping's Name : <input type="text" name="grouping_name"><br><br>
+                                    Number of Group : <input type="text" name="group_num"><br><br>
+                                    Group's Prefix : <input type="text" name="group_prefix"><br><br>
+                                    <div class="form-group">
+                                       <h5>Grouping from</h5>
+                                       <div class="col-lg-4">
+                                          <div class="radio">
+                                             <label>
+                                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">All
+                                             </label>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-8">
+                                          <div class="radio">
+                                             <label>
+                                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Section
+                                             </label>
+                                          </div>
+                                       </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- end Pop-up add Group-->
-            <!-- start Pop-up add Task -->
-           <div class="modal fade" id="add_Task1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title" id="myModalLabel">Add Task</h4>
-                  </div>
-                  <div class="modal-body">
-                     <div class="sidebar-nav navbar-collapse">
-                        <div class="row">
-                           <div class="col-lg-5">
-                              <ul class="nav in" id="side-menu">
-                                <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
-                                 <li>
-
-                                    <div class="radio">
-                                      <label>
-                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="individual" checked="">Individual
-                                      </label>
-                                    </div>
-
-                                 </li>
-                                 {% for i in groupingList %}
-                                 <li>
-
-                                    <div class="radio">
-                                      <label>
-                                        <input type="radio" name="grouping_name" id="optionsRadios1" value="{{i.id_grouping}}" checked="">{{i.name_grouping}}
-                                      </label>
-                                    </div>
-
-                                 </li>
-                                 {% endfor %}
-                              </ul>
-                           </div>
-                           <div class="col-lg-7">
-                              <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
-                                 Task's name : <input type="text" name="task_name"><br><br>
-                                 Score : <input type="text" name="score"><br><br>
+                              </div>
                            </div>
                         </div>
                      </div>
+                     <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary">Add</button>
+                     </div>
+                     </form>
                   </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+               </div>
+            </div>
+            <!-- end Pop-up add Group-->
+            <!-- start Pop-up add Task 1 --> <!--Individual-->
+            <div class="modal fade" id="add_Task1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="sidebar-nav navbar-collapse">
+                           <div class="row">
+                              <div class="col-lg-5">
+                                 <ul class="nav in" id="side-menu">
+                                   <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
+                                    <li>
+
+                                       <div class="radio">
+                                         <label>
+                                           <input type="radio" name="grouping_name" id="optionsRadios1" value="individual" checked="">Individual
+                                         </label>
+                                       </div>
+
+                                    </li>
+                                    {% for i in groupingList %}
+                                    <li>
+
+                                       <div class="radio">
+                                         <label>
+                                           <input type="radio" name="grouping_name" id="optionsRadios1" value="{{i.id_grouping}}" checked="">{{i.name_grouping}}
+                                         </label>
+                                       </div>
+
+                                    </li>
+                                    {% endfor %}
+                                 </ul>
+                              </div>
+                              <div class="col-lg-7">
+                                 <form name="test" method="post" action="{{url_for("addTask", username = username, subject_code = subject_code)}}">
+                                    Task's name : <input type="text" name="task_name"><br><br>
+                                    Score : <input type="text" name="score"><br><br>
+                              </div>
+                           </div>
                         </div>
-                        </form>
-                    </div>
-                </div>
+                     </div>
+                     <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary">Add</button>
+                     </div>
+                     </form>
+                  </div>
+               </div>
             </div>
             <!-- end Pop-up add Task-->
+          <!-- start Pop-up add Task2 --><!--Group-->
+            <div class="modal fade" id="add_Task2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Task</h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="sidebar-nav navbar-collapse">
+                           <div class="row">
+                              <div class="col-lg-4">
+                                 <ul class="nav in" id="side-menu">
+                                    <li>
+                                       <a href="#" class="active"> Individual</a>
+                                    </li>
+                                    <li>
+                                       <a href="#" class="active"> Group (Mini-project)</a>
+                                    </li>
+                                    <li>
+                                       <a href="#" class="active"> Group (Project)</a>
+                                    </li>
+                                 </ul>
+                              </div>
+                              <div class="col-lg-8">
+                                 <form name="test" method="post" action="">
+                                    Task's name : <input type="text" name="task_name"><br><br>
+                                    Score : <input type="text" name="task_score"><br><br>
+                                    Grouping's name: <input type="text" name="grouping_name"><br><br>
+                                    <div class="form-group">
+                                       <h5>Scoring type</h5>
+                                       <div class="col-lg-4">
+                                          <div class="radio">
+                                             <label>
+                                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Equal
+                                             </label>
+                                          </div>
+                                       </div>
+                                       <div class="col-lg-8">
+                                          <div class="radio">
+                                             <label>
+                                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Credit bank
+                                             </label>
+                                          </div>
+                                       </div>
+                                    </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary">Add</button>
+                     </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+            <!-- end Pop-up add Task2-->
+{% for i in lecturerList %}
+             <!-- start Pop-up Cooperators 1 -->
+             <div class="modal fade" id="{{i.id_lecturer+1000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                   <div class="modal-content">
+                      <div class="modal-body">
+                         <form name="test" method="post" action="{{url_for('removeLec', username = username, subject_code = subject_code, lec_id = i.id_lecturer,type_sort = type_sort)}}">
+                            <div class="row">
+                               <div class="col-lg-4">
+                                     <br>
+                                     <p style="text-indent: 1em;">
+                                        <img src="{{url_for('static', filename='img/profile.png')}}" class="img-circle">
+                                     </p>
+                               </div>
+                               <div class="col-lg-8">
+                            <br>
+                                     <h6>{{i.name_lecturer}}</h6>
+                                     <a class="btn btn-primary btn-sm" data-dismiss="modal">Profile</a>
+                               </div>
+                            </div>
+                      </div>
+                      <div class="modal-footer">
+                         <div class="row">
+                            <div class="col-lg-2">
+                               <button type="submit" class="btn btn-default">Remove</button>
+                            </div>
+                            <div class="col-lg-10">
+                               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                         </div>
+                      </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+               <!-- end Pop-up Cooperators 1-->
+               {% endfor %}
+
+               {% for i in groupingList %}
+                <!-- start Pop-up Grouping -->
+                  <div class="modal fade" id="{{i.id_grouping+10000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                       <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="myModalLabel">{{i.name_grouping}}</h4>
+                           </div>
+                           <div class="modal-body">
+                              <form name="test" method="post" action="{{url_for('removeGrouping',username = username, subject_code = subject_code, grouping_id = i.id_grouping,type_sort= type_sort)}}">
+                                 <div class="row">
+                                    <div class="col-lg-6">
+                                          <h5><strong>Grouping type: {{i.type_grouping}}</strong></h5>
+                                    </div>
+                                    <div class="col-lg-6">
+                                          <h5>Student ID.</h5>
+                                 <h5>16</h5>
+                                 <h5>Section</h5>
+                                    </div>
+                                 </div>
+                                 <br>
+                                 <h5><strong>Tasks</strong></h5>
+                                 {% for a in taskList %}
+                                 {% if i.id_grouping == a.grouping_id_task%}
+                                 <h5><i class="glyphicon glyphicon-stop"> {{ a.name_task }}</i></h5>
+                                 {% endif %}
+                                 {% endfor %}
+                           </div>
+                           <div class="modal-footer">
+                              <div class="row">
+                                 <div class="col-lg-2">
+                                    <button type="submit" class="btn btn-default">Remove</button>
+                                 </div>
+                                 <div class="col-lg-10">
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                                 </div>
+                              </div>
+                           </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- end Pop-up Group-->
+                  {% endfor %}
+         {% for i in taskList %}
+                <!-- start Pop-up Tasks -->
+                  <div class="modal fade" id="{{i.id_task+10000000}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                     <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                       <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="myModalLabel">{{i.name_task}}</h4>
+                           </div>
+                           <div class="modal-body">
+                              <form name="test" method="post" action="{{url_for('removeTask', username = username, subject_code = subject_code, task_id = i.id_task,type_sort = type_sort)}}">
+                                 <div class="row">
+                                    <div class="col-lg-2">
+                                          <h5>Note</h5>
+                                    </div>
+                                    <div class="col-lg-10">
+                                 <td data-name="desc">
+                                    <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
+                                 </td>
+                                    </div>
+                              <div class="col-lg-6">
+                                          <h5><strong>Group's name</strong></h5>
+                                 <h5><strong>Score</strong></h5>
+                                 <h5><strong>Scoring type</strong></h5>
+                                    </div>
+                                    <div class="col-lg-6">
+                                 <h5>Project</h5>
+                                       <h5> 10</h5>
+                                       <h5> Credit bank</h5>
+                                    </div>
+                              <div class="col-lg-4">
+                                          <br>
+                                          <h5>Teacher</h5>
+                                 <br>
+                                 <h5>Student</h5>
+                                    </div>
+                                    <div class="col-lg-8">
+                                 <br>
+                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Grade</button>
+                                 <br><br>
+                                 <button type="button" class="btn btn-primary" data-dismiss="modal">OPEN Credit bank</button>
+                                 <a href = "{{url_for('logincreditbank',subject_code = subject_code , task_name = i.name_task)}}" creditbank><ins>Credit bank</ins></a>
+                              </div>
+                                 </div>
+                           </div>
+                           <div class="modal-footer">
+                              <div class="row">
+                                 <div class="col-lg-2">
+                                    <button type="submit" class="btn btn-default">Remove</button>
+                                 </div>
+                                 <div class="col-lg-10">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                 </div>
+                              </div>
+                           </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- end Pop-up Tasks-->
+         {% endfor %}
+
             <div id="page-wrapper" style="min-height: 611px;">
                 <div class="row">
                     <div class="col-lg-2 col-md-5">
-                        <!-- องประกอบด้านใน-->
+                        <!-- ??????????????-->
                         <h5 class="page-header"><i class="glyphicon glyphicon-cog"></i> <ins>Manage Student List</ins></h5>
                     </div>
-                    
+
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
@@ -364,7 +597,7 @@
                         <div class="col-md-11 col-md-push-0">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Students in "FRA 241 (2560)" class</h3>
+                                    <h3 class="panel-title">Students in {{subject_code}}  class</h3>
                                 </div>
                                 <div class="panel-body">
                                     <!-- <h2>Basic Table</h2>

@@ -366,6 +366,14 @@ def studentInGroupList(subject_code,grouping_name,getgrouplist):
         member_group.append(member)
     return member_group
 
+def getlecnotuser(username):
+    leclist = session.query(Lecturer)
+    lecnotuser= []
+    for i in leclist:
+        if i.user_lecturer not in username:
+            lecnotuser.append(i)
+    return lecnotuser
+
 def lenInList(lis):
     num_list = []
     for i in lis:
@@ -400,7 +408,7 @@ def taskListScore(studentlist, tasklist):
 def scoreTask(student_obj,task_obj):
     task_id = task_obj.id_task
     student_id = student_obj.id_student
-    score = session.query(Score).filter_by(student_id_score = student_id , task_id_score = task_id)[0].score_score
+    score = session.query(Score).filter_by(student_id_score = student_id , task_id_score = task_id)[0]
     return score
 
 def creditbankScore(task_name,subject_code,student_id):
@@ -416,4 +424,7 @@ def creditbankScore(task_name,subject_code,student_id):
                 return i.score_storage
                 score = score + i.score_storage
     return create_score(task_id,student_id,score)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6efa81ff8a99b45d42ce62ba71e0d6b7efadc07d

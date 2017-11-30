@@ -402,12 +402,12 @@ def member(subject_code,task_name,student_id,credit_bank):
                     delete_score(task_id,groups[j].student_id_group)
                     for k in score_obj_list:
                         score = score + k.score_storage
-                        create_score(task_id,groups[j].student_id_group,score)
+                        create_score(task_id,groups[j].student_id_group,score/8.0)
             else:
                 if score_obj_list is not None:
                     for k in score_obj_list:
                         score = score + k.score_storage
-                        create_score(task_id,groups[j].student_id_group,score)
+                        create_score(task_id,groups[j].student_id_group,score/8.0)
         return redirect(url_for('thankyou'))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id, length=length,task_name=task_name,subject_code=subject_code)

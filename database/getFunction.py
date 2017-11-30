@@ -400,7 +400,7 @@ def taskListScore(studentlist, tasklist):
 def scoreTask(student_obj,task_obj):
     task_id = task_obj.id_task
     student_id = student_obj.id_student
-    score = session.query(Score).filter_by(student_id_score = student_id , task_id_score = task_id)[0].score_score
+    score = session.query(Score).filter_by(student_id_score = student_id , task_id_score = task_id)[0]
     return score
 
 def creditbankScore(task_name,subject_code,student_id):

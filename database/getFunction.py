@@ -424,7 +424,3 @@ def creditbankScore(task_name,subject_code,student_id):
                 return i.score_storage
                 score = score + i.score_storage
     return create_score(task_id,student_id,score)
-<<<<<<< HEAD
-
-=======
->>>>>>> 6efa81ff8a99b45d42ce62ba71e0d6b7efadc07d

@@ -210,18 +210,13 @@ def create_storage(student_id,task_name,score):
 # create_student(59340500025,'user23','12345','Bawornsak Sakulkueakulsuk',9,'B',4.00)
 
 
-
-
 # create_lecturer(1,"pitiwut","teerakittikul","Pitiwut")
 # create_lecturer(3,"warasinee","chaisangmongkon","Warasinee")
 # create_lecturer(2,"bawornsak","sakulkueakulsuk","Bawornsak")
 # create_lecturer(4,"suriya","natsupakpong","Suriya")
 # create_lecturer(5,"djitt","laowattana","Djitt")
 
-
 # create_subject('Software Development','FRA241')
-# create_subject('Computer Programming','FRA142')
-
 
 # create_enrollment("FRA241", 59340500001 , None)
 # create_enrollment("FRA241", 59340500002 , None)
@@ -244,19 +239,7 @@ def create_storage(student_id,task_name,score):
 # create_enrollment("FRA241", 59340500019 , None)
 # create_enrollment("FRA241", 59340500020 , None)
 
-# create_enrollment("FRA142", 593405000001 , None)
-# create_enrollment("FRA142", 593405000001 , None)
-# create_enrollment("FRA142", 593405000003 , None)
-# create_enrollment("FRA142", 593405000004 , None)
-# create_enrollment("FRA142", 593405000005 , None)
-# create_enrollment("FRA142", 593405000006 , None)
-# create_enrollment("FRA142", 593405000007 , None)
-# create_enrollment("FRA142", 593405000008 , None)
-# create_enrollment("FRA142", 593405000009 , None)
-# create_enrollment("FRA142", 593405000010 , None)
-
-
-# create_grouping('Grouping by RANDOMsssssssss','RANDOM','FRA241')
+# create_grouping('Grouping by RANDOM','RANDOM','FRA241')
 
 # create_group(1,59340500001,'AB01')
 # create_group(1,59340500002,'AB02')
@@ -278,7 +261,6 @@ def create_storage(student_id,task_name,score):
 # create_group(1,59340500018,'AB08')
 # create_group(1,59340500019,'AB09')
 # create_group(1,59340500020,'AB10')
-
 
 # create_task(1,'Software Development',5)
 
@@ -305,9 +287,6 @@ def create_storage(student_id,task_name,score):
 
 # for i in range(1,3):
 #     create_enrollment('FRA241', None, i)
-# create_enrollment('FRA142', None, 3)
-# create_enrollment('FRA142', None, 4)
-
 
 # create_credit('AB01',"FRA241",10,"Software Development")
 # create_credit('AB02',"FRA241",20,"Software Development")

@@ -180,12 +180,8 @@ def subject(username,subject_code,type_sort):
                             studentListGroup = studentListGroup,scoregroup = scoregroup, len_scoregroup = len_scoregroup,
                             namestudent_ingroup = namestudent_ingroup,lecOther = lecOther, len_grouplist = len_grouplist,
                             len_member_group = len_member_group, grouplist = grouplist, member_group = member_group,
-<<<<<<< HEAD
                             groupingtasklist = groupingtasklist,len_groupingtasklist = len_groupingtasklist)
-=======
-                            groupingtasklist = groupingtasklist,lecnotuser = lecnotuser)
 
->>>>>>> e3044a5a23a7381dc418ff110914e33d86b23a69
 
 @app.route('/<string:username>/<string:subject_code>/addLecturer', methods = ['GET' , 'POST'])
 def add_lecturer(username,subject_code):
@@ -440,16 +436,16 @@ def member(subject_code,task_name,student_id,credit_bank):
             score = 0
             score_own = session.query(Score).filter_by(task_id_score = task_id,student_id_score = groups[j].student_id_group)
             if score_own is not None:
-                if score_obj_list is not None:
-                    delete_score(task_id,groups[j].student_id_group)
-                    for k in score_obj_list:
-                        score = score + k.score_storage
-                        create_score(task_id,groups[j].student_id_group,score/8.0)
-            else:
+                delete_score(task_id,groups[j].student_id_group)
                 if score_obj_list is not None:
                     for k in score_obj_list:
                         score = score + k.score_storage
                         create_score(task_id,groups[j].student_id_group,score/8.0)
+            # else:
+            #     if score_obj_list is not None:
+            #         for k in score_obj_list:
+            #             score = score + k.score_storage
+            #             create_score(task_id,groups[j].student_id_group,score/8.0)
         return redirect(url_for('thankyou'))
     else:
         return render_template('04_creditbank.html', groups=groups, credit_bank=credit_bank, student_id=student_id, length=length,task_name=task_name,subject_code=subject_code)
